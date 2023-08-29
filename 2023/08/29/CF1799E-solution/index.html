@@ -19,25 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一个OIer的博客，由Sukwants提供技术支持">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Star32&#39;s boring blog">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+    <meta name="description" content="场上口胡出来的有趣构造题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1799E  题解">
+<meta property="og:url" content="http://example.com/2023/08/29/CF1799E-solution/index.html">
 <meta property="og:site_name" content="Star32&#39;s boring blog">
-<meta property="og:description" content="一个OIer的博客，由Sukwants提供技术支持">
+<meta property="og:description" content="场上口胡出来的有趣构造题">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-29T11:39:17.843Z">
+<meta property="article:modified_time" content="2023-08-29T11:39:58.511Z">
 <meta property="article:author" content="Star32">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="构造">
+<meta property="article:tag" content="CF">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/archives/2023/">
+<link rel="canonical" href="http://example.com/2023/08/29/CF1799E-solution/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2023/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/08/29/CF1799E-solution/","path":"2023/08/29/CF1799E-solution/","title":"CF1799E  题解"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | Star32's boring blog</title>
+<title>CF1799E  题解 | Star32's boring blog</title>
   
 
 
@@ -70,7 +75,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Star32's boring blog</h1>
+      <p class="site-title">Star32's boring blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -123,7 +128,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -136,6 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -170,232 +176,106 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 21 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/29/CF1799E-solution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Star32">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Star32's boring blog">
+      <meta itemprop="description" content="一个OIer的博客，由Sukwants提供技术支持">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CF1799E  题解 | Star32's boring blog">
+      <meta itemprop="description" content="场上口胡出来的有趣构造题">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CF1799E  题解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-08-29 19:39:17 / 修改时间：19:39:58" itemprop="dateCreated datePublished" datetime="2023-08-29T19:39:17+08:00">2023-08-29</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">场上口胡出来的有趣构造题</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>题外话：本来没打这场，但同寝室的巨佬 @<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/291248">赵悦岑</a> 在打，所以我说帮他口胡一下 E，结果我口胡出来的时候他还没过 B，而且一直到最后都没过！咳咳……</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给你一个 $n\times m$ 的矩阵，矩阵中有 <code>.</code> 和 <code>#</code>，且 <code>#</code> 构成两个四连通块。请用尽量少的操作，将一些 <code>.</code> 改成 <code>#</code> 使得所有 <code>#</code> 构成一个四连通块，且任意两个 <code>#</code> 的最短路（只经过 <code>#</code> ）为他们的曼哈顿距离。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>由题目要求，我们可以发现一些简单的性质：如果一个格子上下或左右都有 <code>#</code>，则他必定会被染成 <code>#</code>，否则无法满足条件。补充完这些后，如果此时只剩一个连通块，那么就做完了。否则继续考虑这个性质：对于上下左右四个边界，一定只会出现单峰的情况，而且剩下的两个连通块一定是左上-右下或右上-左下的，而且不会有某一行或某一列出现两个 <code>#</code> 属于不同连通块。现在我们只考虑左上-右下型的。一个显然的想法是先分别把左上的右下角补齐，把右下的左上角补齐，再用一条简单的路径把两个连通块连起来。举个例子，如果图是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">##.....</span><br><span class="line">##.....</span><br><span class="line">#......</span><br><span class="line">......#</span><br><span class="line">.....##</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
+
+<p>那么我们补充完后可以是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">###....</span><br><span class="line">###....</span><br><span class="line">#####..</span><br><span class="line">....###</span><br><span class="line">....###</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
+
+<p>不难证明，这样补充填充的 <code>#</code> 一定是最少的。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>有点长，放在<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1799/submission/195512267">这里</a>。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:50:01+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/group_theory/" itemprop="url">
-          <span itemprop="name">群论基础</span>
-        </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+              <a href="/tags/%E6%9E%84%E9%80%A0/" rel="tag"># 构造</a>
+              <a href="/tags/CF/" rel="tag"># CF</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/29/BIT_plus/" rel="prev" title="树状数组高阶知识">
+                  <i class="fa fa-angle-left"></i> 树状数组高阶知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/08/29/CF1322E-solution/" rel="next" title="CF1322E  题解">
+                  CF1322E  题解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:48:08+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/mobius_inversion/" itemprop="url">
-          <span itemprop="name">莫比乌斯反演  学习笔记</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:43:35+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1764H-solution/" itemprop="url">
-          <span itemprop="name">CF1764H  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:42:05+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1534H-solution/" itemprop="url">
-          <span itemprop="name">CF1534H  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:40:29+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1322E-solution/" itemprop="url">
-          <span itemprop="name">CF1322E  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:39:17+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1799E-solution/" itemprop="url">
-          <span itemprop="name">CF1799E  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:37:50+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/BIT_plus/" itemprop="url">
-          <span itemprop="name">树状数组高阶知识</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:36:08+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/slope_trick/" itemprop="url">
-          <span itemprop="name">slope trick 小记</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:34:13+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/games/" itemprop="url">
-          <span itemprop="name">博弈论</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:32:47+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF457F-solution/" itemprop="url">
-          <span itemprop="name">CF457F  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2023/page/2/">2</a><a class="page-number" href="/archives/2023/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/2023/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+
+
+
 
 </div>
   </main>

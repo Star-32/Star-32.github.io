@@ -19,25 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一个OIer的博客，由Sukwants提供技术支持">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Star32&#39;s boring blog">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+    <meta name="description" content="一些简单的结论。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流定理与结论">
+<meta property="og:url" content="http://example.com/2023/08/29/flow_theory/index.html">
 <meta property="og:site_name" content="Star32&#39;s boring blog">
-<meta property="og:description" content="一个OIer的博客，由Sukwants提供技术支持">
+<meta property="og:description" content="一些简单的结论。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-29T11:29:41.037Z">
+<meta property="article:modified_time" content="2023-08-29T11:30:07.495Z">
 <meta property="article:author" content="Star32">
+<meta property="article:tag" content="知识点">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/archives/2023/">
+<link rel="canonical" href="http://example.com/2023/08/29/flow_theory/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2023/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/08/29/flow_theory/","path":"2023/08/29/flow_theory/","title":"网络流定理与结论"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | Star32's boring blog</title>
+<title>网络流定理与结论 | Star32's boring blog</title>
   
 
 
@@ -70,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Star32's boring blog</h1>
+      <p class="site-title">Star32's boring blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -170,232 +173,105 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 21 篇日志。 继续努力。</span>
-      </div>
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/29/flow_theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Star32">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Star32's boring blog">
+      <meta itemprop="description" content="一个OIer的博客，由Sukwants提供技术支持">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="网络流定理与结论 | Star32's boring blog">
+      <meta itemprop="description" content="一些简单的结论。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络流定理与结论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
-    </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:50:01+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
+      <time title="创建时间：2023-08-29 19:29:41 / 修改时间：19:30:07" itemprop="dateCreated datePublished" datetime="2023-08-29T19:29:41+08:00">2023-08-29</time>
+    </span>
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/group_theory/" itemprop="url">
-          <span itemprop="name">群论基础</span>
-        </a>
-      </div>
+  
+</div>
 
-      
-    </header>
-  </article>
+            <div class="post-description">一些简单的结论。</div>
+        </div>
+      </header>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:48:08+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/mobius_inversion/" itemprop="url">
-          <span itemprop="name">莫比乌斯反演  学习笔记</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:43:35+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1764H-solution/" itemprop="url">
-          <span itemprop="name">CF1764H  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:42:05+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1534H-solution/" itemprop="url">
-          <span itemprop="name">CF1534H  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:40:29+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1322E-solution/" itemprop="url">
-          <span itemprop="name">CF1322E  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:39:17+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF1799E-solution/" itemprop="url">
-          <span itemprop="name">CF1799E  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:37:50+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/BIT_plus/" itemprop="url">
-          <span itemprop="name">树状数组高阶知识</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:36:08+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/slope_trick/" itemprop="url">
-          <span itemprop="name">slope trick 小记</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:34:13+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/games/" itemprop="url">
-          <span itemprop="name">博弈论</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-29T19:32:47+08:00"
-              content="2023-08-29">
-          08-29
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/29/CF457F-solution/" itemprop="url">
-          <span itemprop="name">CF457F  题解</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="37dfabbe12813df0e252416aa8dc1f53782bfd2ebd92142994ed12d6d10955b6">05cd41db3361879aefb4267e575d7f2d0fad6e8fb5cc2dfe3712cdf9a2708595d5d69984a9cf62b894bca9ba77abbca8da9599c1bb8de0d78c810b06b55ab3f4b316e4a0ae0dfa34fdef3a6b5cd6c02cd995ae19cad41586e4c58fd2b53c17c08da61f84f9f5a00d5e95a10513e2205a696329181150f6cda76784002fdd0f2cc512e05220b3ec8699a710919f6c3f1d4d41df2e65b27b63ffd589779c919311f29e61d32360176fbde46b5af0d378d0a9e0cf9ab24b46dde7c4f769a2ee1cd7f598c73e3f717d6119ac9c02219c2311cd0bf69ca5abd31f96a54aac9a31f0cebec292bbb86e589735fd8c96d5d38988dd4626e0ae1bcbc7e3a31ac8210b8c9700a4d88d26344c25099e41d5910842f60cfff9933d78aa0edde33068f92dd221ea19ab78e52aff2270ca0fe01f493ee58eec08ccd335b7d2cc218bcdc0949d8a8e8f38f15eb044eee16c98cb7949f41403308ee19eae298cfcd10a7d70e1079f78a7932a5006570d47dece4bbe4e68e2fd5a67a35eb5688cd84bf9839246b383312396d3aeb746d9173054e567fceeedba5cb606bd259fb29f4b2a0a7be0de802bf448226dc09ef3a4de05c6f38fbb970694c02f6a9006858ab97dcf12432f73ba57ee2a3d2ab035c3777e1400a6f1b05319b7aa9868e9cf0fe4babefd204742220c68d7928b5f46e24536157eadbb07c1864fe12eb7b2c1f24eb17cf44a6cba25d472c8fae370a781d87e23be5702f597d3dcfcbc246f04966adef6849de1be14eff9c71793d9b4cbf2323c901ac71e3a8e508de160598d80ace2339b544d03ed2682296fe065e41129bcaedba03545e68a6f2537ad0a48e89c8c95c5947bfef8bd4b1f0c9717fe0c41227372dd2a557d111052021b12710a953d3ee96dd1dd57eca9b7e4045e8bd171415c2aaaae49aa71f8283530cd910e8c699ca7f56275b1a6afc1a6a8093b0159f5589f4a5ce6b7c44bdf558a581641d349ee174618b49d5bf34673dd945bc01fd862fdf64c65223eda044a8d155dcc1d364aec10b4f0d9ec156e1976a0d5ae46d1d0ea7f69fa8a167cbe29d5d12fee21e03fe12e4469f335341bf3b4b4d8fd188b9ff58fe677b2f7128e9a2b08c0c02210bd19f62e1a09f469bb09cde30df1c2116446ee825fc62a5e28e7e86f124a3b01d5b14b2a13efc3e8e21abfc3733835c2ddb2f6a802ee0eab7a1a0d55a268d1888bcb52d4528445c6da2ec05e2dc1115af3045dfa23380d9b9a7df79425ee32af558b3c4071c23eeae98a091d3c9cc0f48eb6c9d2f7a829a16a0fb1138fa106da15d62a0fb2cb9649089e39ef9fdda3dd2110820447fa828e9af3a143cece57e894dae79e53fbfb475496777ed58f4dac370740a52b0a06ade1472e74185b6d3fb2d2db7f0b4c184a29a3ccc09ed09c1cef038e6f7f33ee75484508b840574b3ca9fa2263d41c4e5064a781dfbcc6da45439b23584142e6b79b44c4879576455a4809e3189685dc07021166974b11e2975a9e4fa8b6725cd23b3102e38ce706c3f456610affaeb915066afcac365d089c7a97ee559e16009a1b7a7817268da43a539066656f</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
     </div>
   </div>
-  
-  
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2023/page/2/">2</a><a class="page-number" href="/archives/2023/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/2023/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 知识点</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/29/2023.6.1_A_solution/" rel="prev" title="2023.6.1 A  题解">
+                  <i class="fa fa-angle-left"></i> 2023.6.1 A  题解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/08/29/CF1814F-solution/" rel="next" title="CF1814F  题解">
+                  CF1814F  题解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
 
 </div>
   </main>
