@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="计算几何的一些小结论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算几何  学习笔记">
+<meta property="og:url" content="http://example.com/2023/09/03/geometry/index.html">
+<meta property="og:site_name" content="Star32&#39;s boring blog">
+<meta property="og:description" content="计算几何的一些小结论">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-03T13:07:34.281Z">
+<meta property="article:modified_time" content="2023-09-03T13:08:27.316Z">
+<meta property="article:author" content="Star32">
+<meta property="article:tag" content="知识点">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/09/03/geometry/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/09/03/geometry/","path":"2023/09/03/geometry/","title":"计算几何  学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算几何  学习笔记 | Star32's boring blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Star32's boring blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9B%B8%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">向量相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E5%9D%90%E6%A0%87%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.0.1.</span> <span class="nav-text">向量的坐标表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B1%E7%BA%BF%E5%90%91%E9%87%8F"><span class="nav-number">1.0.2.</span> <span class="nav-text">共线向量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E7%82%B9%E4%B9%98"><span class="nav-number">1.0.3.</span> <span class="nav-text">向量的点乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E5%8F%89%E4%B9%98"><span class="nav-number">1.0.4.</span> <span class="nav-text">向量的叉乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%89%E4%B9%98%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.0.5.</span> <span class="nav-text">叉乘的意义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9B%B8%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">多边形相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0"><span class="nav-number">2.0.1.</span> <span class="nav-text">三角函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%B8%E5%8C%85%E4%B8%8E%E9%9D%A2%E7%A7%AF"><span class="nav-number">2.0.2.</span> <span class="nav-text">凸包与面积</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Star32</p>
+  <div class="site-description" itemprop="description">一个OIer的博客，由Sukwants提供技术支持</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/03/geometry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Star32">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Star32's boring blog">
+      <meta itemprop="description" content="一个OIer的博客，由Sukwants提供技术支持">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算几何  学习笔记 | Star32's boring blog">
+      <meta itemprop="description" content="计算几何的一些小结论">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算几何  学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-09-03 21:07:34 / 修改时间：21:08:27" itemprop="dateCreated datePublished" datetime="2023-09-03T21:07:34+08:00">2023-09-03</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">计算几何的一些小结论</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>推荐阅读<a target="_blank" rel="noopener" href="https://blog.csdn.net/BUG_Creater_jie/article/details/122226874">这个</a>，模板可在<a target="_blank" rel="noopener" href="https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all">这里</a>找strangeman的提交记录。</p>
+<h2 id="向量相关"><a href="#向量相关" class="headerlink" title="向量相关"></a>向量相关</h2><h4 id="向量的坐标表示"><a href="#向量的坐标表示" class="headerlink" title="向量的坐标表示"></a>向量的坐标表示</h4><p>  有点 $A(x_1,y_1)$ 和点 $B(x_2,y_2)$，则 $\overrightarrow{AB}$ 可表示为 $(x_2-x_1,y_2-y_1)$</p>
+<h4 id="共线向量"><a href="#共线向量" class="headerlink" title="共线向量"></a>共线向量</h4><p>  共线向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 满足<br>$$<br>  x_1y_2&#x3D;x_2y_1<br>$$</p>
+<p>  由此得到判断三点共线的方法：计算 $\overrightarrow{AB}$ 和 $\overrightarrow{BC}$ 进行比较。</p>
+<h4 id="向量的点乘"><a href="#向量的点乘" class="headerlink" title="向量的点乘"></a>向量的点乘</h4><p>  向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 的数量积<br>$$<br>  a \cdot b&#x3D;x_1x_2+y_1y_2<br>$$</p>
+<p>  由此得到向量垂直的条件：<br>$$<br>  a\perp b \Leftrightarrow x_1x_2+y_1y_2&#x3D;0<br>$$</p>
+<h4 id="向量的叉乘"><a href="#向量的叉乘" class="headerlink" title="向量的叉乘"></a>向量的叉乘</h4><p>  向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 的向量积<br>$$<br>  a \times b&#x3D;x_1y_2-y_1x_2<br>$$</p>
+<h4 id="叉乘的意义"><a href="#叉乘的意义" class="headerlink" title="叉乘的意义"></a>叉乘的意义</h4><ul>
+<li><p>若两个向量的叉积不为 $0$，则他们相交；否则他们重合或平行。</p>
+</li>
+<li><p>两个向量的叉积是他们围成的平行四边形的面积，由此可以快速计算三角形的面积，从而快速计算多边形的面积。注意：<strong>逆时针求得的面积是正的，顺时针求得的是负的</strong>。</p>
+</li>
+<li><p>若两个向量的叉积大于 $0$,则第二个向量由第一个逆时针选择得到；反之由顺时针旋转得到。由此可以判定多边形的凹凸性、判定点与多边形的位置关系、判定线段相交等等。</p>
+</li>
+</ul>
+<h2 id="多边形相关"><a href="#多边形相关" class="headerlink" title="多边形相关"></a>多边形相关</h2><h4 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h4><ul>
+<li><p>$\pi&#x3D;\arccos(-1)$，这样精度比较高。</p>
+</li>
+<li><p>开平方、反三角函数最容易炸精度。因此不要使用正弦定理求解角度，尽量使用余弦定理或点乘。还有个好处就是余弦值在 $[0,\pi]$ 是唯一的！</p>
+</li>
+</ul>
+<h4 id="凸包与面积"><a href="#凸包与面积" class="headerlink" title="凸包与面积"></a>凸包与面积</h4><p>  求凸多边形的面积的基本思想是三角剖分后求每个三角形的面积。由此产生了两种子类型：</p>
+<p>  1.在动态凸包中处理。则每次增加点、删除点的面积与该点和相邻两点组成的三角形的面积相关；</p>
+<p>  2.以某一点为基准点处理。则面积与基准点和当前边构成的三角形的面积相关，注意<strong>三点共线</strong>的情况要特判。 </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 知识点</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/03/CSP-S2021-T1-solution/" rel="prev" title="CSP-S2021  廊桥分配  题解">
+                  <i class="fa fa-angle-left"></i> CSP-S2021  廊桥分配  题解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/03/P7382-solution/" rel="next" title="P7382  题解">
+                  P7382  题解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Star32</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

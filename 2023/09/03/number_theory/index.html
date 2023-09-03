@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="基础数论模板。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数论相关  学习笔记">
+<meta property="og:url" content="http://example.com/2023/09/03/number_theory/index.html">
+<meta property="og:site_name" content="Star32&#39;s boring blog">
+<meta property="og:description" content="基础数论模板。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-03T12:57:00.688Z">
+<meta property="article:modified_time" content="2023-09-03T12:57:43.102Z">
+<meta property="article:author" content="Star32">
+<meta property="article:tag" content="知识点">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/09/03/number_theory/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/09/03/number_theory/","path":"2023/09/03/number_theory/","title":"数论相关  学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数论相关  学习笔记 | Star32's boring blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Star32's boring blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#gcd-exgcd"><span class="nav-number">1.</span> <span class="nav-text">gcd&#x2F;exgcd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E5%85%83"><span class="nav-number">2.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRT-exCRT"><span class="nav-number">3.</span> <span class="nav-text">CRT&#x2F;exCRT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">中国剩余定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">扩展中国剩余定理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lucas-%E5%AE%9A%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">Lucas 定理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Star32</p>
+  <div class="site-description" itemprop="description">一个OIer的博客，由Sukwants提供技术支持</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/03/number_theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Star32">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Star32's boring blog">
+      <meta itemprop="description" content="一个OIer的博客，由Sukwants提供技术支持">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数论相关  学习笔记 | Star32's boring blog">
+      <meta itemprop="description" content="基础数论模板。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数论相关  学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-09-03 20:57:00 / 修改时间：20:57:43" itemprop="dateCreated datePublished" datetime="2023-09-03T20:57:00+08:00">2023-09-03</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">基础数论模板。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>实在不想挂一堆链接了。还是自己写个文章把各种知识点归纳一下吧。</p>
+<h3 id="gcd-exgcd"><a href="#gcd-exgcd" class="headerlink" title="gcd&#x2F;exgcd"></a>gcd&#x2F;exgcd</h3><p>求exgcd的过程就是在求gcd的过程中，同步维护两个变量，以求得不定方程<br>$$<br>ax+by&#x3D;\gcd(a,b)<br>$$</p>
+<p>的一组特解。显然我们通过这组特解可以求得对应的最小非负整数解。当然我们也同样能解决<br>$$<br>ax+by&#x3D;c<br>$$<br>这样的不定方程。</p>
+<p>算法最关键的步骤就是 $x,y$ 在递归过程中的维护。先放代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)&#123;</span><br><span class="line">		x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> d,tx,ty;</span><br><span class="line">	d=<span class="built_in">gcd</span>(b,a%b,tx,ty);</span><br><span class="line">	x=ty;</span><br><span class="line">	y=tx-a/b*ty;</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>怎么理解？首先递归到边界时，问题变成 $ax&#x3D;\gcd(a,b)$，所以答案比较显然。</p>
+<p>第二个就是递归过程中。其实更新 $x,y$ 和求gcd的 $a,b$ 道理是一样的，我们更新 $a,b$ 的时候是变成了 $b,a% b$ 往下递归，其中 $a% b$ 可以理解成 $a-(\left \lfloor \frac{a}{b} \right \rfloor \times b)$ 。所以我们就用 $ty,tx-(\left \lfloor \frac{a}{b} \right \rfloor \times ty)$ 来更新 $x,y$。</p>
+<p><strong>注意：</strong>该算法求得的特解的绝对值不会超过 $a,b$ 的绝对值，但是过程中仍然需要开long long。</p>
+<h3 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h3><p>当模数为质数的时候，可以用费马小定理求，原因不解释。逆元的结果是 $a^{p-2}% p$。</p>
+<p>一般情况下，可以利用exgcd构造求方程<br>$$<br>ax+bp&#x3D;1<br>$$</p>
+<p>的解，变成最小非负整数解即为 $a$ 在模 $p$ 意义下的逆元。</p>
+<p>当然，在求组合数等情况下，也可以利用阶乘求得阶乘的逆元。</p>
+<h3 id="CRT-exCRT"><a href="#CRT-exCRT" class="headerlink" title="CRT&#x2F;exCRT"></a>CRT&#x2F;exCRT</h3><h4 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h4><p>该算法能给出形如 $x\equiv a_i \pmod{p_i}$ 线性同余方程组的（<strong>模数两两互质</strong>）的一组解。</p>
+<p>求解方法如下：</p>
+<ul>
+<li>算得 $M&#x3D;\prod_{i&#x3D;1}^n p_i$</li>
+<li>算得 $M_i&#x3D;\frac{M}{p_i}$</li>
+<li>用exgcd求得 $M_i$ 在模 $p_i$ 意义下的逆元 $t_i$</li>
+<li>$ans\equiv \sum_{i&#x3D;1}^n a_iM_it_i \pmod{M}$</li>
+</ul>
+<p><strong>注意：</strong>上面的几个式子模数不太一样！</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">	cin&gt;&gt;m[i]&gt;&gt;a[i];</span><br><span class="line">	M*=m[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">	Mi[i]=M/m[i];</span><br><span class="line">	<span class="type">int</span> x=<span class="number">0</span>,y=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">gcd</span>(Mi[i],m[i],x,y);</span><br><span class="line">	ans+=x*a[i]*Mi[i];</span><br><span class="line">	ans=(ans+M)%M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="扩展中国剩余定理"><a href="#扩展中国剩余定理" class="headerlink" title="扩展中国剩余定理"></a>扩展中国剩余定理</h4><p>该算法用于解决上述问题中模数不保证两两互质的情形。</p>
+<p>先考虑只有两个方程的简单情况。<br>$$<br>\begin{cases}<br>x\equiv a_1 \pmod{p_1} \<br>x\equiv a_2 \pmod{p_2}<br>\end{cases}<br>$$<br>我们可以写成不定方程的形式：<br>$$<br>\begin{cases}<br>x&#x3D;a_1+p_1m_1\<br>x&#x3D;a_2+p_2m_2<br>\end{cases}<br>$$<br>移项得<br>$$<br>m_1p_1-m_2p_2&#x3D;a_2-a_1<br>$$<br>用exgcd可以求得一组 $(p_1,p_2)$ 的解，这样我们就将两个不定方程合并成了这个不定方程<br>$$<br>x\equiv m_1p_1+a_1 \pmod{\operatorname{lcm}(p_1,p_2)}<br>$$<br>多组的问题也像这么合并就行了。</p>
+<p>放代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int excrt()&#123;</span><br><span class="line">	int M=m[1],ans=a[1];</span><br><span class="line">	for(int i=2;i&lt;=n;i++)&#123;</span><br><span class="line">		int x,y,c=(a[i]-ans%m[i]+m[i])%m[i];</span><br><span class="line">		int gc=gcd(M,m[i],x,y);</span><br><span class="line">		x=x*(c/gc)%(m[i]/gc);</span><br><span class="line">		ans+=x*M;</span><br><span class="line">		M*=(m[i]/gc);</span><br><span class="line">		ans=(ans+M)%M;</span><br><span class="line">	&#125;</span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>感觉说了跟没说一样。<br>$$<br>\begin{pmatrix}<br>n\<br>m<br>\end{pmatrix}\bmod p&#x3D;<br>\begin{pmatrix}<br>\lfloor\frac{n}{p}\rfloor \<br>\lfloor\frac{m}{p}\rfloor<br>\end{pmatrix}\times<br>\begin{pmatrix}<br>n\bmod p \<br>m\bmod p<br>\end{pmatrix}<br>$$</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 知识点</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/03/CF29D-solution/" rel="prev" title="CF29D  题解">
+                  <i class="fa fa-angle-left"></i> CF29D  题解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/03/P8299-solution/" rel="next" title="洛谷P8299  题解">
+                  洛谷P8299  题解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Star32</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
