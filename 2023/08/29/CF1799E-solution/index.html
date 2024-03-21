@@ -12,7 +12,11 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="[object Object]">
+
+<link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -255,10 +259,10 @@
     <div class="post-body" itemprop="articleBody"><p>题外话：本来没打这场，但同寝室的巨佬 @<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/291248">赵悦岑</a> 在打，所以我说帮他口胡一下 E，结果我口胡出来的时候他还没过 B，而且一直到最后都没过！咳咳……</p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给你一个 $n\times m$ 的矩阵，矩阵中有 <code>.</code> 和 <code>#</code>，且 <code>#</code> 构成两个四连通块。请用尽量少的操作，将一些 <code>.</code> 改成 <code>#</code> 使得所有 <code>#</code> 构成一个四连通块，且任意两个 <code>#</code> 的最短路（只经过 <code>#</code> ）为他们的曼哈顿距离。</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>由题目要求，我们可以发现一些简单的性质：如果一个格子上下或左右都有 <code>#</code>，则他必定会被染成 <code>#</code>，否则无法满足条件。补充完这些后，如果此时只剩一个连通块，那么就做完了。否则继续考虑这个性质：对于上下左右四个边界，一定只会出现单峰的情况，而且剩下的两个连通块一定是左上-右下或右上-左下的，而且不会有某一行或某一列出现两个 <code>#</code> 属于不同连通块。现在我们只考虑左上-右下型的。一个显然的想法是先分别把左上的右下角补齐，把右下的左上角补齐，再用一条简单的路径把两个连通块连起来。举个例子，如果图是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">##.....</span><br><span class="line">##.....</span><br><span class="line">#......</span><br><span class="line">......#</span><br><span class="line">.....##</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">##.....</span><br><span class="line">##.....</span><br><span class="line">#......</span><br><span class="line">......#</span><br><span class="line">.....##</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
 
 <p>那么我们补充完后可以是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">###....</span><br><span class="line">###....</span><br><span class="line">#####..</span><br><span class="line">....###</span><br><span class="line">....###</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">###....</span><br><span class="line">###....</span><br><span class="line">#####..</span><br><span class="line">....###</span><br><span class="line">....###</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
 
 <p>不难证明，这样补充填充的 <code>#</code> 一定是最少的。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>有点长，放在<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1799/submission/195512267">这里</a>。</p>
@@ -324,7 +328,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2023</span>
+    <span itemprop="copyrightYear">2024</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>

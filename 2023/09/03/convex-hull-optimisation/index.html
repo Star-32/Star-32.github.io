@@ -12,7 +12,11 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="[object Object]">
+
+<link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -276,7 +280,7 @@
 <p>$$f_i&#x3D;min,{,f_k+w_{k+1}×l_i,}(0≤k&lt;j)$$</p>
 <p>3~5.<br>$$ f_j-f_k\le (w_{k+1}-w_{j+1})×l_i$$<br>$$\text{即斜率为} \frac{f_j-f_k}{w_{k+1}-w_{j+1}}$$</p>
 <ol start="6">
-<li><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for(int i=1;i&lt;=n;++i) &#123;</span><br><span class="line">		while(l&lt;r&amp;&amp;slope(q[l],q[l+1])&lt;=a[i].y) ++l;</span><br><span class="line">		f[i]=f[q[l]]+a[q[l]+1].x*a[i].y;</span><br><span class="line">		while(l&lt;r&amp;&amp;slope(q[r-1],q[r])&gt;=slope(q[r],i)) --r;</span><br><span class="line">		q[++r]=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r&amp;&amp;slope(<span class="string">q[l]</span>,<span class="string">q[l+1]</span>)&lt;=a[i].y) ++l;</span><br><span class="line">		f[i]=f[<span class="string">q[l]</span>]+a[<span class="string">q[l]</span>+<span class="number">1</span>].x*a[i].y;</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r&amp;&amp;slope(<span class="string">q[r-1]</span>,<span class="string">q[r]</span>)&gt;=slope(<span class="string">q[r]</span>,i)) --r;</span><br><span class="line">		<span class="string">q[++r]</span>=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
     </div>
@@ -338,7 +342,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2023</span>
+    <span itemprop="copyrightYear">2024</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
