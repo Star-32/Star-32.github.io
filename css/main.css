@@ -868,7 +868,7 @@ pre code {
   color: var(--content-bg-color);
 }
 .pagination {
-  border-top: 1px solid #eee;
+/*border-top: 1px solid $pagination-border;*/
   margin: 120px 0 0;
   text-align: left;
 }
@@ -2134,48 +2134,48 @@ ul.breadcrumb li:last-child {
   margin: 10px;
 }
 .tag-cloud-0 {
-  border-bottom-color: #aaa;
-  color: #aaa;
+  border-bottom-color: #666;
+  color: #666;
 }
 .tag-cloud-1 {
-  border-bottom-color: #9a9a9a;
-  color: #9a9a9a;
+  border-bottom-color: #646464;
+  color: #646464;
 }
 .tag-cloud-2 {
-  border-bottom-color: #8b8b8b;
-  color: #8b8b8b;
+  border-bottom-color: #626262;
+  color: #626262;
 }
 .tag-cloud-3 {
-  border-bottom-color: #7c7c7c;
-  color: #7c7c7c;
+  border-bottom-color: #606060;
+  color: #606060;
 }
 .tag-cloud-4 {
-  border-bottom-color: #6c6c6c;
-  color: #6c6c6c;
+  border-bottom-color: #5f5f5f;
+  color: #5f5f5f;
 }
 .tag-cloud-5 {
   border-bottom-color: #5d5d5d;
   color: #5d5d5d;
 }
 .tag-cloud-6 {
-  border-bottom-color: #4e4e4e;
-  color: #4e4e4e;
+  border-bottom-color: #5b5b5b;
+  color: #5b5b5b;
 }
 .tag-cloud-7 {
-  border-bottom-color: #3e3e3e;
-  color: #3e3e3e;
+  border-bottom-color: #5a5a5a;
+  color: #5a5a5a;
 }
 .tag-cloud-8 {
-  border-bottom-color: #2f2f2f;
-  color: #2f2f2f;
+  border-bottom-color: #585858;
+  color: #585858;
 }
 .tag-cloud-9 {
-  border-bottom-color: #202020;
-  color: #202020;
+  border-bottom-color: #565656;
+  color: #565656;
 }
 .tag-cloud-10 {
-  border-bottom-color: #111;
-  color: #111;
+  border-bottom-color: #555;
+  color: #555;
 }
 .search-active {
   overflow: hidden;
@@ -2349,6 +2349,7 @@ header.header {
 }
 .site-meta .site-title {
   font-weight: bolder;
+  padding-top: 4px;
 }
 .logo-line {
   background: var(--brand-color);
@@ -2564,7 +2565,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ff74f0;
+  background: #eeffad;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
