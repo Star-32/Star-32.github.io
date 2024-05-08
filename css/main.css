@@ -2327,6 +2327,9 @@ hr {
 }
 .column {
   background: var(--content-bg-color);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 header.header {
   align-items: center;
@@ -2565,7 +2568,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #69abc1;
+  background: #60e29e;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
