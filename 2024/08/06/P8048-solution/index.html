@@ -262,73 +262,75 @@
     
     <div class="post-body" itemprop="articleBody"><p>仔细读题，会发现，向右的变色龙在碰撞前后是没有改变颜色的。</p>
 <p>抓住这一点，产生了本题的做法：</p>
-<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>对于每一只向右的变色龙，只需要在该颜色中加上这只变色龙走的路程。</p>
+<h2 id="暴力">暴力</h2>
+<p>对于每一只向右的变色龙，只需要在该颜色中加上这只变色龙走的路程。</p>
 <p>对于每一只向左的变色龙，我们枚举在它左边的向右的变色龙，然后依次更新答案、更新颜色。</p>
 <p>这样做复杂度是 $O(n^2)$ 的。</p>
 <p>代码如下：</p>
 <figure class="highlight plaintext"><figcaption><span><bits/stdc++.h></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#define int long long</span><br><span class="line">using namespace std;</span><br><span class="line">int n,k,l,cnt;</span><br><span class="line">double ans[45];</span><br><span class="line">struct monola&#123;</span><br><span class="line">	int st,cl;</span><br><span class="line">	char tp;</span><br><span class="line">&#125;ml[100005],yml[100005];</span><br><span class="line">bool cmp(monola x,monola y)&#123;</span><br><span class="line">	return x.st&gt;y.st;</span><br><span class="line">&#125;</span><br><span class="line">signed main()&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k&gt;&gt;l;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		scanf(&quot;%lld%lld%s&quot;,&amp;ml[i].st,&amp;ml[i].cl,&amp;ml[i].tp);</span><br><span class="line">		if(ml[i].tp==&#x27;D&#x27;)&#123;</span><br><span class="line">			ans[ml[i].cl]+=l-ml[i].st;</span><br><span class="line">			yml[++cnt]=ml[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(yml+1,yml+cnt+1,cmp);</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		if(ml[i].tp==&#x27;D&#x27;)continue;</span><br><span class="line">		double pre=ml[i].st,nxt;</span><br><span class="line">		int nowcl=ml[i].cl;</span><br><span class="line">		for(int j=1;j&lt;=cnt;j++)&#123;</span><br><span class="line">			if(ml[i].st&lt;yml[j].st)continue;</span><br><span class="line">			nxt=(ml[i].st+yml[j].st)*1.0/2;</span><br><span class="line">			ans[nowcl]+=pre-nxt;</span><br><span class="line">			pre=nxt;</span><br><span class="line">			nowcl=(nowcl+yml[j].cl)%k;</span><br><span class="line">		&#125;</span><br><span class="line">		ans[nowcl]+=pre;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=0;i&lt;k;i++)&#123;</span><br><span class="line">		printf(&quot;%.1lf\n&quot;,ans[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h2><p>这样做的瓶颈在于，我们每一只向左的变色龙都需要枚举。然而我们其实并不关心到底是哪只变色龙贡献的答案，因此我们可以用计数器记下当前位置每种颜色向左的变色龙的数目。</p>
-<p>具体地说，我们从右往左枚举每一只向右的变色龙，若两只向右的变色龙中间的距离为 $dis$，则每种颜色的答案应该加上 $dis&#x2F;2\times num_i$，其中 $num_i$ 为颜色 $i$ 的向左的变色龙初始位置在当前枚举的向右的变色龙右边的数目。然后我们不断更新 $num_i$。</p>
+<h2 id="正解">正解</h2>
+<p>这样做的瓶颈在于，我们每一只向左的变色龙都需要枚举。然而我们其实并不关心到底是哪只变色龙贡献的答案，因此我们可以用计数器记下当前位置每种颜色向左的变色龙的数目。</p>
+<p>具体地说，我们从右往左枚举每一只向右的变色龙，若两只向右的变色龙中间的距离为 $dis$，则每种颜色的答案应该加上 $dis/2\times num_i$，其中 $num_i$ 为颜色 $i$ 的向左的变色龙初始位置在当前枚举的向右的变色龙右边的数目。然后我们不断更新 $num_i$。</p>
 <p>由于每只向左的变色龙只会被加进计数器一次，所以总的复杂度降到了 $O(n\times k)$ 。</p>
-<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><p>注意每只向左的变色龙在遇到最左边的向右变色龙后还要走到木板左端，此时需要加上这部分的答案。可以预处理出每只向左的变色龙最后的颜色进行计算。</p>
-<h2 id="丑陋的代码"><a href="#丑陋的代码" class="headerlink" title="丑陋的代码"></a>丑陋的代码</h2><pre><code class="#include">#define int long long
+<h2 id="实现细节">实现细节</h2>
+<p>注意每只向左的变色龙在遇到最左边的向右变色龙后还要走到木板左端，此时需要加上这部分的答案。可以预处理出每只向左的变色龙最后的颜色进行计算。</p>
+<h2 id="丑陋的代码">丑陋的代码</h2>
+<pre><code class="language-#include">#define int long long
 using namespace std;
 int n,k,l,cnt,cmt,num[45],lint[45],newcl,lastcl[100005];
 double ans[45];
 struct monola&#123;
-    int st,cl;
-    char tp;
+	int st,cl;
+	char tp;
 &#125;ml[100005],yml[100005],zml[100005];
 bool cmp(monola x,monola y)&#123;
-    return x.st&gt;y.st;
+	return x.st&gt;y.st;
 &#125;
 signed main()&#123;
 //	freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);
 //	freopen(&quot;1.out&quot;,&quot;w&quot;,stdout);
-    cin&gt;&gt;n&gt;&gt;k&gt;&gt;l;
-    for(int i=1;i&lt;=n;i++)&#123;
-        scanf(&quot;%lld%lld%s&quot;,&amp;ml[i].st,&amp;ml[i].cl,&amp;ml[i].tp);
-        if(ml[i].tp==&#39;D&#39;)&#123;
-            ans[ml[i].cl]+=l-ml[i].st;
-            yml[++cnt]=ml[i];
-            newcl=(newcl+ml[i].cl)%k;
-        &#125;
-        else &#123;
-            zml[++cmt]=ml[i];
-            if(cnt)ans[(ml[i].cl+newcl)%k]+=(ml[i].st+yml[1].st)*1.0/2;
-            else ans[ml[i].cl]+=ml[i].st;
-        &#125;
-    &#125;
-    sort(yml+1,yml+cnt+1,cmp);
-    sort(zml+1,zml+cmt+1,cmp);
-    int i=1;
-    while(i&lt;=cmt&amp;&amp;zml[i].st&gt;yml[1].st)&#123;
-        ans[zml[i].cl]+=(zml[i].st-yml[1].st)*1.0/2;
-        num[(zml[i].cl+yml[1].cl)%k]++;
-        i++;
-    &#125;
-    for(int j=2;j&lt;=cnt;j++)&#123;
-        for(int r=0;r&lt;k;r++)&#123;
-            ans[r]+=num[r]*(yml[j-1].st-yml[j].st)*1.0/2;
-        &#125;
-        while(i&lt;=cmt&amp;&amp;zml[i].st&gt;yml[j].st)&#123;
-            ans[zml[i].cl]+=(zml[i].st-yml[j].st)*1.0/2;
-            num[zml[i].cl]++;
-            i++;
-        &#125;
-        for(int r=0;r&lt;k;r++)&#123;
-            lint[(r+yml[j].cl)%k]=num[r];
-        &#125;
-        for(int r=0;r&lt;k;r++)num[r]=lint[r];
-    &#125;
-    
-    for(int i=0;i&lt;k;i++)&#123;
-        printf(&quot;%.1lf\n&quot;,ans[i]);
-    &#125;
-    return 0;
-&#125;
-</code></pre>
+	cin&gt;&gt;n&gt;&gt;k&gt;&gt;l;
+	for(int i=1;i&lt;=n;i++)&#123;
+		scanf(&quot;%lld%lld%s&quot;,&amp;ml[i].st,&amp;ml[i].cl,&amp;ml[i].tp);
+		if(ml[i].tp=='D')&#123;
+			ans[ml[i].cl]+=l-ml[i].st;
+			yml[++cnt]=ml[i];
+			newcl=(newcl+ml[i].cl)%k;
+		&#125;
+		else &#123;
+			zml[++cmt]=ml[i];
+			if(cnt)ans[(ml[i].cl+newcl)%k]+=(ml[i].st+yml[1].st)*1.0/2;
+			else ans[ml[i].cl]+=ml[i].st;
+		&#125;
+	&#125;
+	sort(yml+1,yml+cnt+1,cmp);
+	sort(zml+1,zml+cmt+1,cmp);
+	int i=1;
+	while(i&lt;=cmt&amp;&amp;zml[i].st&gt;yml[1].st)&#123;
+		ans[zml[i].cl]+=(zml[i].st-yml[1].st)*1.0/2;
+		num[(zml[i].cl+yml[1].cl)%k]++;
+		i++;
+	&#125;
+	for(int j=2;j&lt;=cnt;j++)&#123;
+		for(int r=0;r&lt;k;r++)&#123;
+			ans[r]+=num[r]*(yml[j-1].st-yml[j].st)*1.0/2;
+		&#125;
+		while(i&lt;=cmt&amp;&amp;zml[i].st&gt;yml[j].st)&#123;
+			ans[zml[i].cl]+=(zml[i].st-yml[j].st)*1.0/2;
+			num[zml[i].cl]++;
+			i++;
+		&#125;
+		for(int r=0;r&lt;k;r++)&#123;
+			lint[(r+yml[j].cl)%k]=num[r];
+		&#125;
+		for(int r=0;r&lt;k;r++)num[r]=lint[r];
+	&#125;
+	
+	for(int i=0;i&lt;k;i++)&#123;
+		printf(&quot;%.1lf\n&quot;,ans[i]);
+	&#125;
+	return 0;
+&#125;</code></pre>
 
     </div>
 
@@ -362,13 +364,13 @@ signed main()&#123;
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/P8299-solution/" rel="prev" title="洛谷P8299  题解">
-                  <i class="fa fa-angle-left"></i> 洛谷P8299  题解
+                <a href="/2024/08/06/P7382-solution/" rel="prev" title="P7382  题解">
+                  <i class="fa fa-angle-left"></i> P7382  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/P7382-solution/" rel="next" title="P7382  题解">
-                  P7382  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2025/05/19/PPO/" rel="next" title="从 0 开始到 PPO">
+                  从 0 开始到 PPO <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -438,7 +440,7 @@ signed main()&#123;
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

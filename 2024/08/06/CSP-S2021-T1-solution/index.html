@@ -262,16 +262,20 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>有 $n$ 个廊桥，要分成两组。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="题意">题意</h3>
+<p>有 $n$ 个廊桥，要分成两组。</p>
 <p>有两组飞机，如果该组有空廊桥就停靠廊桥，否则不管。</p>
 <p>求廊桥分配给两组后能停靠廊桥的飞机的最大数目。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先对飞机按到达顺序排序。</p>
+<h3 id="分析">分析</h3>
+<p>首先对飞机按到达顺序排序。</p>
 <p>我们先不考虑廊桥的数目，只考虑分配的问题。</p>
 <p>显然有以下的贪心：</p>
 <ul>
-<li><p>如果之前的廊桥有空闲的，那么找到编号最小的廊桥，将这架飞机安排过去；</p>
+<li>
+<p>如果之前的廊桥有空闲的，那么找到编号最小的廊桥，将这架飞机安排过去；</p>
 </li>
-<li><p>否则新开一个廊桥，将这架飞机分配给他。</p>
+<li>
+<p>否则新开一个廊桥，将这架飞机分配给他。</p>
 </li>
 </ul>
 <p>找到每个飞机分配的廊桥后，我们开个桶计算每个廊桥分配了多少架飞机，再前缀和一下就能知道分配 $i$ 个廊桥最多能停靠多少架飞机。</p>
@@ -279,9 +283,11 @@
 <p>那么我们的问题就转变为了对于每一个飞机，如何快速求得他应该分配给哪个廊桥。显然需要数据结构维护。</p>
 <p>提供两种思路：</p>
 <ul>
-<li><p>我们把每架安排好的飞机按离开顺序放进小根堆里，同时再开一个小根堆记录空闲的廊桥。对于当前枚举到的这架飞机，我们先把已经离开的飞机弹出小根堆，同时更新空闲的廊桥；最后把空闲廊桥的堆顶分配给这架飞机。</p>
+<li>
+<p>我们把每架安排好的飞机按离开顺序放进小根堆里，同时再开一个小根堆记录空闲的廊桥。对于当前枚举到的这架飞机，我们先把已经离开的飞机弹出小根堆，同时更新空闲的廊桥；最后把空闲廊桥的堆顶分配给这架飞机。</p>
 </li>
-<li><p>我们按照廊桥建线段树，每个位置表示该区间最早离开的时间。对于每架飞机，如果左区间的最小值小于该飞机到达的时间就走左区间，否则走右区间，到达叶子直接更新答案即可。</p>
+<li>
+<p>我们按照廊桥建线段树，每个位置表示该区间最早离开的时间。对于每架飞机，如果左区间的最小值小于该飞机到达的时间就走左区间，否则走右区间，到达叶子直接更新答案即可。</p>
 </li>
 </ul>
 
@@ -319,13 +325,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/CSS_test_backgrounds_and_borders/" rel="prev" title="CSS 技能测试：背景与边框">
-                  <i class="fa fa-angle-left"></i> CSS 技能测试：背景与边框
+                <a href="/2024/08/06/CF457F-solution/" rel="prev" title="CF457F  题解">
+                  <i class="fa fa-angle-left"></i> CF457F  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/CF457F-solution/" rel="next" title="CF457F  题解">
-                  CF457F  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/number_theory/" rel="next" title="数论相关  学习笔记">
+                  数论相关  学习笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -395,7 +401,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

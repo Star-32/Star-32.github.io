@@ -262,7 +262,11 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>第一次 DP 的部分和后面交互的部分现有的两篇题解都讲的比较清楚了，这里注意补充解释一下换根和计算答案的部分，（让像我这样的菜鸡容易理解一点）。</p>
-<p>我们先列出第一次 DP 的式子：<br>$$<br>f_u&#x3D;\max\limits_{i&#x3D;0}^{size-1} f_v+i<br>$$<br>那么我们考虑当前节点是 $u$ ，新的根是 $v$，那么此时我们要抛弃掉 $v$ 对 $u$ 的贡献并且加入 $fa_u$ 对 $u$ 的贡献。考虑直接将与 $u$ 相连的所有点按 $f$ 值进行排序，那么每次的 $v$ 将整个数组分割成一个前缀和一个后缀，式子其实就是上面那个式子，但是后缀部分的 $i$ 要减去当前这个 $v$ 所多算的 $1$。因此不需要什么平衡树，只用预处理前缀最大值、后缀最大值，中间再合并一下就好了。</p>
+<p>我们先列出第一次 DP 的式子：<br>
+$$<br>
+f_u=\max\limits_{i=0}^{size-1} f_v+i<br>
+$$<br>
+那么我们考虑当前节点是 $u$ ，新的根是 $v$，那么此时我们要抛弃掉 $v$ 对 $u$ 的贡献并且加入 $fa_u$ 对 $u$ 的贡献。考虑直接将与 $u$ 相连的所有点按 $f$ 值进行排序，那么每次的 $v$ 将整个数组分割成一个前缀和一个后缀，式子其实就是上面那个式子，但是后缀部分的 $i$ 要减去当前这个 $v$ 所多算的 $1$。因此不需要什么平衡树，只用预处理前缀最大值、后缀最大值，中间再合并一下就好了。</p>
 <p>计算答案的部分则是简单的分类讨论。我们在计算前仍然需要对所有儿子按 $f$ 值排序。对于当前根是 $u$ ，有 $3$ 种情况：</p>
 <ol>
 <li>询问的两个点分别在当前节点的两个不同子树内，则贡献为 $\max f_{v0}+f_{vi}+i-1$；</li>
@@ -305,13 +309,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/CF1764H-solution/" rel="prev" title="CF1764H  题解">
-                  <i class="fa fa-angle-left"></i> CF1764H  题解
+                <a href="/2024/08/06/CF1814F-solution/" rel="prev" title="CF1814F  题解">
+                  <i class="fa fa-angle-left"></i> CF1814F  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/CF1322E-solution/" rel="next" title="CF1322E  题解">
-                  CF1322E  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/CF1799E-solution/" rel="next" title="CF1799E  题解">
+                  CF1799E  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -381,7 +385,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

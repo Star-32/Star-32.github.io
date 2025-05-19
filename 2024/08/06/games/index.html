@@ -261,21 +261,28 @@
     
     
     <div class="post-body" itemprop="articleBody"><ul>
-<li><p>NIM 游戏及几个经典模型</p>
+<li>
+<p>NIM 游戏及几个经典模型</p>
 </li>
-<li><p>其他典型博弈</p>
+<li>
+<p>其他典型博弈</p>
 </li>
-<li><p>SG函数</p>
+<li>
+<p>SG函数</p>
 </li>
-<li><p>对抗搜索与其他技巧</p>
+<li>
+<p>对抗搜索与其他技巧</p>
 </li>
 </ul>
-<h3 id="NIM游戏及几个经典模型"><a href="#NIM游戏及几个经典模型" class="headerlink" title="NIM游戏及几个经典模型"></a>NIM游戏及几个经典模型</h3><h5 id="经典NIM游戏"><a href="#经典NIM游戏" class="headerlink" title="经典NIM游戏"></a>经典NIM游戏</h5><blockquote>
+<h3 id="NIM游戏及几个经典模型">NIM游戏及几个经典模型</h3>
+<h5 id="经典NIM游戏">经典NIM游戏</h5>
+<blockquote>
 <p>给定 $n$ 堆物品，第 $i$ 堆物品有 $A_i$ 个。两名玩家轮流行动，每次可以任选一堆，取走任意多个物品，可以一堆取光，但不能不取。取走最后一件物品则<strong>获胜</strong>。两人都采取最优策略，问先手能否获胜。</p>
 </blockquote>
-<p>结论：对于 Nim 游戏的一个局面 $(A_1,A_2,\ldots,A_n)$ 来说，先手必败当且仅当 $A_1 \oplus A_2 \oplus \ldots \oplus A_n&#x3D;0$。</p>
+<p>结论：对于 Nim 游戏的一个局面 $(A_1,A_2,\ldots,A_n)$ 来说，先手必败当且仅当 $A_1 \oplus A_2 \oplus \ldots \oplus A_n=0$。</p>
 <p>证明：凡是异或和非 $0$ 的都可以通过一次操作变为异或和为 $0$ 的，因此可以归纳证明。</p>
-<h5 id="阶梯模型"><a href="#阶梯模型" class="headerlink" title="阶梯模型"></a>阶梯模型</h5><blockquote>
+<h5 id="阶梯模型">阶梯模型</h5>
+<blockquote>
 <p>有 $n$ 层阶梯，编号 $1\dots n$，每层阶梯上有一些石子。</p>
 <p>两个玩家轮流操作，每次操作可以将第 $i$ 层阶梯上若干(至少一个)石头放到 $i-1$ 层阶梯上，第 $0$ 层阶梯即为地板。</p>
 <p>将最后一颗石头从阶梯移到地板上的玩家胜利。</p>
@@ -283,12 +290,14 @@
 <p>不难发现，所有偶数阶梯都等价于垃圾桶。若一方尝试将偶数阶梯中的石子移出(至奇数阶梯)，下一个人只需要紧跟着把这些石子丢到下一个(偶数)阶梯即可，最终会到达地板。这个过程中，先后手是不会转换的。</p>
 <p>接下来考虑奇数阶梯，一步就可以把任意多的石子丢进垃圾桶，实际上就等价于 NIM 问题。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5363">SDOI2019移动金币</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2575">洛谷P2575高手过招</a></p>
-<h5 id="翻硬币模型"><a href="#翻硬币模型" class="headerlink" title="翻硬币模型"></a>翻硬币模型</h5><blockquote>
+<h5 id="翻硬币模型">翻硬币模型</h5>
+<blockquote>
 <p>$n$ 个硬币排成一行，每次可以翻连续的若干个，要求最右边的必须从反到正，无法操作的人输，问谁赢。</p>
 </blockquote>
-<p>结论：整个游戏的 SG 函数相当于所有反面硬币的 SG 函数的异或和，而位于 $x$ 位置的 SG 函数有规律：$SG(x)&#x3D;lowbit(x)$</p>
+<p>结论：整个游戏的 SG 函数相当于所有反面硬币的 SG 函数的异或和，而位于 $x$ 位置的 SG 函数有规律：$SG(x)=lowbit(x)$</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4077">SDOI2016硬币游戏</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF494E">CF494E sharti</a></p>
-<h5 id="斐波那契NIM游戏"><a href="#斐波那契NIM游戏" class="headerlink" title="斐波那契NIM游戏"></a>斐波那契NIM游戏</h5><blockquote>
+<h5 id="斐波那契NIM游戏">斐波那契NIM游戏</h5>
+<blockquote>
 <p>有 $n$ 枚石子。两位玩家定了如下规则进行游戏：</p>
 <ul>
 <li>第一次取石子时可以取走任意多个；</li>
@@ -298,42 +307,53 @@
 </blockquote>
 <p>结论：先将 $n$ 写成齐肯多夫表示，即用斐波那契数表示且没有相邻两个都是 $1$，则先手每次取最低位的 $1$ 即可获胜。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6791">SNOI2020取石子游戏</a></p>
-<h3 id="其他典型博弈"><a href="#其他典型博弈" class="headerlink" title="其他典型博弈"></a>其他典型博弈</h3><h5 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h5><blockquote>
+<h3 id="其他典型博弈">其他典型博弈</h3>
+<h5 id="威佐夫博弈">威佐夫博弈</h5>
+<blockquote>
 <p>有两堆石子，数量任意，可以不同。游戏开始由两个人轮流取石子。游戏规定，每次有两种不同的取法，一是可以在任意的一堆中取走任意多的石子；二是可以在两堆中同时取走相同数量的石子。最后把石子全部取完者为胜者。现在给出初始的两堆石子的数目，你先取，假设双方都采取最好的策略，问最后你是胜者还是败者。</p>
 </blockquote>
 <p>结论：当且仅当两堆石子的数量构成黄金比的时候后手获胜。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/chen-zhe/wei-zuo-fu-bo-yi">证明</a></p>
-<h5 id="二分图博弈"><a href="#二分图博弈" class="headerlink" title="二分图博弈"></a>二分图博弈</h5><blockquote>
+<h5 id="二分图博弈">二分图博弈</h5>
+<blockquote>
 <p>在二分图上，两人轮流指定下一步去哪个点，不经过重复的点，无法指定的人输，问谁赢？</p>
 </blockquote>
 <p>结论：当一个点在所有最大匹配的方案中（少了这个点无法最大匹配），那么先手必胜。</p>
 <p>证明：后手不可能选到非匹配点，如果后手选到一个非匹配点，设路径为 $S_1\rightarrow S_n$，那么把现在的匹配换成 $S_2\rightarrow S_n$，匹配数不变但不包含 $S_1$，与最大匹配一定包含 $S_1$ 矛盾。</p>
 <p>扩展到无向图的情况：不指定起点，则有完美匹配后手必胜；否则结论与上面一样。</p>
-<h5 id="树（图）上删边博弈"><a href="#树（图）上删边博弈" class="headerlink" title="树（图）上删边博弈"></a>树（图）上删边博弈</h5><blockquote>
-<p>在一棵树&#x2F;图上钦定一个根，每次可以删去一条边，若删边后某部分与根不连通则一并删去，不能操作者失败，问谁赢？</p>
+<h5 id="树（图）上删边博弈">树（图）上删边博弈</h5>
+<blockquote>
+<p>在一棵树/图上钦定一个根，每次可以删去一条边，若删边后某部分与根不连通则一并删去，不能操作者失败，问谁赢？</p>
 </blockquote>
 <p>结论：叶子的 SG 是 0，其他点的 SG 是所有儿子节点 $+1$ 后异或起来。</p>
 <p>证明：考虑往一个子树顶上加一条边是什么意思，就是对于子树内的状态转移 $DAG$ ，加一个点 $T$, 然后对原来的每个点，加一条到 $T$ 的边，容易归纳说明每个点的 $SG$ 都会增加 $1$。该思路在其他题目中也可以使用。</p>
 <p>图的情况：把所有偶环缩成点，所有奇环缩成一个点和一条边（只连他自己那个点），然后当成树来做。</p>
-<h3 id="SG函数"><a href="#SG函数" class="headerlink" title="SG函数"></a>SG函数</h3><p>约定终止态的 SG 函数值为 $0$。</p>
+<h3 id="SG函数">SG函数</h3>
+<p>约定终止态的 SG 函数值为 $0$。</p>
 <p>定义 $mex(S)$ 为集合 $S$ 中最小的未出现的自然数。</p>
-<p>设 $G$ 能转移到的集合为 $T_G$，则定义 $$SG(G)&#x3D;mex{SG(V):V\in T_G}$$</p>
-<p>性质：$SG(G)&#x3D;0$ 为必败态，否则为必胜态。</p>
-<h5 id="SG和"><a href="#SG和" class="headerlink" title="SG和"></a>SG和</h5><p>考虑两个人同时面对多个游戏，但每次只能操作其中一个。则 $SG(A+B)&#x3D;SG(A)\oplus SG(B)$，NIM游戏的原理也可以这么解释。</p>
+<p>设 $G$ 能转移到的集合为 $T_G$，则定义 $$SG(G)=mex{SG(V):V\in T_G}$$</p>
+<p>性质：$SG(G)=0$ 为必败态，否则为必胜态。</p>
+<h5 id="SG和">SG和</h5>
+<p>考虑两个人同时面对多个游戏，但每次只能操作其中一个。则 $SG(A+B)=SG(A)\oplus SG(B)$，NIM游戏的原理也可以这么解释。</p>
 <p>推SG函数的例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3185">HNOI2007分裂游戏</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1149E">CF1149E</a></p>
-<h5 id="反SG-游戏"><a href="#反SG-游戏" class="headerlink" title="反SG-游戏"></a>反SG-游戏</h5><p>即最后一步不能走的人胜利的游戏。</p>
+<h5 id="反SG-游戏">反SG-游戏</h5>
+<p>即最后一步不能走的人胜利的游戏。</p>
 <p>有以下 SJ 定理：对于任意一个 Anti-SG 游戏，如果规定当局面中所有单一游戏的 SG 值为 $0$ 时，游戏结束。则先手必胜当且仅当：</p>
 <p>1.游戏的 SG 函数不为 $0$ 且游戏中某一个单一游戏的 SG 函数大于 $1$；</p>
 <p>2.游戏的 SG 函数为 $0$ 且游戏中没有单一游戏的 SG 函数大于 $1$。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4279">SHOI2008小约翰的游戏</a></p>
-<h3 id="对抗搜索与其他技巧"><a href="#对抗搜索与其他技巧" class="headerlink" title="对抗搜索与其他技巧"></a>对抗搜索与其他技巧</h3><h5 id="对抗搜索-DP"><a href="#对抗搜索-DP" class="headerlink" title="对抗搜索&amp;DP"></a>对抗搜索&amp;DP</h5><blockquote>
+<h3 id="对抗搜索与其他技巧">对抗搜索与其他技巧</h3>
+<h5 id="对抗搜索-DP">对抗搜索&amp;DP</h5>
+<blockquote>
 <p>在一个竞争的环境中，双方通过竞争实现相反的利益，一方最大化这个利益，另一方最小化。</p>
 </blockquote>
 <p>定义合适的状态后，先找到必败态，然后通过记忆化搜索的方式实现，如果当前是必胜态就要在所有后继为必败态的结果中取 $\max$，否则在所有后继状态中取 $\min$。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4576">CQOI2013棋盘游戏</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4363">九省联考2018一双木棋</a></p>
-<h5 id="决策包容性"><a href="#决策包容性" class="headerlink" title="决策包容性"></a>决策包容性</h5><p>如果一个状态能直接到达他后继状态的所有后继状态，在该状态是一个必胜态。</p>
+<h5 id="决策包容性">决策包容性</h5>
+<p>如果一个状态能直接到达他后继状态的所有后继状态，在该状态是一个必胜态。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_arc137_c">ARC137C</a></p>
-<h5 id="建立模型"><a href="#建立模型" class="headerlink" title="建立模型"></a>建立模型</h5><p>通过建模把原问题中复杂的操作转化为图形化的，或是易于处理的操作。</p>
+<h5 id="建立模型">建立模型</h5>
+<p>通过建模把原问题中复杂的操作转化为图形化的，或是易于处理的操作。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_agc002_e">AGC002E</a></p>
 <p>通过建模把其他问题转化为博弈论问题。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_agc043_c">AGC043C</a></p>
@@ -370,8 +390,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/gf-and-poly/" rel="prev" title="生成函数与多项式  学习笔记">
-                  <i class="fa fa-angle-left"></i> 生成函数与多项式  学习笔记
+                <a href="/2024/08/06/geometry/" rel="prev" title="计算几何  学习笔记">
+                  <i class="fa fa-angle-left"></i> 计算几何  学习笔记
                 </a>
             </div>
             <div class="post-nav-item">
@@ -446,7 +466,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

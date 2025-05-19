@@ -260,35 +260,48 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>斜率优化适用于转移方程中有 $i,j$ 相关的相乘的量出现。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>决策单调性，可参考单调队列优化。</p>
-<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h2><ol>
-<li><p>正确地写出状态转移方程式。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="适用范围">适用范围</h2>
+<p>斜率优化适用于转移方程中有 $i,j$ 相关的相乘的量出现。</p>
+<h2 id="原理">原理</h2>
+<p>决策单调性，可参考单调队列优化。</p>
+<h2 id="操作方法">操作方法</h2>
+<ol>
+<li>
+<p>正确地写出状态转移方程式。</p>
 </li>
-<li><p>令当前状态为 $i$，则“任取 $i&gt;j&gt;k&gt;0$ 中的 $j$ 和 $k$”，分别写出转移方程式。</p>
+<li>
+<p>令当前状态为 $i$，则“任取 $i&gt;j&gt;k&gt;0$ 中的 $j$ 和 $k$”，分别写出转移方程式。</p>
 </li>
-<li><p>将二者相减，得到通过 $j$ 转移比通过 $i$ 转移更优所需满足的不等式组。</p>
+<li>
+<p>将二者相减，得到通过 $j$ 转移比通过 $i$ 转移更优所需满足的不等式组。</p>
 </li>
-<li><p>将 $i$ 有关的视作主元，分开一次项与常数项。</p>
+<li>
+<p>将 $i$ 有关的视作主元，分开一次项与常数项。</p>
 </li>
-<li><p>得到斜率。</p>
+<li>
+<p>得到斜率。</p>
 </li>
-<li><p>根据斜率单调性维护单调队列（同普通单调队列优化）</p>
+<li>
+<p>根据斜率单调性维护单调队列（同普通单调队列优化）</p>
 </li>
 </ol>
 <p>以<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2900">此题</a>为例：</p>
 <ol>
-<li><p>$$f_i&#x3D;min,{,f_j+w_{j+1}×l_i,}(0≤j&lt;i)$$</p>
-</li>
-<li><p>$$f_i&#x3D;min,{,f_j+w_{j+1}×l_i,}(0≤j&lt;i)$$</p>
-</li>
+<li></li>
 </ol>
-<p>$$f_i&#x3D;min,{,f_k+w_{k+1}×l_i,}(0≤k&lt;j)$$</p>
-<p>3~5.<br>$$ f_j-f_k\le (w_{k+1}-w_{j+1})×l_i$$<br>$$\text{即斜率为} \frac{f_j-f_k}{w_{k+1}-w_{j+1}}$$</p>
+<p>$$f_i=min,{,f_j+w_{j+1}×l_i,}(0≤j&lt;i)$$</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>$$f_i=min,{,f_j+w_{j+1}×l_i,}(0≤j&lt;i)$$</p>
+<p>$$f_i=min,{,f_k+w_{k+1}×l_i,}(0≤k&lt;j)$$</p>
+<p>3~5.<br>
+$$ f_j-f_k\le (w_{k+1}-w_{j+1})×l_i$$<br>
+$$\text{即斜率为} \frac{f_j-f_k}{w_{k+1}-w_{j+1}}$$</p>
 <ol start="6">
-<li><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r&amp;&amp;slope(<span class="string">q[l]</span>,<span class="string">q[l+1]</span>)&lt;=a[i].y) ++l;</span><br><span class="line">		f[i]=f[<span class="string">q[l]</span>]+a[<span class="string">q[l]</span>+<span class="number">1</span>].x*a[i].y;</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r&amp;&amp;slope(<span class="string">q[r-1]</span>,<span class="string">q[r]</span>)&gt;=slope(<span class="string">q[r]</span>,i)) --r;</span><br><span class="line">		<span class="string">q[++r]</span>=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
 </ol>
-
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) &#123;</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r&amp;&amp;slope(<span class="string">q[l]</span>,<span class="string">q[l+1]</span>)&lt;=a[i].y) ++l;</span><br><span class="line">		f[i]=f[<span class="string">q[l]</span>]+a[<span class="string">q[l]</span>+<span class="number">1</span>].x*a[i].y;</span><br><span class="line">		<span class="keyword">while</span>(l&lt;r&amp;&amp;slope(<span class="string">q[r-1]</span>,<span class="string">q[r]</span>)&gt;=slope(<span class="string">q[r]</span>,i)) --r;</span><br><span class="line">		<span class="string">q[++r]</span>=i;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -397,7 +410,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

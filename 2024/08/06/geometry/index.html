@@ -261,29 +261,55 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>推荐阅读<a target="_blank" rel="noopener" href="https://blog.csdn.net/BUG_Creater_jie/article/details/122226874">这个</a>，模板可在<a target="_blank" rel="noopener" href="https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all">这里</a>找strangeman的提交记录。</p>
-<h2 id="向量相关"><a href="#向量相关" class="headerlink" title="向量相关"></a>向量相关</h2><h4 id="向量的坐标表示"><a href="#向量的坐标表示" class="headerlink" title="向量的坐标表示"></a>向量的坐标表示</h4><p>  有点 $A(x_1,y_1)$ 和点 $B(x_2,y_2)$，则 $\overrightarrow{AB}$ 可表示为 $(x_2-x_1,y_2-y_1)$</p>
-<h4 id="共线向量"><a href="#共线向量" class="headerlink" title="共线向量"></a>共线向量</h4><p>  共线向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 满足<br>$$<br>  x_1y_2&#x3D;x_2y_1<br>$$</p>
-<p>  由此得到判断三点共线的方法：计算 $\overrightarrow{AB}$ 和 $\overrightarrow{BC}$ 进行比较。</p>
-<h4 id="向量的点乘"><a href="#向量的点乘" class="headerlink" title="向量的点乘"></a>向量的点乘</h4><p>  向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 的数量积<br>$$<br>  a \cdot b&#x3D;x_1x_2+y_1y_2<br>$$</p>
-<p>  由此得到向量垂直的条件：<br>$$<br>  a\perp b \Leftrightarrow x_1x_2+y_1y_2&#x3D;0<br>$$</p>
-<h4 id="向量的叉乘"><a href="#向量的叉乘" class="headerlink" title="向量的叉乘"></a>向量的叉乘</h4><p>  向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 的向量积<br>$$<br>  a \times b&#x3D;x_1y_2-y_1x_2<br>$$</p>
-<h4 id="叉乘的意义"><a href="#叉乘的意义" class="headerlink" title="叉乘的意义"></a>叉乘的意义</h4><ul>
-<li><p>若两个向量的叉积不为 $0$，则他们相交；否则他们重合或平行。</p>
+<h2 id="向量相关">向量相关</h2>
+<h4 id="向量的坐标表示">向量的坐标表示</h4>
+<p>有点 $A(x_1,y_1)$ 和点 $B(x_2,y_2)$，则 $\overrightarrow{AB}$ 可表示为 $(x_2-x_1,y_2-y_1)$</p>
+<h4 id="共线向量">共线向量</h4>
+<p>共线向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 满足<br>
+$$<br>
+x_1y_2=x_2y_1<br>
+$$</p>
+<p>由此得到判断三点共线的方法：计算 $\overrightarrow{AB}$ 和 $\overrightarrow{BC}$ 进行比较。</p>
+<h4 id="向量的点乘">向量的点乘</h4>
+<p>向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 的数量积<br>
+$$<br>
+a \cdot b=x_1x_2+y_1y_2<br>
+$$</p>
+<p>由此得到向量垂直的条件：<br>
+$$<br>
+a\perp b \Leftrightarrow x_1x_2+y_1y_2=0<br>
+$$</p>
+<h4 id="向量的叉乘">向量的叉乘</h4>
+<p>向量 $a(x_1,y_1)$ 和 $b(x_2,y_2)$ 的向量积<br>
+$$<br>
+a \times b=x_1y_2-y_1x_2<br>
+$$</p>
+<h4 id="叉乘的意义">叉乘的意义</h4>
+<ul>
+<li>
+<p>若两个向量的叉积不为 $0$，则他们相交；否则他们重合或平行。</p>
 </li>
-<li><p>两个向量的叉积是他们围成的平行四边形的面积，由此可以快速计算三角形的面积，从而快速计算多边形的面积。注意：<strong>逆时针求得的面积是正的，顺时针求得的是负的</strong>。</p>
+<li>
+<p>两个向量的叉积是他们围成的平行四边形的面积，由此可以快速计算三角形的面积，从而快速计算多边形的面积。注意：<strong>逆时针求得的面积是正的，顺时针求得的是负的</strong>。</p>
 </li>
-<li><p>若两个向量的叉积大于 $0$,则第二个向量由第一个逆时针选择得到；反之由顺时针旋转得到。由此可以判定多边形的凹凸性、判定点与多边形的位置关系、判定线段相交等等。</p>
+<li>
+<p>若两个向量的叉积大于 $0$,则第二个向量由第一个逆时针选择得到；反之由顺时针旋转得到。由此可以判定多边形的凹凸性、判定点与多边形的位置关系、判定线段相交等等。</p>
 </li>
 </ul>
-<h2 id="多边形相关"><a href="#多边形相关" class="headerlink" title="多边形相关"></a>多边形相关</h2><h4 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h4><ul>
-<li><p>$\pi&#x3D;\arccos(-1)$，这样精度比较高。</p>
+<h2 id="多边形相关">多边形相关</h2>
+<h4 id="三角函数">三角函数</h4>
+<ul>
+<li>
+<p>$\pi=\arccos(-1)$，这样精度比较高。</p>
 </li>
-<li><p>开平方、反三角函数最容易炸精度。因此不要使用正弦定理求解角度，尽量使用余弦定理或点乘。还有个好处就是余弦值在 $[0,\pi]$ 是唯一的！</p>
+<li>
+<p>开平方、反三角函数最容易炸精度。因此不要使用正弦定理求解角度，尽量使用余弦定理或点乘。还有个好处就是余弦值在 $[0,\pi]$ 是唯一的！</p>
 </li>
 </ul>
-<h4 id="凸包与面积"><a href="#凸包与面积" class="headerlink" title="凸包与面积"></a>凸包与面积</h4><p>  求凸多边形的面积的基本思想是三角剖分后求每个三角形的面积。由此产生了两种子类型：</p>
-<p>  1.在动态凸包中处理。则每次增加点、删除点的面积与该点和相邻两点组成的三角形的面积相关；</p>
-<p>  2.以某一点为基准点处理。则面积与基准点和当前边构成的三角形的面积相关，注意<strong>三点共线</strong>的情况要特判。 </p>
+<h4 id="凸包与面积">凸包与面积</h4>
+<p>求凸多边形的面积的基本思想是三角剖分后求每个三角形的面积。由此产生了两种子类型：</p>
+<p>1.在动态凸包中处理。则每次增加点、删除点的面积与该点和相邻两点组成的三角形的面积相关；</p>
+<p>2.以某一点为基准点处理。则面积与基准点和当前边构成的三角形的面积相关，注意<strong>三点共线</strong>的情况要特判。</p>
 
     </div>
 
@@ -317,13 +343,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/2023.6.1_A_solution/" rel="prev" title="2023.6.1 A  题解">
-                  <i class="fa fa-angle-left"></i> 2023.6.1 A  题解
+                <a href="/2024/08/06/gf-and-poly/" rel="prev" title="生成函数与多项式  学习笔记">
+                  <i class="fa fa-angle-left"></i> 生成函数与多项式  学习笔记
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/faster/" rel="next" title="卡常小技巧">
-                  卡常小技巧 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/games/" rel="next" title="博弈论">
+                  博弈论 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -393,7 +419,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

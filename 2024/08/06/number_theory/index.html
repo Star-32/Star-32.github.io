@@ -261,36 +261,85 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>实在不想挂一堆链接了。还是自己写个文章把各种知识点归纳一下吧。</p>
-<h3 id="gcd-exgcd"><a href="#gcd-exgcd" class="headerlink" title="gcd&#x2F;exgcd"></a>gcd&#x2F;exgcd</h3><p>求exgcd的过程就是在求gcd的过程中，同步维护两个变量，以求得不定方程<br>$$<br>ax+by&#x3D;\gcd(a,b)<br>$$</p>
-<p>的一组特解。显然我们通过这组特解可以求得对应的最小非负整数解。当然我们也同样能解决<br>$$<br>ax+by&#x3D;c<br>$$<br>这样的不定方程。</p>
+<h3 id="gcd-exgcd">gcd/exgcd</h3>
+<p>求exgcd的过程就是在求gcd的过程中，同步维护两个变量，以求得不定方程<br>
+$$<br>
+ax+by=\gcd(a,b)<br>
+$$</p>
+<p>的一组特解。显然我们通过这组特解可以求得对应的最小非负整数解。当然我们也同样能解决<br>
+$$<br>
+ax+by=c<br>
+$$<br>
+这样的不定方程。</p>
 <p>算法最关键的步骤就是 $x,y$ 在递归过程中的维护。先放代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)&#123;</span><br><span class="line">		x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> d,tx,ty;</span><br><span class="line">	d=<span class="built_in">gcd</span>(b,a%b,tx,ty);</span><br><span class="line">	x=ty;</span><br><span class="line">	y=tx-a/b*ty;</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>怎么理解？首先递归到边界时，问题变成 $ax&#x3D;\gcd(a,b)$，所以答案比较显然。</p>
+<p>怎么理解？首先递归到边界时，问题变成 $ax=\gcd(a,b)$，所以答案比较显然。</p>
 <p>第二个就是递归过程中。其实更新 $x,y$ 和求gcd的 $a,b$ 道理是一样的，我们更新 $a,b$ 的时候是变成了 $b,a% b$ 往下递归，其中 $a% b$ 可以理解成 $a-(\left \lfloor \frac{a}{b} \right \rfloor \times b)$ 。所以我们就用 $ty,tx-(\left \lfloor \frac{a}{b} \right \rfloor \times ty)$ 来更新 $x,y$。</p>
-<p><strong>注意：</strong>该算法求得的特解的绝对值不会超过 $a,b$ 的绝对值，但是过程中仍然需要开long long。</p>
-<h3 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h3><p>当模数为质数的时候，可以用费马小定理求，原因不解释。逆元的结果是 $a^{p-2}% p$。</p>
-<p>一般情况下，可以利用exgcd构造求方程<br>$$<br>ax+bp&#x3D;1<br>$$</p>
+<p>**注意：**该算法求得的特解的绝对值不会超过 $a,b$ 的绝对值，但是过程中仍然需要开long long。</p>
+<h3 id="逆元">逆元</h3>
+<p>当模数为质数的时候，可以用费马小定理求，原因不解释。逆元的结果是 $a^{p-2}% p$。</p>
+<p>一般情况下，可以利用exgcd构造求方程<br>
+$$<br>
+ax+bp=1<br>
+$$</p>
 <p>的解，变成最小非负整数解即为 $a$ 在模 $p$ 意义下的逆元。</p>
 <p>当然，在求组合数等情况下，也可以利用阶乘求得阶乘的逆元。</p>
-<h3 id="CRT-exCRT"><a href="#CRT-exCRT" class="headerlink" title="CRT&#x2F;exCRT"></a>CRT&#x2F;exCRT</h3><h4 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h4><p>该算法能给出形如 $x\equiv a_i \pmod{p_i}$ 线性同余方程组的（<strong>模数两两互质</strong>）的一组解。</p>
+<h3 id="CRT-exCRT">CRT/exCRT</h3>
+<h4 id="中国剩余定理">中国剩余定理</h4>
+<p>该算法能给出形如 $x\equiv a_i \pmod{p_i}$ 线性同余方程组的（<strong>模数两两互质</strong>）的一组解。</p>
 <p>求解方法如下：</p>
 <ul>
-<li>算得 $M&#x3D;\prod_{i&#x3D;1}^n p_i$</li>
-<li>算得 $M_i&#x3D;\frac{M}{p_i}$</li>
+<li>算得 $M=\prod_{i=1}^n p_i$</li>
+<li>算得 $M_i=\frac{M}{p_i}$</li>
 <li>用exgcd求得 $M_i$ 在模 $p_i$ 意义下的逆元 $t_i$</li>
-<li>$ans\equiv \sum_{i&#x3D;1}^n a_iM_it_i \pmod{M}$</li>
+<li>$ans\equiv \sum_{i=1}^n a_iM_it_i \pmod{M}$</li>
 </ul>
-<p><strong>注意：</strong>上面的几个式子模数不太一样！</p>
+<p>**注意：**上面的几个式子模数不太一样！</p>
 <p>代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">	cin&gt;&gt;m[i]&gt;&gt;a[i];</span><br><span class="line">	M*=m[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">	Mi[i]=M/m[i];</span><br><span class="line">	<span class="type">int</span> x=<span class="number">0</span>,y=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">gcd</span>(Mi[i],m[i],x,y);</span><br><span class="line">	ans+=x*a[i]*Mi[i];</span><br><span class="line">	ans=(ans+M)%M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="扩展中国剩余定理"><a href="#扩展中国剩余定理" class="headerlink" title="扩展中国剩余定理"></a>扩展中国剩余定理</h4><p>该算法用于解决上述问题中模数不保证两两互质的情形。</p>
-<p>先考虑只有两个方程的简单情况。<br>$$<br>\begin{cases}<br>x\equiv a_1 \pmod{p_1} \<br>x\equiv a_2 \pmod{p_2}<br>\end{cases}<br>$$<br>我们可以写成不定方程的形式：<br>$$<br>\begin{cases}<br>x&#x3D;a_1+p_1m_1\<br>x&#x3D;a_2+p_2m_2<br>\end{cases}<br>$$<br>移项得<br>$$<br>m_1p_1-m_2p_2&#x3D;a_2-a_1<br>$$<br>用exgcd可以求得一组 $(p_1,p_2)$ 的解，这样我们就将两个不定方程合并成了这个不定方程<br>$$<br>x\equiv m_1p_1+a_1 \pmod{\operatorname{lcm}(p_1,p_2)}<br>$$<br>多组的问题也像这么合并就行了。</p>
+<h4 id="扩展中国剩余定理">扩展中国剩余定理</h4>
+<p>该算法用于解决上述问题中模数不保证两两互质的情形。</p>
+<p>先考虑只有两个方程的简单情况。<br>
+$$<br>
+\begin{cases}<br>
+x\equiv a_1 \pmod{p_1} \<br>
+x\equiv a_2 \pmod{p_2}<br>
+\end{cases}<br>
+$$<br>
+我们可以写成不定方程的形式：<br>
+$$<br>
+\begin{cases}<br>
+x=a_1+p_1m_1\<br>
+x=a_2+p_2m_2<br>
+\end{cases}<br>
+$$<br>
+移项得<br>
+$$<br>
+m_1p_1-m_2p_2=a_2-a_1<br>
+$$<br>
+用exgcd可以求得一组 $(p_1,p_2)$ 的解，这样我们就将两个不定方程合并成了这个不定方程<br>
+$$<br>
+x\equiv m_1p_1+a_1 \pmod{\operatorname{lcm}(p_1,p_2)}<br>
+$$<br>
+多组的问题也像这么合并就行了。</p>
 <p>放代码：</p>
 <figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int excrt()&#123;</span><br><span class="line">	int M<span class="operator">=</span>m[<span class="number">1</span>]<span class="punctuation">,</span>ans<span class="operator">=</span>a[<span class="number">1</span>]<span class="comment">;</span></span><br><span class="line">	for(int i<span class="operator">=</span><span class="number">2</span><span class="comment">;i&lt;=n;i++)&#123;</span></span><br><span class="line">		int <span class="keyword">x</span><span class="punctuation">,</span>y<span class="punctuation">,</span><span class="keyword">c</span><span class="operator">=</span>(a[i]-ans<span class="variable">%m</span>[i]+m[i])<span class="variable">%m</span>[i]<span class="comment">;</span></span><br><span class="line">		int <span class="keyword">gc</span><span class="operator">=</span>gcd(M<span class="punctuation">,</span>m[i]<span class="punctuation">,</span><span class="keyword">x</span><span class="punctuation">,</span>y)<span class="comment">;</span></span><br><span class="line">		<span class="keyword">x</span><span class="operator">=</span><span class="keyword">x</span>*(<span class="keyword">c</span>/<span class="keyword">gc</span>)%(m[i]/<span class="keyword">gc</span>)<span class="comment">;</span></span><br><span class="line">		ans+<span class="operator">=</span><span class="keyword">x</span>*M<span class="comment">;</span></span><br><span class="line">		M*<span class="operator">=</span>(m[i]/<span class="keyword">gc</span>)<span class="comment">;</span></span><br><span class="line">		ans<span class="operator">=</span>(ans+M)<span class="variable">%M</span><span class="comment">;</span></span><br><span class="line">	&#125;</span><br><span class="line">	return ans<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Lucas-定理"><a href="#Lucas-定理" class="headerlink" title="Lucas 定理"></a>Lucas 定理</h3><p>感觉说了跟没说一样。<br>$$<br>\begin{pmatrix}<br>n\<br>m<br>\end{pmatrix}\bmod p&#x3D;<br>\begin{pmatrix}<br>\lfloor\frac{n}{p}\rfloor \<br>\lfloor\frac{m}{p}\rfloor<br>\end{pmatrix}\times<br>\begin{pmatrix}<br>n\bmod p \<br>m\bmod p<br>\end{pmatrix}<br>$$</p>
+<h3 id="Lucas-定理">Lucas 定理</h3>
+<p>感觉说了跟没说一样。<br>
+$$<br>
+\begin{pmatrix}<br>
+n\<br>
+m<br>
+\end{pmatrix}\bmod p=<br>
+\begin{pmatrix}<br>
+\lfloor\frac{n}{p}\rfloor \<br>
+\lfloor\frac{m}{p}\rfloor<br>
+\end{pmatrix}\times<br>
+\begin{pmatrix}<br>
+n\bmod p \<br>
+m\bmod p<br>
+\end{pmatrix}<br>
+$$</p>
 
     </div>
 
@@ -324,13 +373,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/minimum-cut/" rel="prev" title="最小割  学习笔记">
-                  <i class="fa fa-angle-left"></i> 最小割  学习笔记
+                <a href="/2024/08/06/CSP-S2021-T1-solution/" rel="prev" title="CSP-S2021  廊桥分配  题解">
+                  <i class="fa fa-angle-left"></i> CSP-S2021  廊桥分配  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/heavy-light-decomposition/" rel="next" title="树链剖分  学习笔记">
-                  树链剖分  学习笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/mobius_inversion/" rel="next" title="莫比乌斯反演  学习笔记">
+                  莫比乌斯反演  学习笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -400,7 +449,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

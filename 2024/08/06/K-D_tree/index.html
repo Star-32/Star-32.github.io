@@ -263,29 +263,33 @@
     <div class="post-body" itemprop="articleBody"><blockquote>
 <p>k-D Tree(KDT , k-Dimension Tree) 是一种可以 <strong>高效处理 $k$ 维空间信息</strong> 的数据结构。</p>
 </blockquote>
-<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>K-D树具有二叉搜索树的形态。因此可看做是替罪羊树扩展到 $k$ 维后的形态。</p>
+<h3 id="基本思想">基本思想</h3>
+<p>K-D树具有二叉搜索树的形态。因此可看做是替罪羊树扩展到 $k$ 维后的形态。</p>
 <p>与一维的信息不同，K-D树的第 $i$ 层需要用第 $i%k$ 维的信息进行比较。为了保证复杂度，建树时选取第 $i%k$ 维中 $[l,r]$ 的中位数作为当前的根。修改的时候通过暴力重构保证树的深度在可以接受的范围内。</p>
 <p>下面详细阐述几个操作。</p>
-<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="重构树"><a href="#重构树" class="headerlink" title="重构树"></a>重构树</h4><p>如果当前节点的左或右子树的大小比上当前子树的大小已经超过了某个阙值（可设为 $0.75$），那么我们需要重构树。</p>
+<h3 id="基本操作">基本操作</h3>
+<h4 id="重构树">重构树</h4>
+<p>如果当前节点的左或右子树的大小比上当前子树的大小已经超过了某个阙值（可设为 $0.75$），那么我们需要重构树。</p>
 <p>首先我们 DFS 一遍整棵子树，把所有的节点信息存入一个数组。然后进行重构。每次利用 nth_element 函数找到当前维信息的中位数并将其作为根，小于当前信息的放入左子树，否则放入右子树。递归下去即可。</p>
 <p>代码如下（两个函数）：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">(<span class="type">int</span> id)</span></span>&#123;</span><br><span class="line">	nd[++cqt]=tr[id].p;</span><br><span class="line">	lint[++cnt]=id;</span><br><span class="line">	<span class="keyword">if</span>(lid)<span class="built_in">clear</span>(lid);</span><br><span class="line">	<span class="keyword">if</span>(rid)<span class="built_in">clear</span>(rid);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">rebuild</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l&gt;r)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;id=<span class="built_in">newnode</span>();</span><br><span class="line">	<span class="built_in">nth_element</span>(nd+l,nd+mid,nd+r+<span class="number">1</span>,d?cmp1:cmp0);</span><br><span class="line">	tr[id].p=nd[mid];</span><br><span class="line">	lid=<span class="built_in">rebuild</span>(lid,l,mid<span class="number">-1</span>,d^<span class="number">1</span>);</span><br><span class="line">	rid=<span class="built_in">rebuild</span>(rid,mid+<span class="number">1</span>,r,d^<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">push_up</span>(id);</span><br><span class="line">	<span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h4><p>插入的方式与普通二叉搜索树相同，只不过每层比较的信息不同。插入完成后需要判断是否需要重构。</p>
+<h4 id="插入节点">插入节点</h4>
+<p>插入的方式与普通二叉搜索树相同，只不过每层比较的信息不同。插入完成后需要判断是否需要重构。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">push_down</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tr[lid].sz&gt;tr[id].sz*rate||tr[rid].sz&gt;tr[id].sz*rate)&#123;</span><br><span class="line">		cqt=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">clear</span>(id);</span><br><span class="line">		id=<span class="built_in">rebuild</span>(id,<span class="number">1</span>,tr[id].sz,d);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> d,node u)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!id)&#123;</span><br><span class="line">		id=<span class="built_in">newnode</span>();</span><br><span class="line">		lid=rid=<span class="number">0</span>,tr[id].p=u;</span><br><span class="line">		<span class="built_in">push_up</span>(id);</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(u.loc[d]&lt;=tr[id].p.loc[d])lid=<span class="built_in">insert</span>(lid,d^<span class="number">1</span>,u);</span><br><span class="line">	<span class="keyword">else</span> rid=<span class="built_in">insert</span>(rid,d^<span class="number">1</span>,u);</span><br><span class="line">	<span class="built_in">push_up</span>(id);</span><br><span class="line">	id=<span class="built_in">push_down</span>(id,d);</span><br><span class="line">	<span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h4><p>不同的 K-D 树需要在树上存储不同的信息。这里只是提供一种思想。</p>
+<h4 id="查询操作">查询操作</h4>
+<p>不同的 K-D 树需要在树上存储不同的信息。这里只是提供一种思想。</p>
 <p>我们可以在树上存子树内各维的范围，如果查询的东西完全包含该子树（在所有维度上），则返回该当前子树的答案。否则递归处理。注意需要判断每次的根节点是否要纳入答案中。个人感觉这挺像线段树的。</p>
 <p>放一个 2-D 树内存储矩阵信息的代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> id,<span class="type">int</span> x1,<span class="type">int</span> y1,<span class="type">int</span> x2,<span class="type">int</span> y2)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!id)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">in</span>(tr[id].minm[<span class="number">0</span>],tr[id].minm[<span class="number">1</span>],tr[id].maxm[<span class="number">0</span>],tr[id].maxm[<span class="number">1</span>],x1,y1,x2,y2))<span class="keyword">return</span> tr[id].sum;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">out</span>(tr[id].minm[<span class="number">0</span>],tr[id].minm[<span class="number">1</span>],tr[id].maxm[<span class="number">0</span>],tr[id].maxm[<span class="number">1</span>],x1,y1,x2,y2))<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> ret=<span class="built_in">query</span>(lid,x1,y1,x2,y2)+<span class="built_in">query</span>(rid,x1,y1,x2,y2);</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">in</span>(tr[id].p.loc[<span class="number">0</span>],tr[id].p.loc[<span class="number">1</span>],tr[id].p.loc[<span class="number">0</span>],tr[id].p.loc[<span class="number">1</span>],x1,y1,x2,y2))ret+=tr[id].p.val;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="时空复杂度"><a href="#时空复杂度" class="headerlink" title="时空复杂度"></a>时空复杂度</h3><p>空间复杂度显然是 $O(n)$ 的，不过需要注意利用好已经被删除的点！可以拿一个数组存下被删除的点，每次加新节点的时候从数组里面拿就行了。</p>
+<h3 id="时空复杂度">时空复杂度</h3>
+<p>空间复杂度显然是 $O(n)$ 的，不过需要注意利用好已经被删除的点！可以拿一个数组存下被删除的点，每次加新节点的时候从数组里面拿就行了。</p>
 <p>时间复杂度较为复杂。</p>
 <ul>
 <li>对于建树、插入、删除操作，单次操作复杂度为均摊 $O(\log n)$，因为树高是这么高的。</li>
 <li>对于查询操作，最坏情况是 $O(n^{1-\frac{1}{k}})$ 的。特别地，2-D 树的最坏复杂度是 $O(\sqrt n)$。</li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在处理高维问题上，K-D 树不失为一种强有力的工具；但由于其复杂度的局限性，在处理二维问题时，K-D树往往只是在想不出正解的时候的一种巧妙的暴力。综上，掌握好 K-D 树对我们来说是十分必要的。</p>
+<h3 id="总结">总结</h3>
+<p>在处理高维问题上，K-D 树不失为一种强有力的工具；但由于其复杂度的局限性，在处理二维问题时，K-D树往往只是在想不出正解的时候的一种巧妙的暴力。综上，掌握好 K-D 树对我们来说是十分必要的。</p>
 
     </div>
 
@@ -395,7 +399,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

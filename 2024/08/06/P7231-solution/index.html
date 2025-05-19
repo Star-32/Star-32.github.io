@@ -262,17 +262,21 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>写了一下午……终于过了。是我太菜了吧……</p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>在 $N\times N$ 的正方形中放 $k$ 个 $1\times2$ 的骨牌，不能重叠，使得覆盖的数字和最大。</p>
-<h2 id="暴力思路"><a href="#暴力思路" class="headerlink" title="暴力思路"></a>暴力思路</h2><p>很容易想到，用费用流来跑。</p>
+<h2 id="题意">题意</h2>
+<p>在 $N\times N$ 的正方形中放 $k$ 个 $1\times2$ 的骨牌，不能重叠，使得覆盖的数字和最大。</p>
+<h2 id="暴力思路">暴力思路</h2>
+<p>很容易想到，用费用流来跑。</p>
 <p>首先从源点向零号点连一条容量为 $k$ 的边，限制骨牌个数。</p>
 <p>对于横纵坐标之和为奇数的点，从零号点向该点连容量为1费用为权值的边；对于横纵坐标之和为偶数的点，从该点向汇点连容量为1费用为权值的边。</p>
 <p>对于每个横纵坐标之和为奇数的点，向四周连容量为1费用为0的边。</p>
 <p>可是这样建图有一个问题：点数是平方级，边数大概在32000000左右，于时间空间都不可行。</p>
-<h2 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h2><p>考虑到有很多边其实根本没有存在的必要，我们其实不用建那么多边。</p>
+<h2 id="正解">正解</h2>
+<p>考虑到有很多边其实根本没有存在的必要，我们其实不用建那么多边。</p>
 <p>首先我们预处理出每个点放一块横着的骨牌或竖着的骨牌所能覆盖的两个点的权值和。</p>
 <p>然后我们选出权值和最大的50组点集，显然在放置8块以内的骨牌时一定会选择的是这50组最大的点集。</p>
 <p>然后在这50组点集中建图跑费用流即可。</p>
-<h2 id="丑陋的代码"><a href="#丑陋的代码" class="headerlink" title="丑陋的代码"></a>丑陋的代码</h2><pre><code class="#include">#define ll long long
+<h2 id="丑陋的代码">丑陋的代码</h2>
+<pre><code class="language-#include">#define ll long long
 #define int long long
 using namespace std;
 int n,k,s,t,cnt=1,lst[4000005],sum[2005][2005],flow[4000005],dis[4000005],fa[4000005],bian[4000005],inf=0x3f3f3f3f,dl;
@@ -280,136 +284,135 @@ ll su,xf;
 int x[205],y[205],dian,donex[205],chk[205],tp[205];
 bool fl[4000005];
 struct edge&#123;
-    int f,t,val,cst,lst;
-    edge(int f=0,int t=0,int val=0,int cst=0,int lst=0):
-        f(f),t(t),val(val),cst(cst),lst(lst)&#123;&#125;;
+	int f,t,val,cst,lst;
+	edge(int f=0,int t=0,int val=0,int cst=0,int lst=0):
+		f(f),t(t),val(val),cst(cst),lst(lst)&#123;&#125;;
 &#125;e[8000005];
 struct node&#123;
-    int x,y,val,id;
-    bool operator&lt;(node b)const&#123;
-        return val&lt;b.val; 
-    &#125;
+	int x,y,val,id;
+	bool operator&lt;(node b)const&#123;
+		return val&lt;b.val; 
+	&#125;
 &#125;;
 priority_queue&lt;node&gt; q;
 void add(int u,int v,int val,int cst)&#123;
-    e[++cnt]=edge(u,v,val,cst,lst[u]);
-    lst[u]=cnt;
-    e[++cnt]=edge(v,u,0,-cst,lst[v]);
-    lst[v]=cnt; 
+	e[++cnt]=edge(u,v,val,cst,lst[u]);
+	lst[u]=cnt;
+	e[++cnt]=edge(v,u,0,-cst,lst[v]);
+	lst[v]=cnt; 
 &#125;
 bool spfa()&#123;
-    memset(dis,inf,sizeof(dis));
-    memset(flow,inf,sizeof(flow));
-    memset(fl,0,sizeof(fl));
-    queue&lt;int&gt; q;
-    q.push(s),dis[s]=0,fa[t]=-1;
-    while(!q.empty())&#123;
-        int u=q.front();
-        q.pop(),fl[u]=0;
-        for(int i=lst[u];i;i=e[i].lst)&#123;
-            int v=e[i].t;
-            if(e[i].val&amp;&amp;dis[v]&gt;dis[u]+e[i].cst)&#123;
-                dis[v]=dis[u]+e[i].cst;
-                fa[v]=u;
-                bian[v]=i;
-                flow[v]=min(flow[u],e[i].val);
-                if(!fl[v])&#123;
-                    fl[v]=1;
-                    q.push(v);
-                &#125;
-            &#125;
-        &#125;
-    &#125;
-    return fa[t]!=-1;
+	memset(dis,inf,sizeof(dis));
+	memset(flow,inf,sizeof(flow));
+	memset(fl,0,sizeof(fl));
+	queue&lt;int&gt; q;
+	q.push(s),dis[s]=0,fa[t]=-1;
+	while(!q.empty())&#123;
+		int u=q.front();
+		q.pop(),fl[u]=0;
+		for(int i=lst[u];i;i=e[i].lst)&#123;
+			int v=e[i].t;
+			if(e[i].val&amp;&amp;dis[v]&gt;dis[u]+e[i].cst)&#123;
+				dis[v]=dis[u]+e[i].cst;
+				fa[v]=u;
+				bian[v]=i;
+				flow[v]=min(flow[u],e[i].val);
+				if(!fl[v])&#123;
+					fl[v]=1;
+					q.push(v);
+				&#125;
+			&#125;
+		&#125;
+	&#125;
+	return fa[t]!=-1;
 &#125;
 void MCMF()&#123;
-    while(spfa())&#123;
-        xf+=dis[t]*flow[t];
-        dl+=flow[t];
-        int now=t;
-        while(now!=s)&#123;
-            e[bian[now]].val-=flow[t];
-            e[bian[now]^1].val+=flow[t];
-            now=fa[now];
-        &#125;
-    &#125;
+	while(spfa())&#123;
+		xf+=dis[t]*flow[t];
+		dl+=flow[t];
+		int now=t;
+		while(now!=s)&#123;
+			e[bian[now]].val-=flow[t];
+			e[bian[now]^1].val+=flow[t];
+			now=fa[now];
+		&#125;
+	&#125;
 &#125;
 map&lt;pair&lt;int,int&gt;,int&gt; mp;
 signed main()&#123;
-    cin&gt;&gt;n&gt;&gt;k;
-    s=n*n+1,t=n*n+2;
-    add(s,0,k,0);
-    for(int i=1;i&lt;=n;i++)&#123;
-        for(int j=1;j&lt;=n;j++)&#123;
-            cin&gt;&gt;sum[i][j];
-            su+=sum[i][j];
-        &#125;
-    &#125;
-    for(int i=1;i&lt;=n;i++)&#123;
-        for(int j=1;j&lt;=n;j++)&#123;
-            if(i&lt;n)&#123;
-                int val=sum[i][j]+sum[i+1][j];
-                for(int r=1;r&lt;=50;r++)&#123;
-                    if(val&gt;chk[r])&#123;
-                        for(int c=50;c&gt;r;c--)&#123;
-                            chk[c]=chk[c-1];
-                            x[c]=x[c-1],y[c]=y[c-1],tp[c]=tp[c-1];
-                        &#125;
-                        chk[r]=val,x[r]=i,y[r]=j,tp[r]=0;
-                        break;
-                    &#125;
-                &#125;		
-            &#125;
-            if(j&lt;n)&#123;
-                int val=sum[i][j]+sum[i][j+1];
-                for(int r=1;r&lt;=50;r++)&#123;
-                    if(val&gt;chk[r])&#123;
-                        for(int c=50;c&gt;r;c--)&#123;
-                            chk[c]=chk[c-1];
-                            x[c]=x[c-1],y[c]=y[c-1],tp[c]=tp[c-1];
-                        &#125;
-                        chk[r]=val,x[r]=i,y[r]=j,tp[r]=1;
-                        break;
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-    &#125;
-    for(int i=1;i&lt;=50;i++)&#123;
-        if(!chk[i])break;
-        int i1=x[i],j1=y[i];
-        if(tp[i])&#123;
-            int i2=x[i],j2=y[i]+1;
-            if(!((i1+j1)&amp;1))swap(i1,i2),swap(j1,j2);
-            add((i1-1)*n+j1,(i2-1)*n+j2,1,0);
-            if(!mp[&#123;i1,j1&#125;])&#123;
-                add(0,(i1-1)*n+j1,1,-sum[i1][j1]);
-                mp[&#123;i1,j1&#125;]=1;
-            &#125;
-            if(!mp[&#123;i2,j2&#125;])&#123;
-                add((i2-1)*n+j2,t,1,-sum[i2][j2]);
-                mp[&#123;i2,j2&#125;]=1;
-            &#125;
-        &#125;
-        else&#123;
-            int i2=x[i]+1,j2=y[i];
-            if(!((i1+j1)&amp;1))swap(i1,i2),swap(j1,j2);
-            add((i1-1)*n+j1,(i2-1)*n+j2,1,0);
-            if(!mp[&#123;i1,j1&#125;])&#123;
-                add(0,(i1-1)*n+j1,1,-sum[i1][j1]);
-                mp[&#123;i1,j1&#125;]=1;
-            &#125;
-            if(!mp[&#123;i2,j2&#125;])&#123;
-                add((i2-1)*n+j2,t,1,-sum[i2][j2]);
-                mp[&#123;i2,j2&#125;]=1;
-            &#125;	
-        &#125;
-    &#125;
-    MCMF();
-    cout&lt;&lt;su+xf;
-    return 0;
-&#125;
-</code></pre>
+	cin&gt;&gt;n&gt;&gt;k;
+	s=n*n+1,t=n*n+2;
+	add(s,0,k,0);
+	for(int i=1;i&lt;=n;i++)&#123;
+		for(int j=1;j&lt;=n;j++)&#123;
+			cin&gt;&gt;sum[i][j];
+			su+=sum[i][j];
+		&#125;
+	&#125;
+	for(int i=1;i&lt;=n;i++)&#123;
+		for(int j=1;j&lt;=n;j++)&#123;
+			if(i&lt;n)&#123;
+				int val=sum[i][j]+sum[i+1][j];
+				for(int r=1;r&lt;=50;r++)&#123;
+					if(val&gt;chk[r])&#123;
+						for(int c=50;c&gt;r;c--)&#123;
+							chk[c]=chk[c-1];
+							x[c]=x[c-1],y[c]=y[c-1],tp[c]=tp[c-1];
+						&#125;
+						chk[r]=val,x[r]=i,y[r]=j,tp[r]=0;
+						break;
+					&#125;
+				&#125;		
+			&#125;
+			if(j&lt;n)&#123;
+				int val=sum[i][j]+sum[i][j+1];
+				for(int r=1;r&lt;=50;r++)&#123;
+					if(val&gt;chk[r])&#123;
+						for(int c=50;c&gt;r;c--)&#123;
+							chk[c]=chk[c-1];
+							x[c]=x[c-1],y[c]=y[c-1],tp[c]=tp[c-1];
+						&#125;
+						chk[r]=val,x[r]=i,y[r]=j,tp[r]=1;
+						break;
+					&#125;
+				&#125;
+			&#125;
+		&#125;
+	&#125;
+	for(int i=1;i&lt;=50;i++)&#123;
+		if(!chk[i])break;
+		int i1=x[i],j1=y[i];
+		if(tp[i])&#123;
+			int i2=x[i],j2=y[i]+1;
+			if(!((i1+j1)&amp;1))swap(i1,i2),swap(j1,j2);
+			add((i1-1)*n+j1,(i2-1)*n+j2,1,0);
+			if(!mp[&#123;i1,j1&#125;])&#123;
+				add(0,(i1-1)*n+j1,1,-sum[i1][j1]);
+				mp[&#123;i1,j1&#125;]=1;
+			&#125;
+			if(!mp[&#123;i2,j2&#125;])&#123;
+				add((i2-1)*n+j2,t,1,-sum[i2][j2]);
+				mp[&#123;i2,j2&#125;]=1;
+			&#125;
+		&#125;
+		else&#123;
+			int i2=x[i]+1,j2=y[i];
+			if(!((i1+j1)&amp;1))swap(i1,i2),swap(j1,j2);
+			add((i1-1)*n+j1,(i2-1)*n+j2,1,0);
+			if(!mp[&#123;i1,j1&#125;])&#123;
+				add(0,(i1-1)*n+j1,1,-sum[i1][j1]);
+				mp[&#123;i1,j1&#125;]=1;
+			&#125;
+			if(!mp[&#123;i2,j2&#125;])&#123;
+				add((i2-1)*n+j2,t,1,-sum[i2][j2]);
+				mp[&#123;i2,j2&#125;]=1;
+			&#125;	
+		&#125;
+	&#125;
+	MCMF();
+	cout&lt;&lt;su+xf;
+	return 0;
+&#125;</code></pre>
 
     </div>
 
@@ -444,8 +447,8 @@ signed main()&#123;
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-angle-left"></i> Hello World
+                <a href="/2024/08/06/heavy-light-decomposition/" rel="prev" title="树链剖分  学习笔记">
+                  <i class="fa fa-angle-left"></i> 树链剖分  学习笔记
                 </a>
             </div>
             <div class="post-nav-item">
@@ -520,7 +523,7 @@ signed main()&#123;
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

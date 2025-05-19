@@ -261,19 +261,29 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h3><p>在一条细长的路上有若干个休息区，有两个人在走路。每个人都需要从某一休息区出发，到达路的两个端点并返回初始休息区。由于路很狭窄，两人只能在休息区相遇，也就是说某人可能需要在某一休息区等另外一个人。请你做出合适的安排使得从两人出发到两人都回到出发点的总时间最少。</p>
-<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>约定：令 $x,y$ 分别表示两人的出发点，钦定 $x&lt;y$；令 $t,w$ 分别表示两次的相遇点。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="题意简述">题意简述</h3>
+<p>在一条细长的路上有若干个休息区，有两个人在走路。每个人都需要从某一休息区出发，到达路的两个端点并返回初始休息区。由于路很狭窄，两人只能在休息区相遇，也就是说某人可能需要在某一休息区等另外一个人。请你做出合适的安排使得从两人出发到两人都回到出发点的总时间最少。</p>
+<h3 id="思路分析">思路分析</h3>
+<p>约定：令 $x,y$ 分别表示两人的出发点，钦定 $x&lt;y$；令 $t,w$ 分别表示两次的相遇点。</p>
 <p>阅读题目后，不难发现，除非两人从同一点出发，否则他们一定会相遇两次。</p>
 <p>由于两人必须在等候区相遇，我们容易发现两人在第一次相遇后会同时同地反向出发。</p>
 <p>由此，我们可以容易地找到他们第二次相遇的等候区。设第一次在 $t$ 相遇，则第二次在离 $l-t$ 最近两个等候区之一相遇。</p>
-<p>我们令 $S$ 表示两次相遇之间经过的时间，则有 $S&#x3D;\max(t+w,2l-t-w)$，这个式子的两部分分别表示到达左边的端点并折返与到达右边的端点并折返。</p>
+<p>我们令 $S$ 表示两次相遇之间经过的时间，则有 $S=\max(t+w,2l-t-w)$，这个式子的两部分分别表示到达左边的端点并折返与到达右边的端点并折返。</p>
 <p>如果两人从同一端点出发，则答案就为 $2S$，原因显然。</p>
 <p>否则答案为 $\text{第一次相遇的时间}+\text{第二次相遇后回出发点的时间}+S$。</p>
 <p>下面我们来研究这个第一次相遇的时间。</p>
 <ul>
-<li><p>同向出发：<br>$$<br>ans&#x3D;\max(t+x,y-t)+\max(w-x,2l-w-y)+S<br>$$</p>
+<li>
+<p>同向出发：<br>
+$$<br>
+ans=\max(t+x,y-t)+\max(w-x,2l-w-y)+S<br>
+$$</p>
 </li>
-<li><p>反向出发：<br>$$<br>ans&#x3D;max(x+t,2l-t-y)+max(w-x,y-w)+S<br>$$</p>
+<li>
+<p>反向出发：<br>
+$$<br>
+ans=max(x+t,2l-t-y)+max(w-x,y-w)+S<br>
+$$</p>
 </li>
 </ul>
 <p>我们发现，无论是哪一种情况，这个 $ans$ 的左边部分都一定不小于 $S$，因为 $S$ 中的两种情况在 $ans$ 中都有出现。因此，我们证明了两人从同一端点出发一定能获得最优解。</p>
@@ -312,13 +322,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/AGC056A-solution/" rel="prev" title="AGC056A  题解">
-                  <i class="fa fa-angle-left"></i> AGC056A  题解
+                <a href="/2024/08/06/BIT_plus/" rel="prev" title="树状数组高阶知识">
+                  <i class="fa fa-angle-left"></i> 树状数组高阶知识
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/2023.6.1_A_solution/" rel="next" title="2023.6.1 A  题解">
-                  2023.6.1 A  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/AGC056A-solution/" rel="next" title="AGC056A  题解">
+                  AGC056A  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -388,7 +398,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

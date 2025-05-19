@@ -264,7 +264,9 @@
 <p>先构造一个数组是给出两个数组的差，再排序，这一点不用多说。</p>
 <p>然后我们考虑，要从其中选出 $K$ 个元素修改，那这 $K$ 个元素一定是排序后的数组中两端的元素。</p>
 <p>既然这样，那剩下的 $n-K$ 个元素一定是新数组中连续的一段。</p>
-<p>于是问题就变成了，在一段数中选择一个数 $x$，使得<br>$$<br>\sum_{i&#x3D;1}^N |A_i-x|$$</p>
+<p>于是问题就变成了，在一段数中选择一个数 $x$，使得<br>
+$$<br>
+\sum_{i=1}^N |A_i-x|$$</p>
 <p>最小。由小学奥数得知，这个数应该是这组数的中位数。</p>
 <p>至于知道了中位数如何 $O(1)$ 的计算答案，另一篇题解已经讲的很清楚了。</p>
 <p>放代码：</p>
@@ -273,22 +275,21 @@
 using namespace std;
 int a[100005],b[100005],cha[100005],n,k,sum[100005],ans,inf=0x3f3f3f3f3f3f3f3f;
 signed main()&#123;
-    cin&gt;&gt;n&gt;&gt;k;
-    for(int i=1;i&lt;=n;i++)cin&gt;&gt;a[i];
-    for(int i=1;i&lt;=n;i++)cin&gt;&gt;b[i],cha[i]=a[i]-b[i];
-    sort(cha+1,cha+n+1);
-    for(int i=1;i&lt;=n;i++)sum[i]=sum[i-1]+cha[i];
-    k=n-k,ans=inf;
-    for(int i=1;i+k-1&lt;=n;i++)&#123;
-        int r=i+k-1;
-        int mid=(i+r)&gt;&gt;1;
-        int now=cha[mid]*(mid-i+1)-(sum[mid]-sum[i-1])+(sum[r]-sum[mid])-cha[mid]*(r-mid);
-        ans=min(ans,now);
-    &#125;
-    cout&lt;&lt;ans;
-    return 0;
-&#125;
-</code></pre>
+	cin&gt;&gt;n&gt;&gt;k;
+	for(int i=1;i&lt;=n;i++)cin&gt;&gt;a[i];
+	for(int i=1;i&lt;=n;i++)cin&gt;&gt;b[i],cha[i]=a[i]-b[i];
+	sort(cha+1,cha+n+1);
+	for(int i=1;i&lt;=n;i++)sum[i]=sum[i-1]+cha[i];
+	k=n-k,ans=inf;
+	for(int i=1;i+k-1&lt;=n;i++)&#123;
+		int r=i+k-1;
+		int mid=(i+r)&gt;&gt;1;
+		int now=cha[mid]*(mid-i+1)-(sum[mid]-sum[i-1])+(sum[r]-sum[mid])-cha[mid]*(r-mid);
+		ans=min(ans,now);
+	&#125;
+	cout&lt;&lt;ans;
+	return 0;
+&#125;</code></pre>
 
     </div>
 
@@ -323,13 +324,13 @@ signed main()&#123;
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/P8048-solution/" rel="prev" title="洛谷P8048  题解">
-                  <i class="fa fa-angle-left"></i> 洛谷P8048  题解
+                <a href="/2024/08/06/P8299-solution/" rel="prev" title="洛谷P8299  题解">
+                  <i class="fa fa-angle-left"></i> 洛谷P8299  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/05/19/PPO/" rel="next" title="从 0 开始到 PPO">
-                  从 0 开始到 PPO <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/P8048-solution/" rel="next" title="洛谷P8048  题解">
+                  洛谷P8048  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -399,7 +400,7 @@ signed main()&#123;
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

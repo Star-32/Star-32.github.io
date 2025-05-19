@@ -266,24 +266,24 @@
     
     <div class="post-body" itemprop="articleBody"><p>考试的时候做到这道题，很多小朋友好像都是坐板凳搜出来的捏~</p>
 <p>老用户花了好久终于手玩出了一个构造方案，感觉还算比较简洁，分享给大家。</p>
-<h4 id="对于-n-equiv-0-pmod-3-的情况"><a href="#对于-n-equiv-0-pmod-3-的情况" class="headerlink" title="对于 $n\equiv 0 \pmod{3}$ 的情况"></a>对于 $n\equiv 0 \pmod{3}$ 的情况</h4><p>不难发现，我们有一种比较简单的构造方案，即每行循环移位 $3$ 格：</p>
+<h4 id="对于-n-equiv-0-pmod-3-的情况">对于 $n\equiv 0 \pmod{3}$ 的情况</h4>
+<p>不难发现，我们有一种比较简单的构造方案，即每行循环移位 $3$ 格：</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">###......</span><br><span class="line">...###...</span><br><span class="line">......###</span><br><span class="line">###......</span><br><span class="line">...###...</span><br><span class="line">......###</span><br><span class="line">###......</span><br><span class="line">...###...</span><br><span class="line">......###</span><br></pre></td></tr></table></figure>
-
 <p>这样就比较简单地解决了这种情况，相信大家都能想到。</p>
-<h4 id="对于-n-equiv-1-pmod-3-的情况"><a href="#对于-n-equiv-1-pmod-3-的情况" class="headerlink" title="对于 $n\equiv 1 \pmod{3}$ 的情况"></a>对于 $n\equiv 1 \pmod{3}$ 的情况</h4><p>我们试图基于上面的情况做一些调整。首先还是每行移位 $3$ 格：</p>
+<h4 id="对于-n-equiv-1-pmod-3-的情况">对于 $n\equiv 1 \pmod{3}$ 的情况</h4>
+<p>我们试图基于上面的情况做一些调整。首先还是每行移位 $3$ 格：</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">...###.</span><br><span class="line">##....#</span><br><span class="line">..###..</span><br><span class="line">#....##</span><br><span class="line">.###...</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
-
 <p>这时我们发现连通块个数不对呀？怎么办呢？</p>
 <p>注意到，我们可以把这个图看做 $3$ 组：每一组刚好占满一整行。则上图中第一组的最后一行和第二组的第一行重叠了，多产生了一个连通块。这时我们想通过调整消去第一组的一个连通块，即上图中第三行的最后一个 <code>#</code>。</p>
 <p>我们需要用到一个调整的操作：如果 $(x_1,y_1),(x_2,y_2)$ 都染了色，我们可以调整为给 $(x_1,y_2),(x_2,y_1)$ 染色。这个操作的对行列个数显然是没有影响的。我们可以拿他来改变连通块个数。</p>
 <p>回到上面，我们考虑把第三行的最后一个 <code>#</code> 和第四行的最后一个 <code>#</code> 拿来调整，会发现连通块的个数刚好减少了！给下面最对称操作后得到的图是这样的：</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">###....</span><br><span class="line">...###.</span><br><span class="line">##..#..</span><br><span class="line">#..#..#</span><br><span class="line">..#..##</span><br><span class="line">.###...</span><br><span class="line">....###</span><br></pre></td></tr></table></figure>
-
-<p><strong>归纳一下</strong>：在循环移位后，我们给 $(n&#x2F;3+1,n),(n&#x2F;3\times2,n-2)$ 这两个位置和他们的对称位置分别做调整，就可以构造出解。</p>
-<h4 id="对于-n-equiv-2-pmod-3-的情况"><a href="#对于-n-equiv-2-pmod-3-的情况" class="headerlink" title="对于 $n\equiv 2 \pmod{3}$ 的情况"></a>对于 $n\equiv 2 \pmod{3}$ 的情况</h4><p>有了上面的经验，这一步就简单多了。大家可以自己手玩一下，这里给出<strong>归纳结论</strong>：在循环移位后，我们给 $(n&#x2F;3+1,1),(n&#x2F;3\times 2+1,n-3)$ 这两个位置和他们的对称位置分别做调整，就可以构造出解。</p>
-<p>这样，我们就解决了这道题！是不是很简洁呢？当然还有其他的构造&#x2F;坐板凳方法，大家可以私信 @<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/291248">赵悦岑</a> 了解。</p>
-<p>最后放一个 $n&#x3D;7,8,10,11$ 的构造图希望能帮助到大家：</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9jhvrgsc.png"></p>
+<p><strong>归纳一下</strong>：在循环移位后，我们给 $(n/3+1,n),(n/3\times2,n-2)$ 这两个位置和他们的对称位置分别做调整，就可以构造出解。</p>
+<h4 id="对于-n-equiv-2-pmod-3-的情况">对于 $n\equiv 2 \pmod{3}$ 的情况</h4>
+<p>有了上面的经验，这一步就简单多了。大家可以自己手玩一下，这里给出<strong>归纳结论</strong>：在循环移位后，我们给 $(n/3+1,1),(n/3\times 2+1,n-3)$ 这两个位置和他们的对称位置分别做调整，就可以构造出解。</p>
+<p>这样，我们就解决了这道题！是不是很简洁呢？当然还有其他的构造/坐板凳方法，大家可以私信 @<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/291248">赵悦岑</a> 了解。</p>
+<p>最后放一个 $n=7,8,10,11$ 的构造图希望能帮助到大家：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9jhvrgsc.png" alt=""></p>
 
     </div>
 
@@ -319,13 +319,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/BIT_plus/" rel="prev" title="树状数组高阶知识">
-                  <i class="fa fa-angle-left"></i> 树状数组高阶知识
+                <a href="/2024/08/06/ARC152B-solution/" rel="prev" title="ARC152B  题解">
+                  <i class="fa fa-angle-left"></i> ARC152B  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/ARC152B-solution/" rel="next" title="ARC152B  题解">
-                  ARC152B  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/2023.6.1_A_solution/" rel="next" title="2023.6.1 A  题解">
+                  2023.6.1 A  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -395,7 +395,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -260,8 +260,11 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="哈希和哈希表"><a href="#哈希和哈希表" class="headerlink" title="哈希和哈希表"></a>哈希和哈希表</h2><p>令 $b$ 为选取的基数（229或233等），则字符串匹配时子串 $C’&#x3D;c_{k+1}c_{k+2}\dots c_{k_n}$ 的哈希值为<br>$$ H(C’)&#x3D;H(C,k+n)-H(C,k)\times b^n $$</p>
-<h4 id="哈希的相关运用"><a href="#哈希的相关运用" class="headerlink" title="哈希的相关运用"></a>哈希的相关运用</h4><ul>
+    <div class="post-body" itemprop="articleBody"><h2 id="哈希和哈希表">哈希和哈希表</h2>
+<p>令 $b$ 为选取的基数（229或233等），则字符串匹配时子串 $C’=c_{k+1}c_{k+2}\dots c_{k_n}$ 的哈希值为<br>
+$$ H(C’)=H(C,k+n)-H(C,k)\times b^n $$</p>
+<h4 id="哈希的相关运用">哈希的相关运用</h4>
+<ul>
 <li>哈希字符串匹配</li>
 </ul>
 <p>转化成上面的板子就好做了。</p>
@@ -270,10 +273,12 @@
 </ul>
 <p>正着存一组哈希值，再倒着存一组哈希值。枚举回文串的对称中心，二分回文长度（的一半），利用哈希判等。可以在 $O(n\log n)$ 的复杂度内找最长的回文串、回文串的数量。</p>
 <p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3501">P3501</a></p>
-<h2 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h2><p>运用两个指针 $i,j$ 表示以 $A[i]$ 结尾长度为 $j$ 的字符串正好与 $B$ 串的前 $j$ 个字符匹配。若下一个字符匹配，则挪动指针；否则将 $j$ 挪动到 $fail[j]$ 处。 $fail[j]$ 为失配数组，表示在 $B$ 串的 $j$ 处失配时， $j$ 应该往前跳到的位置。</p>
+<h2 id="KMP">KMP</h2>
+<p>运用两个指针 $i,j$ 表示以 $A[i]$ 结尾长度为 $j$ 的字符串正好与 $B$ 串的前 $j$ 个字符匹配。若下一个字符匹配，则挪动指针；否则将 $j$ 挪动到 $fail[j]$ 处。 $fail[j]$ 为失配数组，表示在 $B$ 串的 $j$ 处失配时， $j$ 应该往前跳到的位置。</p>
 <p>首先对 $B$ 串预处理，得到 $fail$ 数组，预处理过程可视为 $B$ 串自己和自己匹配的过程。</p>
 <p>该算法复杂度为线性的。</p>
-<h4 id="KMP的相关运用"><a href="#KMP的相关运用" class="headerlink" title="KMP的相关运用"></a>KMP的相关运用</h4><ul>
+<h4 id="KMP的相关运用">KMP的相关运用</h4>
+<ul>
 <li>KMP求公共前后缀</li>
 </ul>
 <p>在KMP中，若一个串长度为 $n$ ，则 $fail[n]$ 就是该串公共前后缀的长度。</p>
@@ -282,19 +287,23 @@
 </ul>
 <p>如果一个长度为 $n$ 的串有长度为 $j$ 的公共前后缀，则该串必有长度为 $n-j$ 的周期。</p>
 <p>由此，在KMP中，若一个串长度为 $n$ ，则 $fail[n]$ 是最长公共前后缀，则 $n-fail[n]$ 是该串的最小周期；在 $j&gt;0$ 时找 $fail[j]$ ，最小的非0的 $j’$ 是最短公共前后缀，则 $n-j’$ 是该串的最大周期。</p>
-<h2 id="扩展KMP"><a href="#扩展KMP" class="headerlink" title="扩展KMP"></a>扩展KMP</h2><p>求解的问题：求出一个字符串的每个后缀与一个字符串（可以是自己）的最长公共前缀。</p>
+<h2 id="扩展KMP">扩展KMP</h2>
+<p>求解的问题：求出一个字符串的每个后缀与一个字符串（可以是自己）的最长公共前缀。</p>
 <p>先暴力求得 $Z_1$ 的值，然后向后枚举。像后文的 manacher 一样维护 $pos,maxr$，并判断 $Z_{i-pos}$ 能否扩展到 $maxr$ 右边，如果不能就直接更新 $Z_i$，否则暴力更新。</p>
-<h2 id="失配树"><a href="#失配树" class="headerlink" title="失配树"></a>失配树</h2><p>求解的问题：求出一个字符串的两个前缀的最长公共前后缀。</p>
+<h2 id="失配树">失配树</h2>
+<p>求解的问题：求出一个字符串的两个前缀的最长公共前后缀。</p>
 <p>先跑KMP，容易发现，一个字符串的最长公共前后缀就是 $fail[n]$。同时 $fail[fail[n]]…$ 等都是他的最长公共前后缀。那么我们容易知道，两个字符串的公共前后缀构成树形。于是我们将 $(fail[i],i)$ 连边，会得到一棵树，这就是失配树。上面那个问题可以在失配树上求LCA解决。</p>
-<h2 id="AC自动机"><a href="#AC自动机" class="headerlink" title="AC自动机"></a>AC自动机</h2><p>若有一个主串需要与多个模式串匹配，需要用的AC自动机。考虑将多个模式串建立字典树，再在字典树上建立 $fail$ 数组，即可完成匹配。</p>
+<h2 id="AC自动机">AC自动机</h2>
+<p>若有一个主串需要与多个模式串匹配，需要用的AC自动机。考虑将多个模式串建立字典树，再在字典树上建立 $fail$ 数组，即可完成匹配。</p>
 <p>具体实现：先建立字典树，注意<strong>下标从1开始</strong>。然后将0号结点的所有边全部连向1号结点。从1开始进行广搜，对于每个结点 $u$，枚举所有出边，若不存在，则直接将出边连向 $fail[u]$ 的出边；否则将儿子入队，找到 $fail[u]$ 能跳到的有和该儿子相同的结点，更新 $fail[v]$。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)tr[<span class="number">0</span>][i]=<span class="number">1</span>;</span><br><span class="line">	queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">	fail[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	q.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">front</span>();</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(!tr[u][i])tr[u][i]=tr[fail[u]][i];</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				q.<span class="built_in">push</span>(tr[u][i]);</span><br><span class="line">				<span class="type">int</span> v=fail[u];</span><br><span class="line">				<span class="keyword">while</span>(v&gt;<span class="number">1</span>&amp;&amp;!tr[v][i])v=fail[v];</span><br><span class="line">				fail[tr[u][i]]=tr[v][i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="AC自动机相关题目处理技巧"><a href="#AC自动机相关题目处理技巧" class="headerlink" title="AC自动机相关题目处理技巧"></a>AC自动机相关题目处理技巧</h4><p>可以先考虑只有一个模式串的情况，先按KMP的做法写，思路厘清后再甩到字典树上。</p>
-<h2 id="最小表示法"><a href="#最小表示法" class="headerlink" title="最小表示法"></a>最小表示法</h2><p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaoxinxin1234/article/details/89971780">这个</a>。思路和代码都比较简单。</p>
+<h4 id="AC自动机相关题目处理技巧">AC自动机相关题目处理技巧</h4>
+<p>可以先考虑只有一个模式串的情况，先按KMP的做法写，思路厘清后再甩到字典树上。</p>
+<h2 id="最小表示法">最小表示法</h2>
+<p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaoxinxin1234/article/details/89971780">这个</a>。思路和代码都比较简单。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;<span class="comment">//返回最小表示的初始位置</span></span><br><span class="line">	<span class="type">int</span> i=<span class="number">1</span>,j=<span class="number">2</span>,k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=n&amp;&amp;j&lt;=n&amp;&amp;k&lt;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(num[i+k]==num[j+k])&#123;</span><br><span class="line">			k++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(num[i+k]&gt;num[j+k])i=i+k+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> j=j+k+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(i==j)j++;</span><br><span class="line">		k=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(i,j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="manacher算法"><a href="#manacher算法" class="headerlink" title="manacher算法"></a>manacher算法</h2><p>先在两个字符间插入一个特殊字符，然后执行以下步骤：</p>
+<h2 id="manacher算法">manacher算法</h2>
+<p>先在两个字符间插入一个特殊字符，然后执行以下步骤：</p>
 <p>1.如果 $i&lt;maxr_i$，按对称方法更新 $p_i$。</p>
 <p>2.暴力拓展 $p_i$。</p>
 <p>3.更新 $maxr$ 和 $pos$。</p>
@@ -331,13 +340,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/splay/" rel="prev" title="splay  学习笔记">
-                  <i class="fa fa-angle-left"></i> splay  学习笔记
+                <a href="/2024/08/06/JS_test_image_gallery/" rel="prev" title="JS 技能测试：图片库">
+                  <i class="fa fa-angle-left"></i> JS 技能测试：图片库
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/slope_trick/" rel="next" title="slope trick 小记">
-                  slope trick 小记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/splay/" rel="next" title="splay  学习笔记">
+                  splay  学习笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -407,7 +416,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

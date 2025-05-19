@@ -260,19 +260,23 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>修改树上某一路径的权值，查询树上某一路径（子树）的权值。</p>
-<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>将树上的结点分成若干重链，每次只用维护重链即可。</p>
-<h2 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h2><p>1.两次DFS，分别预处理出{father,dep,size,son}和{top,seg,rev}；</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="解决问题">解决问题</h2>
+<p>修改树上某一路径的权值，查询树上某一路径（子树）的权值。</p>
+<h2 id="基本思想">基本思想</h2>
+<p>将树上的结点分成若干重链，每次只用维护重链即可。</p>
+<h2 id="算法步骤">算法步骤</h2>
+<p>1.两次DFS，分别预处理出{father,dep,size,son}和{top,seg,rev}；</p>
 <p>2.建线段树；</p>
 <p>3.修改&amp;求值</p>
-<h4 id="DFS细节"><a href="#DFS细节" class="headerlink" title="DFS细节"></a>DFS细节</h4><p>第一次DFS没啥细节。</p>
+<h4 id="DFS细节">DFS细节</h4>
+<p>第一次DFS没啥细节。</p>
 <p>第二次注意在DFS前先处理根节点。对于每个结点先走重儿子，保证线段树中重链连续；然后处理其他儿子。</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void dfs2(int u)&#123;</span><br><span class="line">	if(son<span class="comment">[u]</span>)&#123;</span><br><span class="line">		seg<span class="comment">[son<span class="comment">[u]</span>]</span>=++seg<span class="comment">[0]</span>;</span><br><span class="line">		top<span class="comment">[son<span class="comment">[u]</span>]</span>=top<span class="comment">[u]</span>;</span><br><span class="line">		rev<span class="comment">[seg<span class="comment">[0]</span>]</span>=son<span class="comment">[u]</span>;</span><br><span class="line">		dfs2(son<span class="comment">[u]</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=lst<span class="comment">[u]</span>;i;i=e<span class="comment">[i]</span>.lst)&#123;</span><br><span class="line">		int v=e<span class="comment">[i]</span>.t;</span><br><span class="line">		if(!top<span class="comment">[v]</span>)&#123;</span><br><span class="line">			seg<span class="comment">[v]</span>=++seg<span class="comment">[0]</span>;</span><br><span class="line">			rev<span class="comment">[seg<span class="comment">[0]</span>]</span>=v;</span><br><span class="line">			top<span class="comment">[v]</span>=v;</span><br><span class="line">			dfs2(v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="修改细节"><a href="#修改细节" class="headerlink" title="修改细节"></a>修改细节</h4><p>对于每条路径的两个结点，若不在同一条重链上，则选取深的重链往上跳；最后更新当前重链。</p>
+<h4 id="修改细节">修改细节</h4>
+<p>对于每条路径的两个结点，若不在同一条重链上，则选取深的重链往上跳；最后更新当前重链。</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void modify(int x,int y,int v)&#123;</span><br><span class="line">	int fx=top<span class="comment">[x]</span>,fy=top<span class="comment">[y]</span>,ret=0;</span><br><span class="line">	while(fx!=fy)&#123;</span><br><span class="line">		if(dep<span class="comment">[fx]</span>&lt;dep<span class="comment">[fy]</span>)swap(x,y),swap(fx,fy);</span><br><span class="line">		mfy(1,seg<span class="comment">[fx]</span>,seg<span class="comment">[x]</span>,v);</span><br><span class="line">		x=fath<span class="comment">[fx]</span>;</span><br><span class="line">		fx=top<span class="comment">[x]</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	if(seg<span class="comment">[x]</span>&gt;seg<span class="comment">[y]</span>)swap(x,y);</span><br><span class="line">	mfy(1,seg<span class="comment">[x]</span>,seg<span class="comment">[y]</span>,v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="询问细节"><a href="#询问细节" class="headerlink" title="询问细节"></a>询问细节</h4><p>大体流程与修改相同，代码略。</p>
+<h4 id="询问细节">询问细节</h4>
+<p>大体流程与修改相同，代码略。</p>
 
     </div>
 
@@ -306,13 +310,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/number_theory/" rel="prev" title="数论相关  学习笔记">
-                  <i class="fa fa-angle-left"></i> 数论相关  学习笔记
+                <a href="/2024/08/06/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-angle-left"></i> Hello World
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/mobius_inversion/" rel="next" title="莫比乌斯反演  学习笔记">
-                  莫比乌斯反演  学习笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/P7231-solution/" rel="next" title="洛谷P7231  题解">
+                  洛谷P7231  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -382,7 +386,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

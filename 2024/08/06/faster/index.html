@@ -260,14 +260,22 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="IO优化"><a href="#IO优化" class="headerlink" title="IO优化"></a>IO优化</h3><p>这个没啥好说的，注意Obuff如果手写栈会跑得更快；以及千万不要用endl而要用\n。</p>
-<h3 id="函数内联"><a href="#函数内联" class="headerlink" title="函数内联"></a>函数内联</h3><p>这个没啥好说的。</p>
-<h3 id="枚举顺序"><a href="#枚举顺序" class="headerlink" title="枚举顺序"></a>枚举顺序</h3><p>要让可能连续的内存尽量在相近的位置被枚举，例如三维数组 $f[i][j][k]$ 建议按 $i,j,k$ 的顺序嵌套。这一点在<strong>倍增</strong>算法中特别要注意。</p>
-<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>据说这样可以让内存访问变得连续。</p>
-<h3 id="取模优化"><a href="#取模优化" class="headerlink" title="取模优化"></a>取模优化</h3><p>对于加法中的取模，建议采用做减法。</p>
-<h3 id="Define"><a href="#Define" class="headerlink" title="Define"></a>Define</h3><p>树状数组中的lowbit函数直接define会快一些。</p>
-<h3 id="merge代替sort"><a href="#merge代替sort" class="headerlink" title="merge代替sort"></a>merge代替sort</h3><p>对于两个有序序列的合并，建议用STL中的merge函数。使用时需要多开一个临时数组存合并结果再复制回去。这个技巧在<strong>CDQ分治</strong>中很管用。</p>
-<h3 id="const-修饰"><a href="#const-修饰" class="headerlink" title="const 修饰"></a>const 修饰</h3><p>对于代码中的常量（如<strong>模数</strong>），尽量加上 const 修饰，会快不止亿点点。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="IO优化">IO优化</h3>
+<p>这个没啥好说的，注意Obuff如果手写栈会跑得更快；以及千万不要用endl而要用\n。</p>
+<h3 id="函数内联">函数内联</h3>
+<p>这个没啥好说的。</p>
+<h3 id="枚举顺序">枚举顺序</h3>
+<p>要让可能连续的内存尽量在相近的位置被枚举，例如三维数组 $f[i][j][k]$ 建议按 $i,j,k$ 的顺序嵌套。这一点在<strong>倍增</strong>算法中特别要注意。</p>
+<h3 id="封装">封装</h3>
+<p>据说这样可以让内存访问变得连续。</p>
+<h3 id="取模优化">取模优化</h3>
+<p>对于加法中的取模，建议采用做减法。</p>
+<h3 id="Define">Define</h3>
+<p>树状数组中的lowbit函数直接define会快一些。</p>
+<h3 id="merge代替sort">merge代替sort</h3>
+<p>对于两个有序序列的合并，建议用STL中的merge函数。使用时需要多开一个临时数组存合并结果再复制回去。这个技巧在<strong>CDQ分治</strong>中很管用。</p>
+<h3 id="const-修饰">const 修饰</h3>
+<p>对于代码中的常量（如<strong>模数</strong>），尽量加上 const 修饰，会快不止亿点点。</p>
 
     </div>
 
@@ -301,13 +309,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/geometry/" rel="prev" title="计算几何  学习笔记">
-                  <i class="fa fa-angle-left"></i> 计算几何  学习笔记
+                <a href="/2024/08/06/flow_theory/" rel="prev" title="网络流定理与结论">
+                  <i class="fa fa-angle-left"></i> 网络流定理与结论
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/group_theory/" rel="next" title="群论基础">
-                  群论基础 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/cut-and-bridge/" rel="next" title="割点和桥  学习笔记">
+                  割点和桥  学习笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -377,7 +385,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

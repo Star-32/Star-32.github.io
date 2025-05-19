@@ -262,25 +262,52 @@
     
     <div class="post-body" itemprop="articleBody"><p>注：以下内容源自各种各样的资料，不保证正确性，仅供参考。</p>
 <p>约定 $*$ 代表运算“卷”，部分出现的 $1$ 代表常数函数。</p>
-<h3 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><p> $\mu$ 为莫比乌斯函数，定义为：<br>$$<br>\mu(n)&#x3D;\begin{cases}<br>1  &amp; n&#x3D;1 \<br>0 &amp; n\text{含有平方因子}\<br>(-1)^k  &amp; k\text{为}n\text{的本质不同质因子个数}<br>\end{cases}<br>$$<br>莫比乌斯函数是<strong>积性函数</strong>，可以求线性筛的同时求出。</p>
-<h3 id="莫比乌斯函数的性质"><a href="#莫比乌斯函数的性质" class="headerlink" title="莫比乌斯函数的性质"></a>莫比乌斯函数的性质</h3><ul>
-<li><p>性质1：<br>$$<br>\sum\limits_{d|n}\mu (d)&#x3D;\begin{cases}<br>1  &amp; n&#x3D;1 \<br>0 &amp; n\neq 1<br>\end{cases}<br>$$<br>也就是说，$\sum_{d|n}\mu(d)&#x3D;\varepsilon(n)$，即 $\mu * 1&#x3D;\varepsilon$</p>
+<h3 id="莫比乌斯函数">莫比乌斯函数</h3>
+<p>$\mu$ 为莫比乌斯函数，定义为：<br>
+$$<br>
+\mu(n)=\begin{cases}<br>
+1  &amp; n=1 \<br>
+0 &amp; n\text{含有平方因子}\<br>
+(-1)^k  &amp; k\text{为}n\text{的本质不同质因子个数}<br>
+\end{cases}<br>
+$$<br>
+莫比乌斯函数是<strong>积性函数</strong>，可以求线性筛的同时求出。</p>
+<h3 id="莫比乌斯函数的性质">莫比乌斯函数的性质</h3>
 <ul>
-<li>引理：$[gcd(i,j)&#x3D;1]&#x3D;\sum\limits_{d|gcd(i,j)}\mu(d)$</li>
+<li>
+<p>性质1：<br>
+$$<br>
+\sum\limits_{d|n}\mu (d)=\begin{cases}<br>
+1  &amp; n=1 \<br>
+0 &amp; n\neq 1<br>
+\end{cases}<br>
+$$<br>
+也就是说，$\sum_{d|n}\mu(d)=\varepsilon(n)$，即 $\mu * 1=\varepsilon$</p>
+<ul>
+<li>引理：$[gcd(i,j)=1]=\sum\limits_{d|gcd(i,j)}\mu(d)$</li>
 </ul>
 </li>
-<li><p>性质2：<br>$$<br>\varphi * 1&#x3D;\operatorname{id}<br>$$<br>两边同时卷 $\mu$ 可得到 $\varphi&#x3D;\operatorname{id}*\mu$</p>
+<li>
+<p>性质2：<br>
+$$<br>
+\varphi * 1=\operatorname{id}<br>
+$$<br>
+两边同时卷 $\mu$ 可得到 $\varphi=\operatorname{id}*\mu$</p>
 </li>
 </ul>
-<h3 id="莫比乌斯变换与反演"><a href="#莫比乌斯变换与反演" class="headerlink" title="莫比乌斯变换与反演"></a>莫比乌斯变换与反演</h3><p>设 $f(n),g(n)$ 是两个数论函数。</p>
+<h3 id="莫比乌斯变换与反演">莫比乌斯变换与反演</h3>
+<p>设 $f(n),g(n)$ 是两个数论函数。</p>
 <ul>
-<li><p>如果有 $f(n)&#x3D;\sum_{d|n}g(d)$，那么有 $g(n)&#x3D;\sum_{d|n}\mu(d)f(\frac{n}{d})$</p>
+<li>
+<p>如果有 $f(n)=\sum_{d|n}g(d)$，那么有 $g(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})$</p>
 <p>这种形式下，$f(n)$ 称作 $g(n)$ 的莫比乌斯变换，$g(n)$ 称作 $f(n)$ 的莫比乌斯反演。</p>
 </li>
-<li><p>如果有 $f(n)&#x3D;\sum_{n|d}g(d)$，那么有 $g(n)&#x3D;\sum_{n|d}\mu(\frac{d}{n})f(d)$</p>
+<li>
+<p>如果有 $f(n)=\sum_{n|d}g(d)$，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$</p>
 </li>
 </ul>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>莫反常常与数论分块+前缀和结合，加速运算。</p>
+<h3 id="应用">应用</h3>
+<p>莫反常常与数论分块+前缀和结合，加速运算。</p>
 
     </div>
 
@@ -314,13 +341,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/heavy-light-decomposition/" rel="prev" title="树链剖分  学习笔记">
-                  <i class="fa fa-angle-left"></i> 树链剖分  学习笔记
+                <a href="/2024/08/06/number_theory/" rel="prev" title="数论相关  学习笔记">
+                  <i class="fa fa-angle-left"></i> 数论相关  学习笔记
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/math_theory/" rel="next" title="数学公式杂项">
-                  数学公式杂项 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/minimum-cut/" rel="next" title="最小割  学习笔记">
+                  最小割  学习笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -390,7 +417,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -261,114 +261,116 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>你需要构造一个 $1∼N$ 的排列，满足 $M$ 个要求，要求形式是给出 $l,r$ 中的最大值或最小值。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>不难看出，这是一个二分图匹配问题。我们要给每个位置匹配一个数。那么怎么建边呢？我们发现根据题目给出的要求，好像不是很好直接看出每个位置能匹配哪些数。不过正难则反，题目给出的要求是很容易看出每个位置不能匹配哪些数的。显然如果题目给出 $[l,r]$ 中最小的数是 $x$，那么这些位置不能与任何小于 $x$ 的数匹配。大于同理。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="题意">题意</h3>
+<p>你需要构造一个 $1∼N$ 的排列，满足 $M$ 个要求，要求形式是给出 $l,r$ 中的最大值或最小值。</p>
+<h3 id="思路">思路</h3>
+<p>不难看出，这是一个二分图匹配问题。我们要给每个位置匹配一个数。那么怎么建边呢？我们发现根据题目给出的要求，好像不是很好直接看出每个位置能匹配哪些数。不过正难则反，题目给出的要求是很容易看出每个位置不能匹配哪些数的。显然如果题目给出 $[l,r]$ 中最小的数是 $x$，那么这些位置不能与任何小于 $x$ 的数匹配。大于同理。</p>
 <p>这样就够了吗？其实是有问题的。我们这样无法保证 $x$ 这个数一定被分配到 $[l,r]$ 这个区间里。所以我们还有让所有不在 $[l,r]$ 的数都不能匹配到 $x$，这样就保证满足题目条件了。</p>
 <p>至于二分图匹配部分，可以用匈牙利，当然我用的 Dinic。</p>
-<h3 id="丑陋的代码（跑得贼慢）"><a href="#丑陋的代码（跑得贼慢）" class="headerlink" title="丑陋的代码（跑得贼慢）"></a>丑陋的代码（跑得贼慢）</h3><pre><code>#include &lt;bits/stdc++.h&gt;
+<h3 id="丑陋的代码（跑得贼慢）">丑陋的代码（跑得贼慢）</h3>
+<pre><code>#include &lt;bits/stdc++.h&gt;
 #define int long long
 using namespace std;
 bool ok[205][205];
 int n,m,cnt=1,lst[415],s,t,inf=0x3f3f3f3f,now[415],dep[415],flow,seat[415]; 
 struct edge&#123;
-    int f,t,val,lst;
-    edge(int f=0,int t=0,int val=0,int lst=0):
-        f(f),t(t),val(val),lst(lst)&#123;&#125;; 
+	int f,t,val,lst;
+	edge(int f=0,int t=0,int val=0,int lst=0):
+		f(f),t(t),val(val),lst(lst)&#123;&#125;; 
 &#125;e[400005];
 void add(int u,int v,int w)&#123;
-    e[++cnt]=edge(u,v,w,lst[u]);lst[u]=cnt;
-    e[++cnt]=edge(v,u,0,lst[v]);lst[v]=cnt;
+	e[++cnt]=edge(u,v,w,lst[u]);lst[u]=cnt;
+	e[++cnt]=edge(v,u,0,lst[v]);lst[v]=cnt;
 &#125;
 bool bfs()&#123;
-    memset(dep,-1,sizeof(dep));
-    dep[s]=0;
-    queue&lt;int&gt; q;
-    q.push(s);
-    while(!q.empty())&#123;
-        int u=q.front();
-        q.pop();
-        now[u]=lst[u];
-        for(int i=lst[u];i;i=e[i].lst)&#123;
-            int v=e[i].t;
-            if(dep[v]==-1&amp;&amp;e[i].val)&#123;
-                dep[v]=dep[u]+1;
-                q.push(v);
-            &#125;
-        &#125;
-    &#125; 
-    return dep[t]!=-1;
+	memset(dep,-1,sizeof(dep));
+	dep[s]=0;
+	queue&lt;int&gt; q;
+	q.push(s);
+	while(!q.empty())&#123;
+		int u=q.front();
+		q.pop();
+		now[u]=lst[u];
+		for(int i=lst[u];i;i=e[i].lst)&#123;
+			int v=e[i].t;
+			if(dep[v]==-1&amp;&amp;e[i].val)&#123;
+				dep[v]=dep[u]+1;
+				q.push(v);
+			&#125;
+		&#125;
+	&#125; 
+	return dep[t]!=-1;
 &#125;
 int dfs(int u,int in)&#123;
-    if(u==t)return in;
-    int out=0;
-    for(int i=now[u];i;i=e[i].lst)&#123;
-        now[u]=i;
-        int v=e[i].t;
-        if(dep[v]==dep[u]+1&amp;&amp;e[i].val)&#123;
-            int go=dfs(v,min(in,e[i].val));
-            in-=go,out+=go;
-            e[i].val-=go,e[i^1].val+=go;
-            if(!in)break;
-        &#125;
-    &#125;
-    if(!out)dep[u]=-1;
-    return out;
+	if(u==t)return in;
+	int out=0;
+	for(int i=now[u];i;i=e[i].lst)&#123;
+		now[u]=i;
+		int v=e[i].t;
+		if(dep[v]==dep[u]+1&amp;&amp;e[i].val)&#123;
+			int go=dfs(v,min(in,e[i].val));
+			in-=go,out+=go;
+			e[i].val-=go,e[i^1].val+=go;
+			if(!in)break;
+		&#125;
+	&#125;
+	if(!out)dep[u]=-1;
+	return out;
 &#125;
 signed main()&#123;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(int i=1;i&lt;=m;i++)&#123;
-        int op,u,v,x;
-        cin&gt;&gt;op&gt;&gt;u&gt;&gt;v&gt;&gt;x;
-        if(op==1)&#123;
-            for(int j=u;j&lt;=v;j++)&#123;
-                for(int k=x+1;k&lt;=n;k++)&#123;
-                    ok[j][k]=1;
-                &#125;
-            &#125;
-            for(int j=1;j&lt;u;j++)&#123;
-                ok[j][x]=1;
-            &#125;
-            for(int j=v+1;j&lt;=n;j++)&#123;
-                ok[j][x]=1;
-            &#125;
-        &#125;
-        else&#123;
-            for(int j=u;j&lt;=v;j++)&#123;
-                for(int k=1;k&lt;x;k++)&#123;
-                    ok[j][k]=1;
-                &#125;
-            &#125;
-            for(int j=1;j&lt;u;j++)&#123;
-                ok[j][x]=1;
-            &#125;
-            for(int j=v+1;j&lt;=n;j++)&#123;
-                ok[j][x]=1;
-            &#125;
-        &#125;
-    &#125;
-    s=0,t=n*2+1;
-    for(int i=1;i&lt;=n;i++)&#123;
-        add(s,i,1);
-        add(i+n,t,1);
-        for(int j=1;j&lt;=n;j++)&#123;
-            if(!ok[i][j])add(i,j+n,1);
-        &#125;
-    &#125;
-    while(bfs())&#123;
-        flow+=dfs(s,inf);
-    &#125;
-    if(flow!=n)puts(&quot;-1&quot;);
-    else&#123;
-        for(int i=2;i&lt;=cnt;i++)&#123;
-            if(!e[i].val&amp;&amp;e[i^1].val&amp;&amp;e[i].f&lt;=n&amp;&amp;e[i].f&amp;&amp;e[i].t&gt;n&amp;&amp;e[i].t!=t)&#123;
-                seat[e[i].f]=e[i].t;
-            &#125;
-        &#125;
-        for(int i=1;i&lt;=n;i++)cout&lt;&lt;seat[i]-n&lt;&lt;&#39; &#39;;
-    &#125;
-    return 0;
-&#125;
-</code></pre>
+	cin&gt;&gt;n&gt;&gt;m;
+	for(int i=1;i&lt;=m;i++)&#123;
+		int op,u,v,x;
+		cin&gt;&gt;op&gt;&gt;u&gt;&gt;v&gt;&gt;x;
+		if(op==1)&#123;
+			for(int j=u;j&lt;=v;j++)&#123;
+				for(int k=x+1;k&lt;=n;k++)&#123;
+					ok[j][k]=1;
+				&#125;
+			&#125;
+			for(int j=1;j&lt;u;j++)&#123;
+				ok[j][x]=1;
+			&#125;
+			for(int j=v+1;j&lt;=n;j++)&#123;
+				ok[j][x]=1;
+			&#125;
+		&#125;
+		else&#123;
+			for(int j=u;j&lt;=v;j++)&#123;
+				for(int k=1;k&lt;x;k++)&#123;
+					ok[j][k]=1;
+				&#125;
+			&#125;
+			for(int j=1;j&lt;u;j++)&#123;
+				ok[j][x]=1;
+			&#125;
+			for(int j=v+1;j&lt;=n;j++)&#123;
+				ok[j][x]=1;
+			&#125;
+		&#125;
+	&#125;
+	s=0,t=n*2+1;
+	for(int i=1;i&lt;=n;i++)&#123;
+		add(s,i,1);
+		add(i+n,t,1);
+		for(int j=1;j&lt;=n;j++)&#123;
+			if(!ok[i][j])add(i,j+n,1);
+		&#125;
+	&#125;
+	while(bfs())&#123;
+		flow+=dfs(s,inf);
+	&#125;
+	if(flow!=n)puts(&quot;-1&quot;);
+	else&#123;
+		for(int i=2;i&lt;=cnt;i++)&#123;
+			if(!e[i].val&amp;&amp;e[i^1].val&amp;&amp;e[i].f&lt;=n&amp;&amp;e[i].f&amp;&amp;e[i].t&gt;n&amp;&amp;e[i].t!=t)&#123;
+				seat[e[i].f]=e[i].t;
+			&#125;
+		&#125;
+		for(int i=1;i&lt;=n;i++)cout&lt;&lt;seat[i]-n&lt;&lt;' ';
+	&#125;
+	return 0;
+&#125;</code></pre>
 
     </div>
 
@@ -408,8 +410,8 @@ signed main()&#123;
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/P8048-solution/" rel="next" title="洛谷P8048  题解">
-                  洛谷P8048  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/P7382-solution/" rel="next" title="P7382  题解">
+                  P7382  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -479,7 +481,7 @@ signed main()&#123;
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

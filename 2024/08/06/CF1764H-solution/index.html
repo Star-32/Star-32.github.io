@@ -262,22 +262,28 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给定长为 $n$ 的序列，初始 $a_i&#x3D;i$。有 $m$ 个操作，操作为给出 $l_i,r_i$ 并将 $[a_{l_i},a_{r_i}]$ 赋值为 $a_{l_i}$。要求对每个 $[i,i+k-1]$，回答保留该区间内的操作后序列中不同元素的数量。</p>
-<h3 id="初步分析"><a href="#初步分析" class="headerlink" title="初步分析"></a>初步分析</h3><p>不难发现，对答案产生贡献的有两种情况：</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="题意">题意</h3>
+<p>给定长为 $n$ 的序列，初始 $a_i=i$。有 $m$ 个操作，操作为给出 $l_i,r_i$ 并将 $[a_{l_i},a_{r_i}]$ 赋值为 $a_{l_i}$。要求对每个 $[i,i+k-1]$，回答保留该区间内的操作后序列中不同元素的数量。</p>
+<h3 id="初步分析">初步分析</h3>
+<p>不难发现，对答案产生贡献的有两种情况：</p>
 <ul>
-<li><p>没有被执行操作的元素</p>
+<li>
+<p>没有被执行操作的元素</p>
 </li>
-<li><p>某次操作左端点的元素</p>
+<li>
+<p>某次操作左端点的元素</p>
 </li>
 </ul>
 <p>我们尝试分别统计这两种情况。</p>
 <p>只考虑维护序列，我们容易想到一种基于均摊的，用 set 暴力维护的做法：在 set 中存下每一个区间，遇到修改操作就找到左右端点所在的 set 区间并将其分裂，暴力删去左右端点之间的区间，插入新区间。</p>
 <p>我们想在上述过程中同时预处理我们需要的东西。</p>
-<h3 id="进一步分析"><a href="#进一步分析" class="headerlink" title="进一步分析"></a>进一步分析</h3><p>对于第一种情况：我们对 set 中的每个区间同时记录下一个 $time$，表示这个区间最初是第 $time$ 次修改操作插入进去的。假设当前是第 $i$ 次修改操作，将从 set 中删去 $[l,r]$ 这个区间，那么我们可以知道在 $[time+1,i-1]$ 这个时间段以内 $[l,r]$ 是没有被修改过的，可以作为第一种贡献。贡献的范围是所有 $ql&gt;time\and qr&lt;i$ 的询问操作。这是一个经典的二维数点问题，可以用扫描线+树状数组解决。</p>
+<h3 id="进一步分析">进一步分析</h3>
+<p>对于第一种情况：我们对 set 中的每个区间同时记录下一个 $time$，表示这个区间最初是第 $time$ 次修改操作插入进去的。假设当前是第 $i$ 次修改操作，将从 set 中删去 $[l,r]$ 这个区间，那么我们可以知道在 $[time+1,i-1]$ 这个时间段以内 $[l,r]$ 是没有被修改过的，可以作为第一种贡献。贡献的范围是所有 $ql&gt;time\and qr&lt;i$ 的询问操作。这是一个经典的二维数点问题，可以用扫描线+树状数组解决。</p>
 <p>对于第二种情况：我们需要对每个操作维护 $3$ 个信息，分别是：$pre_i$，该操作之前最后一个覆盖到 $l_i$ 的操作；$go_i$，该操作的原始区间 $[l_i,r_i]$ 被完全覆盖掉的时刻；$ed_i$，该操作彻底不能产生贡献的时刻。如果维护好了这些信息，我们知道这个操作能对 $pre_i&lt;ql\and qr&lt;ed_i\and ql\le i\le qr$ 的询问产生贡献，这同样是一个二维数点问题。</p>
-<p>具体的，$pre_i$ 只需要在 set 中插入该操作之前查询即可；$go_i$ 为所有 $time&#x3D;i$ 的区间中被删去时刻的最大值；$ed_i&#x3D;\max (go_i,ed_j[pre_j&#x3D;&#x3D;i])$。</p>
+<p>具体的，$pre_i$ 只需要在 set 中插入该操作之前查询即可；$go_i$ 为所有 $time=i$ 的区间中被删去时刻的最大值；$ed_i=\max (go_i,ed_j[pre_j==i])$。</p>
 <p>这样这道题就完全解决了。</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>感觉只有必要放一下预处理，都来做这题了不至于不会二维数点吧：</p>
+<h3 id="代码实现">代码实现</h3>
+<p>感觉只有必要放一下预处理，都来做这题了不至于不会二维数点吧：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">bignod</span>&#123;</span><br><span class="line">	<span class="type">int</span> l,r,tim;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>&lt;(bignod b)<span class="type">const</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> l&lt;b.l;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">gonxian</span>&#123;</span><br><span class="line">	<span class="type">int</span> x,y,v;</span><br><span class="line">&#125;gx[<span class="number">2000015</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	set&lt;bignod&gt; st;</span><br><span class="line">	set&lt;bignod&gt; ::iterator it,ti,it2;</span><br><span class="line">	st.<span class="built_in">insert</span>(bignod&#123;<span class="number">1</span>,n,<span class="number">0</span>&#125;);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> l=xg[i].l,r=xg[i].r;</span><br><span class="line">		it=st.<span class="built_in">upper_bound</span>(bignod&#123;l,<span class="number">0</span>,<span class="number">0</span>&#125;),ti=--st.<span class="built_in">upper_bound</span>(bignod&#123;r,<span class="number">0</span>,<span class="number">0</span>&#125;);</span><br><span class="line">		it2=it,it2--;</span><br><span class="line">		bignod u=*it2,v=u;</span><br><span class="line">		pre[i]=u.tim;</span><br><span class="line">		<span class="keyword">if</span>(u.r&gt;=xg[i].r)&#123;</span><br><span class="line">			go[u.tim]=<span class="built_in">max</span>(go[u.tim],i);</span><br><span class="line">			st.<span class="built_in">erase</span>(it2);</span><br><span class="line">			<span class="keyword">if</span>(u.l&lt;l)st.<span class="built_in">insert</span>(bignod&#123;u.l,l<span class="number">-1</span>,u.tim&#125;);</span><br><span class="line">			<span class="keyword">if</span>(u.r&gt;r)st.<span class="built_in">insert</span>(bignod&#123;r+<span class="number">1</span>,u.r,u.tim&#125;);</span><br><span class="line">			st.<span class="built_in">insert</span>(bignod&#123;l,r,i&#125;);</span><br><span class="line">			<span class="keyword">if</span>(u.tim+<span class="number">1</span>&lt;=i<span class="number">-1</span>)gx[++cqt]=gonxian&#123;u.tim+<span class="number">1</span>,i<span class="number">-1</span>,r-l+<span class="number">1</span>&#125;;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		st.<span class="built_in">erase</span>(it2);</span><br><span class="line">		<span class="keyword">for</span>(;it!=ti;)&#123;</span><br><span class="line">			go[(*it).tim]=<span class="built_in">max</span>(go[(*it).tim],i);</span><br><span class="line">			<span class="keyword">if</span>((*it).tim+<span class="number">1</span>&lt;=i<span class="number">-1</span>)gx[++cqt]=gonxian&#123;(*it).tim+<span class="number">1</span>,i<span class="number">-1</span>,(*it).r-(*it).l+<span class="number">1</span>&#125;;</span><br><span class="line">			it2=it++;</span><br><span class="line">			st.<span class="built_in">erase</span>(it2);</span><br><span class="line">		&#125;</span><br><span class="line">		u=*ti,st.<span class="built_in">erase</span>(ti);</span><br><span class="line">		go[v.tim]=<span class="built_in">max</span>(go[v.tim],i),go[u.tim]=<span class="built_in">max</span>(go[u.tim],i);</span><br><span class="line">		<span class="keyword">if</span>(v.tim+<span class="number">1</span>&lt;=i<span class="number">-1</span>)gx[++cqt]=gonxian&#123;v.tim+<span class="number">1</span>,i<span class="number">-1</span>,v.r-l+<span class="number">1</span>&#125;;</span><br><span class="line">		<span class="keyword">if</span>(u.tim+<span class="number">1</span>&lt;=i<span class="number">-1</span>)gx[++cqt]=gonxian&#123;u.tim+<span class="number">1</span>,i<span class="number">-1</span>,r-u.l+<span class="number">1</span>&#125;;</span><br><span class="line">		<span class="keyword">if</span>(v.l&lt;l)st.<span class="built_in">insert</span>(bignod&#123;v.l,l<span class="number">-1</span>,v.tim&#125;);</span><br><span class="line">		<span class="keyword">if</span>(u.r&gt;r)st.<span class="built_in">insert</span>(bignod&#123;r+<span class="number">1</span>,u.r,u.tim&#125;);</span><br><span class="line">		st.<span class="built_in">insert</span>(bignod&#123;l,r,i&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(it=st.<span class="built_in">begin</span>();it!=st.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">		bignod u=*it;</span><br><span class="line">		<span class="keyword">if</span>(u.tim+<span class="number">1</span>&lt;=m)gx[++cqt]=gonxian&#123;u.tim+<span class="number">1</span>,m,u.r-u.l+<span class="number">1</span>&#125;;</span><br><span class="line">		go[u.tim]=<span class="built_in">max</span>(go[u.tim],m+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=m;i;i--)&#123;</span><br><span class="line">		die[i]=<span class="built_in">max</span>(die[i],go[i]);</span><br><span class="line">		<span class="keyword">if</span>(pre[i])die[pre[i]]=<span class="built_in">max</span>(die[pre[i]],die[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
@@ -318,8 +324,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/CF1534H-solution/" rel="next" title="CF1534H  题解">
-                  CF1534H  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/CF1322E-solution/" rel="next" title="CF1322E  题解">
+                  CF1322E  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -389,7 +395,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

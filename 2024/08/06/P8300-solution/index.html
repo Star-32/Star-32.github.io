@@ -260,7 +260,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>分块题。由于笔者对于维护凸包之类的东西掌握的不是特别好，而李超树在解决斜率相关的问题时又几乎是万能<del>（不用推式子）</del>的，因此本题解采用分块 + 李超树的做法。</p>
+    <div class="post-body" itemprop="articleBody"><p>分块题。由于笔者对于维护凸包之类的东西掌握的不是特别好，而李超树在解决斜率相关的问题时又几乎是万能~~（不用推式子）~~的，因此本题解采用分块 + 李超树的做法。</p>
 <p>思路是很简单的：单点修改的时候，暴力重构一个块内的李超树；区间查询时散块暴力，整块直接在李超树上查询就好了。不过这个东西的复杂度是 $O(n\sqrt n\log {\sqrt n}) $ 的，可能没有那么优秀。</p>
 <p>这样这题细节就很少了。但要注意输入中可能有 $A&gt;B$  的情况要交换。</p>
 <p>代码（开 O2 通过）：</p>
@@ -374,7 +374,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

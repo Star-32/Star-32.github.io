@@ -262,7 +262,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>转换为 $01$ 序列的操作其他题解都已经讲的很清楚了，我这里主要提供一种只用线段树来维护答案的方法。</p>
-<p>首先是得到操作数。初始序列上是全 $0$ 的，我们从小到大枚举每个数，并把他们修改成 $1$。由于答案是 $01$ 交错段的长度的一半，我们线段树上的每个结点分别维护左部是 $0&#x2F;1$，右部是 $0&#x2F;1$，左部交错段的长度，右部交错段的长度，区间内交错段的最大长度。向上转移比较容易。</p>
+<p>首先是得到操作数。初始序列上是全 $0$ 的，我们从小到大枚举每个数，并把他们修改成 $1$。由于答案是 $01$ 交错段的长度的一半，我们线段树上的每个结点分别维护左部是 $0/1$，右部是 $0/1$，左部交错段的长度，右部交错段的长度，区间内交错段的最大长度。向上转移比较容易。</p>
 <p>然后是得到最后的操作序列。如果一个位置在当前位置由 $0$ 变成 $1$ 之后，在<strong>操作完后</strong>的序列中由 $0$ 变成了 $1$，那么可以认为这个位置在操作完后变成了当前改变的这个位置的值。而一个位置能影响到的位置，只有他改变完后所在的最长 $01$ 段和<strong>他左右两个 $1$ 所在的最长 $01$ 段</strong>。注意第二部分是很容易忽略掉的。具体影响的位置要根据 $01$ 段最外面的两边具体是 $0$ 还是 $1$ 进行分类讨论。找到他影响的区间后做一个区间 $\min$ 即可（因为可能之前的已经修改过去了），这部分可以用一个标记永久化的线段树实现。</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1322/submission/194856264">提交记录</a></p>
 
@@ -300,8 +300,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/CF1534H-solution/" rel="prev" title="CF1534H  题解">
-                  <i class="fa fa-angle-left"></i> CF1534H  题解
+                <a href="/2024/08/06/CF1764H-solution/" rel="prev" title="CF1764H  题解">
+                  <i class="fa fa-angle-left"></i> CF1764H  题解
                 </a>
             </div>
             <div class="post-nav-item">
@@ -376,7 +376,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

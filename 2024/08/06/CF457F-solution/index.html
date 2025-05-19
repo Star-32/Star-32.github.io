@@ -263,26 +263,31 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h3><p>由于某个节点的操作取决于子树内的操作次数，我们定义“奇子树”为一个操作完整个子树的次数为奇数的子树，“偶子树“类似。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="大体思路">大体思路</h3>
+<p>由于某个节点的操作取决于子树内的操作次数，我们定义“奇子树”为一个操作完整个子树的次数为奇数的子树，“偶子树“类似。</p>
 <p>首先有一个很经典的 trick：采用二分，凡是大于等于判定值的赋为 $1$，否则为 $0$，则问题变成了值只有 $0,1$ 的问题。</p>
 <p>如果一棵树是“奇子树”，则先手能进行最后一步操作，此时两个子树中只要有一个 $1$ 先手即可获胜。如果一棵树是“偶子树”的话，后手进行最后一步操作，仅当两个子树均为 $1$ 时先手才能获胜。</p>
 <p>最简单的情况是一个节点的两个子树均为“偶子树”。此时如果后手在先手必胜的子树内操作，先手有必胜策略，否则先手随便选即可保证自己的胜利。</p>
 <p>但是当一个节点的两个子树均为“奇子树“时，我们发现这个策略不管用了。因为先手无法通过跟着后手选来消耗步数，维持自己的必胜态。此时仅当先手”停一步“后仍能胜利才能获得最终的胜利。</p>
-<p>因此采用 DP：$f_{u,(0&#x2F;1),(0&#x2F;1&#x2F;2)}$ 表示在 $u$ 子树内，当前是先&#x2F;后手，两个儿子的状态是两个偶数&#x2F;两个奇数&#x2F;一奇一偶的答案。</p>
-<h3 id="分类讨论转移"><a href="#分类讨论转移" class="headerlink" title="分类讨论转移"></a>分类讨论转移</h3><p>接下来到了喜闻乐见的大分讨环节。首先把两个儿子都是叶子的情况特判掉。由于当前为后手的情况完全等同于当前为先手情况的相反操作，我们只考虑当前为先手的情况。</p>
+<p>因此采用 DP：$f_{u,(0/1),(0/1/2)}$ 表示在 $u$ 子树内，当前是先/后手，两个儿子的状态是两个偶数/两个奇数/一奇一偶的答案。</p>
+<h3 id="分类讨论转移">分类讨论转移</h3>
+<p>接下来到了喜闻乐见的大分讨环节。首先把两个儿子都是叶子的情况特判掉。由于当前为后手的情况完全等同于当前为先手情况的相反操作，我们只考虑当前为先手的情况。</p>
 <ul>
-<li><p>两个子树均为“偶子树”：先手赢得任意子树即可；</p>
+<li>
+<p>两个子树均为“偶子树”：先手赢得任意子树即可；</p>
 </li>
-<li><p>两个子树均为“奇子树”：先手在其中一个子树停一手获胜，并在另一子树获胜；</p>
+<li>
+<p>两个子树均为“奇子树”：先手在其中一个子树停一手获胜，并在另一子树获胜；</p>
 </li>
-<li><p>一个子树为“奇子树”，另一个为“偶子树”：先手赢得奇子树，后手无法赢得偶子树或先手在偶子树“停一手”获胜，后手无法赢得奇子树。</p>
+<li>
+<p>一个子树为“奇子树”，另一个为“偶子树”：先手赢得奇子树，后手无法赢得偶子树或先手在偶子树“停一手”获胜，后手无法赢得奇子树。</p>
 </li>
 </ul>
 <p>这样这道题就做完了。</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>看上去也不是很困难，对吗？放一下 DP 转移的代码：</p>
+<h3 id="代码实现">代码实现</h3>
+<p>看上去也不是很困难，对吗？放一下 DP 转移的代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(sz[rid]&amp;<span class="number">1</span>)<span class="built_in">swap</span>(lid,rid);</span><br><span class="line">   <span class="keyword">if</span>(!(sz[u]&amp;<span class="number">1</span>))&#123;</span><br><span class="line">       f[u][<span class="number">0</span>][<span class="number">0</span>]=(f[lid][<span class="number">0</span>][<span class="number">0</span>]&amp;&amp;f[rid][<span class="number">1</span>][<span class="number">0</span>])||(f[lid][<span class="number">1</span>][<span class="number">1</span>]&amp;&amp;f[rid][<span class="number">0</span>][<span class="number">1</span>]);</span><br><span class="line">       f[u][<span class="number">1</span>][<span class="number">0</span>]=(f[lid][<span class="number">1</span>][<span class="number">0</span>]||f[rid][<span class="number">0</span>][<span class="number">0</span>])&amp;&amp;(f[lid][<span class="number">0</span>][<span class="number">1</span>]||f[rid][<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>;i++)&#123;</span><br><span class="line">           f[u][<span class="number">0</span>][i]=f[lid][<span class="number">0</span>][(!sz[rid]&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>]||f[rid][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">           f[u][<span class="number">1</span>][i]=f[lid][<span class="number">1</span>][(!sz[rid]&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>]&amp;&amp;f[rid][<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> &#123;</span><br><span class="line">       f[u][<span class="number">0</span>][<span class="number">0</span>]=f[lid][<span class="number">0</span>][sz[lid]&amp;<span class="number">1</span>]||f[rid][<span class="number">0</span>][sz[rid]&amp;<span class="number">1</span>];</span><br><span class="line">       f[u][<span class="number">1</span>][<span class="number">0</span>]=f[lid][<span class="number">1</span>][sz[lid]&amp;<span class="number">1</span>]&amp;&amp;f[rid][<span class="number">1</span>][sz[rid]&amp;<span class="number">1</span>];</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>;i++)&#123;</span><br><span class="line">           f[u][<span class="number">0</span>][i]=f[u][<span class="number">1</span>][<span class="number">0</span>],f[u][<span class="number">1</span>][i]=f[u][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">           <span class="keyword">if</span>(sz[lid]&amp;<span class="number">1</span>)&#123;</span><br><span class="line">               f[u][<span class="number">0</span>][i]|=(f[lid][<span class="number">0</span>][<span class="number">0</span>]&amp;&amp;f[rid][<span class="number">1</span>][(sz[lid]==<span class="number">1</span>&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>])||(f[lid][<span class="number">1</span>][(sz[rid]==<span class="number">1</span>&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>]&amp;&amp;f[rid][<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">               f[u][<span class="number">1</span>][i]&amp;=(f[lid][<span class="number">1</span>][<span class="number">0</span>]||f[rid][<span class="number">0</span>][(sz[lid]==<span class="number">1</span>&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>])&amp;&amp;(f[lid][<span class="number">0</span>][(sz[rid]==<span class="number">1</span>&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>]||f[rid][<span class="number">1</span>][<span class="number">0</span>]);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span>&#123;</span><br><span class="line">               <span class="keyword">if</span>(sz[lid])&#123;</span><br><span class="line">                   f[u][<span class="number">0</span>][i]|=f[lid][<span class="number">0</span>][(!sz[rid]&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>]&amp;&amp;f[rid][<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">                   f[u][<span class="number">1</span>][i]&amp;=f[lid][<span class="number">1</span>][(!sz[rid]&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>]||f[rid][<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span>(sz[rid])&#123;</span><br><span class="line">                   f[u][<span class="number">0</span>][i]|=f[lid][<span class="number">1</span>][<span class="number">0</span>]&amp;&amp;f[rid][<span class="number">0</span>][(!sz[lid]&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>];</span><br><span class="line">                   f[u][<span class="number">1</span>][i]&amp;=f[lid][<span class="number">0</span>][<span class="number">0</span>]||f[rid][<span class="number">1</span>][(!sz[lid]&amp;&amp;i==<span class="number">1</span>)?<span class="number">2</span>:<span class="number">1</span>];</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>对了，实际实现的时候，可以把 $0,1$ 序列的操作直接变成取最小&#x2F;最大值，从而省去一次二分。</p>
+<p>对了，实际实现的时候，可以把 $0,1$ 序列的操作直接变成取最小/最大值，从而省去一次二分。</p>
 
     </div>
 
@@ -319,13 +324,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/CSP-S2021-T1-solution/" rel="prev" title="CSP-S2021  廊桥分配  题解">
-                  <i class="fa fa-angle-left"></i> CSP-S2021  廊桥分配  题解
+                <a href="/2024/08/06/CSS_test_backgrounds_and_borders/" rel="prev" title="CSS 技能测试：背景与边框">
+                  <i class="fa fa-angle-left"></i> CSS 技能测试：背景与边框
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/minimum-cut/" rel="next" title="最小割  学习笔记">
-                  最小割  学习笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/CSP-S2021-T1-solution/" rel="next" title="CSP-S2021  廊桥分配  题解">
+                  CSP-S2021  廊桥分配  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -395,7 +400,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

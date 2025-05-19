@@ -260,86 +260,127 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>推荐结合阅读<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/AIQ/ka-chang-xiao-ji-qiao">这个</a>和<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/AIQ/chu-sai-keng">这个</a>。</p>
-<h2 id="写作缘由"><a href="#写作缘由" class="headerlink" title="写作缘由"></a>写作缘由</h2><p>还用说吗？显然是不想太快AFO啦！</p>
-<h2 id="主要坑点"><a href="#主要坑点" class="headerlink" title="主要坑点"></a>主要坑点</h2><h4 id="数组大小"><a href="#数组大小" class="headerlink" title="数组大小"></a>数组大小</h4><ul>
-<li><p>数组需要定义大小，且至少多开1，否则就要写const使其静态。这一点在DFS类的题目中特别注意！</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="写在前面">写在前面</h2>
+<p>推荐结合阅读<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/AIQ/ka-chang-xiao-ji-qiao">这个</a>和<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/AIQ/chu-sai-keng">这个</a>。</p>
+<h2 id="写作缘由">写作缘由</h2>
+<p>还用说吗？显然是不想太快AFO啦！</p>
+<h2 id="主要坑点">主要坑点</h2>
+<h4 id="数组大小">数组大小</h4>
+<ul>
+<li>
+<p>数组需要定义大小，且至少多开1，否则就要写const使其静态。这一点在DFS类的题目中特别注意！</p>
 </li>
-<li><p>不能太大，否则TLE&#x2F;MLE，都不是什么好结果。</p>
+<li>
+<p>不能太大，否则TLE/MLE，都不是什么好结果。</p>
 </li>
-<li><p>也不能太小，不然RE&#x2F;WA，也不是什么好结果。</p>
+<li>
+<p>也不能太小，不然RE/WA，也不是什么好结果。</p>
 </li>
-<li><p>在建双向边、存线段树、高精度乘法等题目中特别要小心！</p>
+<li>
+<p>在建双向边、存线段树、高精度乘法等题目中特别要小心！</p>
 </li>
 </ul>
-<h4 id="数组越界"><a href="#数组越界" class="headerlink" title="数组越界"></a>数组越界</h4><ul>
+<h4 id="数组越界">数组越界</h4>
+<ul>
 <li>处理到0或者1时一定要特判，不要偷懒！</li>
 </ul>
-<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
-<li><p>十年OI一场空，不开long long见祖宗。</p>
+<h4 id="数据类型">数据类型</h4>
+<ul>
+<li>
+<p>十年OI一场空，不开long long见祖宗。</p>
 </li>
-<li><p>有些时候还卡long long，注意是否高精&#x2F;__int128。</p>
+<li>
+<p>有些时候还卡long long，注意是否高精/__int128。</p>
 </li>
-<li><p>开了long long，要检查数组是否爆空间。</p>
+<li>
+<p>开了long long，要检查数组是否爆空间。</p>
 </li>
-<li><p>double在数据过大时，精度很差，注意是否要优化。</p>
+<li>
+<p>double在数据过大时，精度很差，注意是否要优化。</p>
 </li>
-<li><p>long double：数据在1e9以上要用，输出时printf(“%.2Lf”)</p>
+<li>
+<p>long double：数据在1e9以上要用，输出时printf(“%.2Lf”)</p>
 </li>
 </ul>
-<h4 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h4><ul>
+<h4 id="文件操作">文件操作</h4>
+<ul>
 <li>不多说，删注释并检查打对freopen没有。</li>
 </ul>
-<h4 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h4><ul>
-<li><p>对于整数，最好都用快读快写，至少用scanf&#x2F;printf。</p>
+<h4 id="输入输出">输入输出</h4>
+<ul>
+<li>
+<p>对于整数，最好都用快读快写，至少用scanf/printf。</p>
 </li>
-<li><p>对于字符，用getchar()或者scanf。</p>
+<li>
+<p>对于字符，用getchar()或者scanf。</p>
 </li>
-<li><p>对于字符串，用cin&#x2F;cout。</p>
+<li>
+<p>对于字符串，用cin/cout。</p>
 </li>
-<li><p>对于换行，建议用putchar(‘\n’)，最后一个用endl</p>
-</li>
-</ul>
-<h4 id="取模"><a href="#取模" class="headerlink" title="取模"></a>取模</h4><ul>
-<li><p>每一步运算都要取模！</p>
-</li>
-<li><p>快读时也要取模！</p>
-</li>
-<li><p>做减法时加上模数。</p>
-</li>
-<li><p>在确保正确的基础上，因为取模很慢，所以尽量手写取模或少取模（确保long long存的下的前提）。</p>
+<li>
+<p>对于换行，建议用putchar(‘\n’)，最后一个用endl</p>
 </li>
 </ul>
-<h4 id="运算顺序"><a href="#运算顺序" class="headerlink" title="运算顺序"></a>运算顺序</h4><ul>
-<li><p>矩阵乘法不具有交换律！</p>
+<h4 id="取模">取模</h4>
+<ul>
+<li>
+<p>每一步运算都要取模！</p>
 </li>
-<li><p>减法不具有交换律！</p>
+<li>
+<p>快读时也要取模！</p>
 </li>
-</ul>
-<h4 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h4><ul>
-<li>位运算的优先级难以预料，一定要加括号，特别是！、&#x3D;&#x3D;、&amp;&amp;、||这些特别容易错！</li>
-</ul>
-<h4 id="多种算法的选择"><a href="#多种算法的选择" class="headerlink" title="多种算法的选择"></a>多种算法的选择</h4><ul>
-<li><p>最小生成树，要根据图的特点选择。</p>
+<li>
+<p>做减法时加上模数。</p>
 </li>
-<li><p>最短路，用dij似乎更靠谱。</p>
-</li>
-<li><p>不带修的RMQ，别再写线段树了，写ST表吧，你的ST表水平已经不像原来那样糟糕了！</p>
+<li>
+<p>在确保正确的基础上，因为取模很慢，所以尽量手写取模或少取模（确保long long存的下的前提）。</p>
 </li>
 </ul>
-<h4 id="二分边界"><a href="#二分边界" class="headerlink" title="二分边界"></a>二分边界</h4><ul>
+<h4 id="运算顺序">运算顺序</h4>
+<ul>
+<li>
+<p>矩阵乘法不具有交换律！</p>
+</li>
+<li>
+<p>减法不具有交换律！</p>
+</li>
+</ul>
+<h4 id="位运算">位运算</h4>
+<ul>
+<li>位运算的优先级难以预料，一定要加括号，特别是！、==、&amp;&amp;、||这些特别容易错！</li>
+</ul>
+<h4 id="多种算法的选择">多种算法的选择</h4>
+<ul>
+<li>
+<p>最小生成树，要根据图的特点选择。</p>
+</li>
+<li>
+<p>最短路，用dij似乎更靠谱。</p>
+</li>
+<li>
+<p>不带修的RMQ，别再写线段树了，写ST表吧，你的ST表水平已经不像原来那样糟糕了！</p>
+</li>
+</ul>
+<h4 id="二分边界">二分边界</h4>
+<ul>
 <li>二分上界要尽可能开大，但是不要太接近 int 或 long long 的边界！</li>
 </ul>
-<h2 id="出过人命的坑"><a href="#出过人命的坑" class="headerlink" title="出过人命的坑"></a>出过人命的坑</h2><h4 id="循坏次数"><a href="#循坏次数" class="headerlink" title="循坏次数"></a>循坏次数</h4><ul>
+<h2 id="出过人命的坑">出过人命的坑</h2>
+<h4 id="循坏次数">循坏次数</h4>
+<ul>
 <li>如果答案要更新到n，要检查n是否得到了更新（如NOIP2021T1）；同理要检查0是否会出问题。</li>
 </ul>
-<h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4><ul>
+<h4 id="并查集">并查集</h4>
+<ul>
 <li>对于需要更新size的，要判断是否在一个集合再合并！</li>
 </ul>
-<h2 id="查出错了怎么办？"><a href="#查出错了怎么办？" class="headerlink" title="查出错了怎么办？"></a>查出错了怎么办？</h2><ul>
-<li><p>发现有错，要将相关的所有变量做更改。改完后建议全部重新读一遍代码，再看一次有无缺漏。</p>
+<h2 id="查出错了怎么办？">查出错了怎么办？</h2>
+<ul>
+<li>
+<p>发现有错，要将相关的所有变量做更改。改完后建议全部重新读一遍代码，再看一次有无缺漏。</p>
 </li>
-<li><p>修改后不用的数组变量及调试用的变量要及时删去，可以省空间且看出是否有漏改的地方。</p>
+<li>
+<p>修改后不用的数组变量及调试用的变量要及时删去，可以省空间且看出是否有漏改的地方。</p>
 </li>
 </ul>
 <p>未完待续……</p>
@@ -452,7 +493,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
