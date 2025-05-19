@@ -1758,6 +1758,10 @@ pre code {
   top: 0;
   width: 100%;
 }
+.MathJax {
+  font-family: 'Latin Modern Math', 'STIX Math', 'Cambria Math', serif;
+  font-size: 1.05em;
+}
 .post-gallery {
   display: flex;
   min-height: 200px;
@@ -2285,13 +2289,6 @@ mark.search-keyword {
   color: #ff2a2a;
   font-weight: bold;
 }
-mjx-container[jax='CHTML'][display='true'],
-.has-jax {
-  overflow: auto hidden;
-}
-mjx-container[display='true'] + br {
-  display: none;
-}
 .use-motion .animated {
   animation-fill-mode: none;
   visibility: inherit;
@@ -2568,7 +2565,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ff5c83;
+  background: #8361a6;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2652,4 +2649,8 @@ body {
 }
 .fa-libreoj {
   background: url("/images/icons/libreoj.svg");
+}
+.MathJax {
+  font-family: 'Latin Modern Math', 'STIX Math', 'Cambria Math', serif;
+  font-size: 1.05em;
 }
