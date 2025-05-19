@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="[object Object]">
+
+<link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"star-32.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="很不完整的组合数学知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合数学  学习笔记">
+<meta property="og:url" content="https://star-32.github.io/2024/08/06/combinatorics/index.html">
+<meta property="og:site_name" content="Star32&#39;s boring blog">
+<meta property="og:description" content="很不完整的组合数学知识点">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-06T08:36:26.000Z">
+<meta property="article:modified_time" content="2024-03-21T11:31:32.000Z">
+<meta property="article:author" content="Star32">
+<meta property="article:tag" content="知识点">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://star-32.github.io/2024/08/06/combinatorics/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://star-32.github.io/2024/08/06/combinatorics/","path":"2024/08/06/combinatorics/","title":"组合数学  学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>组合数学  学习笔记 | Star32's boring blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Star32's boring blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-friends"><a href="/friends/" rel="section"><i class="fa fa-address-book fa-fw"></i>友链</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Star32"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Star32</p>
+  <div class="site-description" itemprop="description">一个OIer的博客，由Sukwants提供技术支持</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/star-32" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;star-32" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:olduser@foxmail.com" title="E-Mail → mailto:olduser@foxmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/Star32" title="Codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Star32" rel="noopener me" target="_blank"><i class="fab fa-codeforces fa-fw"></i>Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://atcoder.jp/strangeman" title="AtCoder → https:&#x2F;&#x2F;atcoder.jp&#x2F;strangeman" rel="noopener me" target="_blank"><i class="fab fa-atcoder fa-fw"></i>AtCoder</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/342873" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;342873" rel="noopener me" target="_blank"><i class="fab fa-luogu fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://loj.ac/u/strangeman" title="LibreOJ → https:&#x2F;&#x2F;loj.ac&#x2F;u&#x2F;strangeman" rel="noopener me" target="_blank"><i class="fab fa-libreoj fa-fw"></i>LibreOJ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://star-32.github.io/2024/08/06/combinatorics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Star32">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Star32's boring blog">
+      <meta itemprop="description" content="一个OIer的博客，由Sukwants提供技术支持">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="组合数学  学习笔记 | Star32's boring blog">
+      <meta itemprop="description" content="很不完整的组合数学知识点">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          组合数学  学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-06 16:36:26" itemprop="dateCreated datePublished" datetime="2024-08-06T16:36:26+08:00">2024-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-21 19:31:32" itemprop="dateModified" datetime="2024-03-21T19:31:32+08:00">2024-03-21</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">很不完整的组合数学知识点</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="385a5d9b3cf85572efb67bbf9cbaab6b6ce7ec3464defcaf5135dca36c539fcc">05cd41db3361879aefb4267e575d7f2d1949322503b48f7d8edebb52667df1350e86c45fa0e45aa3de7d4ab4c81bcb118af603dd2f3b85a1b53a8548bbc8757de811f4b2e507cb5ccdd11b0f04283f8931ac4818f1398625a906a95fe2082c1c57c29decfd861619c293f4430b9c92ae89a6b8f18f850a08841222cc5b7a9ae47b44b60391304e528295b987f5b370fe9a82310fda9eace4d7e6165026ae9da9fffebab2d7f17d5cb1fe05800ef1f4485a89379c20c3273a2bd5d3a1449c8acb3d6d8247397610ac58f16df442186a1e7cfd3007014e23ca0aca4cc1414249b24ae3f728f856643b0c9f0fe6927d4e41653a4ae675d9945e94212da932027d8af401e1bdf17624794c837e64f8fc2f78b2923b11a0d31a385bdbd08980fe16b2401000941dc8a715151c64db486a00bdee8ee7a5b2beb3c5d69530044f9a0d0ef0445b391a7eeb644bc9173bf7fcf20893e1495b0205914e7bbca10949fedf9e58ef558f7348d4f686f27d8bddca1fc3aa0805e52d357e728a3f95e22fdfcbc6f764a70152c1a02b25f1534e7c7bdb593550b8be1783c93ecb04f4899be2ef6212c202fa02db1e9abbe3d520be7947685cc07642b58f452734ab83e580386ac7ba633caf95ddf2775cebea834ae3ce4f25de2d2161c2aff04a7778f53d055292b3e4ecb564a78acf6be41ab237564e3f929b1c0d16380c281adc0557f0c02761944b8c220d35111a70c77276b9027d34813d042c2f90f9bfed67068ff6ca8f65ba293c1b82c5bb1187ba0dc0c817565168d73aa5dd6d5f2823d5ccd6a236fc8d0e34ffdfc59f12b2c97f487f68500c67aae020a85af272b727ef3c633aefc0042c84e967517861b766811cd9f7232a6af919c4655ea3c94fe991b17a9c469f95f473d84848a39ea8da7fa2689241fb7a9f1735260630ce042866be15cf79d370769643713a037bba05115c10a121821c82738ad0753052f0dfbbcae8084cbcbd33279380a30d4afee51f635c6501b9b2328645ab9f6235b1748175d675ae87527c041aaf0cfe778e31e9917952a1202b4e0b846a397b6986913fd14916b9a754bb19ab10180406fca770ce946f9127003aed577ea218b5bc3331a1cdfd04e8362b74cfe6e945bd44b5c926d7a8cea9340cb505eb4e08cbe6da4a76278f28ced0c096ab8a5cf705cf6a4a8dd8752a4870402acbce2a8a4292de9fab8c121f329e6c253128f8eab2354c98ffb9894a9cacc808cc6b1134ff751c43a39915dc38a7fdf9507d54795eaf50eaab5bc71a331cc61b6b268aa3304a5df0908c24b513410504bf2b28742359936d4e1ec5ae5634f9df3b6d012ac2ca75b71ac4cf0941b7d8904842c5b12a259268e1b490d4df0be576a173e8b2c47e22612a46339873054959089dcdf86b1649be134892d1308dd92cd110cabefb0a940d33f8a7287450d8ef4c1a7439cfa6817fb1643d052a7325f399276484937b51dbf67c88f1db5e285c31ebe50592f5db9ded903d67bbf0f777b0e214d9138f817c3078922e9edd489ebdc2b89b3360040de29c75de15d53512abd38c602a652ccdb4b178625acdb3e7c1776ffa52e55e5235e85fc95c2990007420e8f57bbba4f8c79213ea38ac43cf1e2e731c65a4f1bc21591d29145a52faffc43608764cb394246daf8941ea568229aea9c2ac57775ab1ebca503c38a4a95624339653c6ebe228092e6a53a4f5b5b1c34cf82ffb5a1c20dd74e2aa4663b25206348d25923549811fb91ab5ab6cdcd7bedbdc2dda782d9f4e0ebc06df13721d2b9d34fd5b13b9dc5c9cd683085c69e8e4001aeac0e34c544a5573bd072e6ef29f2fe498de234c2ef17e5af1b7d10f0b6b86f3f8001ce79a09d23ebfdd9471f2f5a6be90854f6bc8837c3b23e8bbd74e96a1b8da9ec5881fa54463e4df5bf6625eb19be7f2349242936082861ed227d37a9b0d76ef80daee4e16b5499ab6637d26817ec1dd9e9036081592e0afcffe9ff6b93917c1b9f570d97694516e79819263f035746d46a4c4e87358f2bcafc150e29df79710bc7cd99ceb9e99c15d8a981e2744201a77a7e95028eb2cfd8189d3e12b5573abb02102affc6a21ba331e89ed8f2c4136a43458f0c51d0a47f3f8c15e79bec0d43390c34629d2f2b881355f04d5d67b177a6e1b9c76c50a6d6baddfe0af4124726b09f8977c8ccfd9f8d52da45c245d083c73b103fcbcf8a80e19c840f288553995bb7872bfaaefbcca246cf3831dfd1bf6e9a98514ad55dc1cc8e4be3587fa40d763eda766d96a1449c4e2e947970b1cc7288c2984f8d29e28ba8f7c677a29cbc28517f6b96f31cd28e9b0a2cace4bdf5b219a48be4dcef4bb458b80f39661044eca8dc72e60dea3a1b1253be7f86d5562754c29840050f8756d7398893d27535f874e2c998b9c819cbc800b43e2d321f28008feac2a0c01d036b20eb07200e9a651831159c908f8727f8dc0fcb2694d9b14bf32d65a65b155d708c6d4bc78355cac3ba9f45f359e5f2c85bd44ee7cb1b2b6a2857642aa47604c7dbd227980825ade6bbc725960b573b012e42943519c323f111c694f597bd8e73517bd730c53f4044bee181d5173f4790fb03dc9cf4966040e058d2c212e59c6f531ad014831cfce38b4393001dcb2d9cfa57afbfbe9785aa0697fd815aaa9f9fb09a9dd3b9e50bea1b26176682e9391bfb1e94760508572417539dffd9ec60e855760e41496c3849432c7c09636b85ea9bb762352d376d437798f87022019a1c43f6b67b9d755fd12b33354ec6c83a12c0f9289bee2791264d5e21bfd544e0fd359b58b624f8901b613e73a4949084b45566f72e7cd2f834015e720a3624a8818d86718e538ddeb590770a437f8856b6c7cf86f14e9a07bb89b2511729696c8b6c0b544f29fcfa0f7de26448b4779ca591b2b2be3cbdb8e14226ea25eebbc2f100675e07c1fa9b25939b4d7debecf01684bf1e135b8d8a66450239b6e2099324d8f650b6e04d794f638bae4893b7eb052e493c62e6e1953c77696dd615a5f89824133aa87ad2f59e9c5ed0a1f59599e734b4492b0bce28d376a51b57a334c036a317bced03107d11f4dca7bc65d658253e1b433ac039a9ee016d0eaf9ab67220df30b002eeb8e00f4dbdea16e73140648a2f6d3565649fe51bf6a0c26777104c7632ffa7e9754907078025ad023fadb0ea053ae963f7f6b75cf03df03605c25f0f9bdd8db2d4350c260a379ab0f0d74ea985deb8dde3ca83832c70c4cc9ddd38d758d147d2741e1f873028e15e88ed517e60314fec37e2bfe0d8aa7868aad9d8f10ddfda391f37e7299f8141c9aae30af0796c508ce17bbfbb7ea89afec867e9cf44b1d1dbe217b6eb5d314e40b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Star32
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://star-32.github.io/2024/08/06/combinatorics/" title="组合数学  学习笔记">https://star-32.github.io/2024/08/06/combinatorics/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 知识点</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/06/faster/" rel="prev" title="卡常小技巧">
+                  <i class="fa fa-angle-left"></i> 卡常小技巧
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/08/06/CSS_test_selectors/" rel="next" title="CSS 技能测试：选择器">
+                  CSS 技能测试：选择器 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Star32</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
