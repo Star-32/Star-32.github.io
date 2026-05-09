@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -264,31 +262,43 @@
     <div class="post-body" itemprop="articleBody"><h3 id="题意简述">题意简述</h3>
 <p>在一条细长的路上有若干个休息区，有两个人在走路。每个人都需要从某一休息区出发，到达路的两个端点并返回初始休息区。由于路很狭窄，两人只能在休息区相遇，也就是说某人可能需要在某一休息区等另外一个人。请你做出合适的安排使得从两人出发到两人都回到出发点的总时间最少。</p>
 <h3 id="思路分析">思路分析</h3>
-<p>约定：令 $x,y$ 分别表示两人的出发点，钦定 $x&lt;y$；令 $t,w$ 分别表示两次的相遇点。</p>
+<p>约定：令 <span class="math inline">\(x,y\)</span>
+分别表示两人的出发点，钦定 <span
+class="math inline">\(x&lt;y\)</span>；令 <span
+class="math inline">\(t,w\)</span> 分别表示两次的相遇点。</p>
 <p>阅读题目后，不难发现，除非两人从同一点出发，否则他们一定会相遇两次。</p>
 <p>由于两人必须在等候区相遇，我们容易发现两人在第一次相遇后会同时同地反向出发。</p>
-<p>由此，我们可以容易地找到他们第二次相遇的等候区。设第一次在 $t$ 相遇，则第二次在离 $l-t$ 最近两个等候区之一相遇。</p>
-<p>我们令 $S$ 表示两次相遇之间经过的时间，则有 $S=\max(t+w,2l-t-w)$，这个式子的两部分分别表示到达左边的端点并折返与到达右边的端点并折返。</p>
-<p>如果两人从同一端点出发，则答案就为 $2S$，原因显然。</p>
-<p>否则答案为 $\text{第一次相遇的时间}+\text{第二次相遇后回出发点的时间}+S$。</p>
+<p>由此，我们可以容易地找到他们第二次相遇的等候区。设第一次在 <span
+class="math inline">\(t\)</span> 相遇，则第二次在离 <span
+class="math inline">\(l-t\)</span> 最近两个等候区之一相遇。</p>
+<p>我们令 <span class="math inline">\(S\)</span>
+表示两次相遇之间经过的时间，则有 <span
+class="math inline">\(S=\max(t+w,2l-t-w)\)</span>，这个式子的两部分分别表示到达左边的端点并折返与到达右边的端点并折返。</p>
+<p>如果两人从同一端点出发，则答案就为 <span
+class="math inline">\(2S\)</span>，原因显然。</p>
+<p>否则答案为 <span
+class="math inline">\(\text{第一次相遇的时间}+\text{第二次相遇后回出发点的时间}+S\)</span>。</p>
 <p>下面我们来研究这个第一次相遇的时间。</p>
 <ul>
-<li>
-<p>同向出发：<br>
-$$<br>
-ans=\max(t+x,y-t)+\max(w-x,2l-w-y)+S<br>
-$$</p>
-</li>
-<li>
-<p>反向出发：<br>
-$$<br>
-ans=max(x+t,2l-t-y)+max(w-x,y-w)+S<br>
-$$</p>
-</li>
+<li><p>同向出发： <span class="math display">\[
+ans=\max(t+x,y-t)+\max(w-x,2l-w-y)+S
+\]</span></p></li>
+<li><p>反向出发： <span class="math display">\[
+ans=max(x+t,2l-t-y)+max(w-x,y-w)+S
+\]</span></p></li>
 </ul>
-<p>我们发现，无论是哪一种情况，这个 $ans$ 的左边部分都一定不小于 $S$，因为 $S$ 中的两种情况在 $ans$ 中都有出现。因此，我们证明了两人从同一端点出发一定能获得最优解。</p>
-<p>以上过程明晰了过后，代码也就很简单了（鸣谢 @<a target="_blank" rel="noopener" href="https://github.com/Sukwants">Sukwants</a> @ <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/songgch/">Song_gch</a> 两位大佬的思路和代码）：</p>
+<p>我们发现，无论是哪一种情况，这个 <span
+class="math inline">\(ans\)</span> 的左边部分都一定不小于 <span
+class="math inline">\(S\)</span>，因为 <span
+class="math inline">\(S\)</span> 中的两种情况在 <span
+class="math inline">\(ans\)</span>
+中都有出现。因此，我们证明了两人从同一端点出发一定能获得最优解。</p>
+<p>以上过程明晰了过后，代码也就很简单了（鸣谢 @<a
+target="_blank" rel="noopener" href="https://github.com/Sukwants">Sukwants</a> @ <a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/songgch/">Song_gch</a>
+两位大佬的思路和代码）：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN = <span class="number">2e5</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> N;</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> L, a[MAXN + <span class="number">5</span>];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> Ans = <span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>, &amp;N, &amp;L);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, a + i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x = <span class="built_in">lower_bound</span>(a + <span class="number">1</span>, a + N + <span class="number">1</span>, L - a[i]) - a;</span><br><span class="line">        Ans = <span class="built_in">min</span>(Ans, <span class="built_in">min</span>(x &lt;= N ? (a[i] + a[x]) : <span class="number">0x3f3f3f3f3f3f3f3f</span>, x &gt; <span class="number">1</span> ? ((L &lt;&lt; <span class="number">1</span>) - a[i] - a[x - <span class="number">1</span>]) : <span class="number">0x3f3f3f3f3f3f3f3f</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, Ans &lt;&lt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -322,13 +332,13 @@ $$</p>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/CF1322E-solution/" rel="prev" title="CF1322E  题解">
-                  <i class="fa fa-angle-left"></i> CF1322E  题解
+                <a href="/2024/08/06/AGC056A-solution/" rel="prev" title="AGC056A  题解">
+                  <i class="fa fa-angle-left"></i> AGC056A  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/AGC056A-solution/" rel="next" title="AGC056A  题解">
-                  AGC056A  题解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/2023.6.1_A_solution/" rel="next" title="2023.6.1 A  题解">
+                  2023.6.1 A  题解 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -349,7 +359,7 @@ $$</p>
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -398,7 +408,8 @@ $$</p>
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

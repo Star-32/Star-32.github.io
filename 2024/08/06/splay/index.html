@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -266,9 +264,17 @@
 <h2 id="重点问题">重点问题</h2>
 <p>对于普通的排序二叉树，很容易通过特殊数据卡你。那就需要通过<strong>旋转</strong>将出题人精心设计的数据打乱。</p>
 <h2 id="旋转操作">旋转操作</h2>
-<p>若 $u$ 是 $v$ 的左儿子，且要将 $u$ 旋转到 $v$ 处：</p>
-<p>先断开 $u$ 和 $v$ 以及 $u$ 和他的右儿子，然后交换处理 $u$ 和 $v$ ，最后把儿子接回去。</p>
-<p>若 $u$ 是 $v$ 的右儿子同理。</p>
+<p>若 <span class="math inline">\(u\)</span> 是 <span
+class="math inline">\(v\)</span> 的左儿子，且要将 <span
+class="math inline">\(u\)</span> 旋转到 <span
+class="math inline">\(v\)</span> 处：</p>
+<p>先断开 <span class="math inline">\(u\)</span> 和 <span
+class="math inline">\(v\)</span> 以及 <span
+class="math inline">\(u\)</span> 和他的右儿子，然后交换处理 <span
+class="math inline">\(u\)</span> 和 <span
+class="math inline">\(v\)</span> ，最后把儿子接回去。</p>
+<p>若 <span class="math inline">\(u\)</span> 是 <span
+class="math inline">\(v\)</span> 的右儿子同理。</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void ziag(int x)&#123;</span><br><span class="line">	if(!fa<span class="comment">[x]</span>||!x)return;</span><br><span class="line">	int f=fa<span class="comment">[x]</span>;</span><br><span class="line">	int sson=son<span class="comment">[f]</span><span class="comment">[1]</span>==x,sonn=son<span class="comment">[fa<span class="comment">[f]</span>]</span><span class="comment">[1]</span>==f;</span><br><span class="line">	fa<span class="comment">[x]</span>=fa<span class="comment">[f]</span>;</span><br><span class="line">	son<span class="comment">[f]</span><span class="comment">[sson]</span>=son<span class="comment">[x]</span><span class="comment">[sson^1]</span>;</span><br><span class="line">	if(son<span class="comment">[x]</span><span class="comment">[sson^1]</span>)fa<span class="comment">[son<span class="comment">[x]</span><span class="comment">[sson^1]</span>]</span>=f;</span><br><span class="line">	son<span class="comment">[x]</span><span class="comment">[sson^1]</span>=f;</span><br><span class="line">	son<span class="comment">[fa<span class="comment">[f]</span>]</span><span class="comment">[sonn]</span>=x;</span><br><span class="line">	fa<span class="comment">[f]</span>=x;</span><br><span class="line">	pull_up(x);</span><br><span class="line">	pull_up(f);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是，如果全部按一个方向旋转，则常数较大，达不到优化效果。</p>
 <h2 id="伸展操作">伸展操作</h2>
@@ -280,35 +286,34 @@
 <h2 id="查询操作">查询操作</h2>
 <p>首先插入要查询的数，然后递归查找，如果发现当前节点就是答案，需要将当前节点转动成根节点的儿子，最后删除查询的数。注意分清：查询排名/位置，前驱/后继。</p>
 <ul>
-<li>
-<p>查排名为 $x$ 的数：如果左子树大于 $x$ ，在左子树中找；然后考虑当前结点；最后考虑右子树。</p>
-</li>
-<li>
-<p>查 $x$ 数的排名：先找到当前的数，再累计算答案。注意答案要随着递归更新。</p>
-</li>
-<li>
-<p>查前驱：先转到根，再找左子树中最大的。</p>
-</li>
-<li>
-<p>查后继：先转到根，再找右子树中最小的。</p>
-</li>
+<li><p>查排名为 <span class="math inline">\(x\)</span>
+的数：如果左子树大于 <span class="math inline">\(x\)</span>
+，在左子树中找；然后考虑当前结点；最后考虑右子树。</p></li>
+<li><p>查 <span class="math inline">\(x\)</span>
+数的排名：先找到当前的数，再累计算答案。注意答案要随着递归更新。</p></li>
+<li><p>查前驱：先转到根，再找左子树中最大的。</p></li>
+<li><p>查后继：先转到根，再找右子树中最小的。</p></li>
 </ul>
 <h2 id="删除操作">删除操作</h2>
 <p>首先递归找到要删除的结点，然后将其转到叶子，最后直接砍断该节点与父节点的联系。</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">void dele(int x,int now)&#123;</span><br><span class="line">	if (val<span class="comment">[now]</span> == x) &#123;</span><br><span class="line">        while (son<span class="comment">[now]</span><span class="comment">[0]</span> || son<span class="comment">[now]</span><span class="comment">[1]</span>) &#123;</span><br><span class="line">            if (son<span class="comment">[now]</span><span class="comment">[0]</span>) &#123;</span><br><span class="line">				if(now==root)root=son<span class="comment">[now]</span><span class="comment">[0]</span>;</span><br><span class="line">                ziag(son<span class="comment">[now]</span><span class="comment">[0]</span>);            </span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">			if(now==root)root=son<span class="comment">[now]</span><span class="comment">[1]</span>;</span><br><span class="line">            ziag(son<span class="comment">[now]</span><span class="comment">[1]</span>);        </span><br><span class="line">        &#125;</span><br><span class="line">        sz<span class="comment">[now]</span>--, num<span class="comment">[now]</span>--;</span><br><span class="line">        if (num<span class="comment">[now]</span>) &#123;</span><br><span class="line">            pull_up(now);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int sson = son<span class="comment">[fa<span class="comment">[now]</span>]</span><span class="comment">[1]</span> == now;          </span><br><span class="line">        pull_up(now);</span><br><span class="line">		son<span class="comment">[fa<span class="comment">[now]</span>]</span><span class="comment">[sson]</span> = 0; </span><br><span class="line">		fa<span class="comment">[now]</span> = 0;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">	if(val<span class="comment">[now]</span>&lt;x)dele(x,son<span class="comment">[now]</span><span class="comment">[1]</span>);</span><br><span class="line">	else dele(x,son<span class="comment">[now]</span><span class="comment">[0]</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="区间翻转操作">区间翻转操作</h2>
-<p>假设我们要翻转区间 $[l,r]$，那我们先把 $l-1$ 转到树根，再把 $r+1$ 转成树根的右儿子，则我们要翻转的区间是此时 $r+1$ 的左子树。类似线段树的方式采用懒标记，注意在以下地方需要更新：</p>
+<p>假设我们要翻转区间 <span
+class="math inline">\([l,r]\)</span>，那我们先把 <span
+class="math inline">\(l-1\)</span> 转到树根，再把 <span
+class="math inline">\(r+1\)</span>
+转成树根的右儿子，则我们要翻转的区间是此时 <span
+class="math inline">\(r+1\)</span>
+的左子树。类似线段树的方式采用懒标记，注意在以下地方需要更新：</p>
 <ul>
-<li>
-<p>每一个旋转操作（先更新父亲，再更新儿子）</p>
-</li>
-<li>
-<p>每一个查询操作</p>
-</li>
+<li><p>每一个旋转操作（先更新父亲，再更新儿子）</p></li>
+<li><p>每一个查询操作</p></li>
 </ul>
-<p>注意上述的 $l$ 和 $r$ 是位置，<strong>相当于排名</strong>，所有还要记得查找真正的值。</p>
+<p>注意上述的 <span class="math inline">\(l\)</span> 和 <span
+class="math inline">\(r\)</span>
+是位置，<strong>相当于排名</strong>，所有还要记得查找真正的值。</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void push_down(int x)&#123;</span><br><span class="line">	if(!x||!lazy<span class="comment">[x]</span>)return;</span><br><span class="line">	lazy<span class="comment">[x]</span>=0;</span><br><span class="line">	swap(son<span class="comment">[x]</span><span class="comment">[0]</span>,son<span class="comment">[x]</span><span class="comment">[1]</span>);</span><br><span class="line">	if(son<span class="comment">[x]</span><span class="comment">[0]</span>)lazy<span class="comment">[son<span class="comment">[x]</span><span class="comment">[0]</span>]</span>^=1;</span><br><span class="line">	if(son<span class="comment">[x]</span><span class="comment">[1]</span>)lazy<span class="comment">[son<span class="comment">[x]</span><span class="comment">[1]</span>]</span>^=1;</span><br><span class="line">&#125;</span><br><span class="line">void modify(int l,int r)&#123;//这个函数不完整哟</span><br><span class="line">	splay(l,0);</span><br><span class="line">	splay(r,root);</span><br><span class="line">	lazy<span class="comment">[son<span class="comment">[son<span class="comment">[root]</span><span class="comment">[1]</span>]</span><span class="comment">[0]</span>]</span>^=1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="玄学优化"><s>玄学</s>优化</h2>
+<h2 id="玄学优化"><del>玄学</del>优化</h2>
 <p>由于这玩意常数比较大而且不太稳定，考虑随机优化：每个插入、查询操作后随机选取一个数旋转到根。这样大概能跑得快那么一点点（其实快不少）。</p>
 
     </div>
@@ -343,13 +348,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/JS_test_image_gallery/" rel="prev" title="JS 技能测试：图片库">
-                  <i class="fa fa-angle-left"></i> JS 技能测试：图片库
+                <a href="/2024/08/06/strings/" rel="prev" title="字符串相关  学习笔记">
+                  <i class="fa fa-angle-left"></i> 字符串相关  学习笔记
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/strings/" rel="next" title="字符串相关  学习笔记">
-                  字符串相关  学习笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/slope_trick/" rel="next" title="slope trick 小记">
+                  slope trick 小记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -370,7 +375,7 @@
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -419,7 +424,8 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

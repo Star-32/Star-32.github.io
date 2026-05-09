@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -259,13 +257,21 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Image_gallery">题目链接</a></p>
+    <div class="post-body" itemprop="articleBody"><p><a
+target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Image_gallery">题目链接</a></p>
 <p>题目要求：</p>
 <ul>
-<li>声明一个 <code>const</code> 数组，用于列出每张图像的文件名，例如 <code>'pic1.jpg'</code>。</li>
-<li>迭代数组中的文件名，为每一个文件名创建一个 <code>&lt;img&gt;</code> 元素，并将其插入到 <code>thumb-bar &lt;div&gt;</code> 中，这样图片就会嵌入页面。</li>
-<li>为 <code>thumb-bar &lt;div&gt;</code> 里的每个 <code>&lt;img&gt;</code> 元素添加一个 click 事件监听器，在图片被点击时相应的图片将被显示到 <code>displayed-img &lt;img&gt;</code> 元素上。</li>
-<li>给 <code>&lt;button&gt;</code> 元素添加一个 click 事件监听器，当按钮被点击时，将全尺寸图片变暗，再次点击时取消。</li>
+<li>声明一个 <code>const</code> 数组，用于列出每张图像的文件名，例如
+<code>'pic1.jpg'</code>。</li>
+<li>迭代数组中的文件名，为每一个文件名创建一个 <code>&lt;img&gt;</code>
+元素，并将其插入到 <code>thumb-bar &lt;div&gt;</code>
+中，这样图片就会嵌入页面。</li>
+<li>为 <code>thumb-bar &lt;div&gt;</code> 里的每个
+<code>&lt;img&gt;</code> 元素添加一个 click
+事件监听器，在图片被点击时相应的图片将被显示到
+<code>displayed-img &lt;img&gt;</code> 元素上。</li>
+<li>给 <code>&lt;button&gt;</code> 元素添加一个 click
+事件监听器，当按钮被点击时，将全尺寸图片变暗，再次点击时取消。</li>
 </ul>
 <p>HTML 代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en-us&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Image gallery<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Image gallery example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;full-img&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;displayed-img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;images/pic1.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Closeup of a human eye&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;overlay&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;dark&quot;</span>&gt;</span>Darken<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;thumb-bar&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;main.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -306,13 +312,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/JS_test_story_generator/" rel="prev" title="JS 技能测试：笑话生成器">
-                  <i class="fa fa-angle-left"></i> JS 技能测试：笑话生成器
+                <a href="/2024/08/06/NOIP2022-T2-solution/" rel="prev" title="NOIP2022  喵了个喵  题解">
+                  <i class="fa fa-angle-left"></i> NOIP2022  喵了个喵  题解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/splay/" rel="next" title="splay  学习笔记">
-                  splay  学习笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/strings/" rel="next" title="字符串相关  学习笔记">
+                  字符串相关  学习笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -333,7 +339,7 @@
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -382,7 +388,8 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

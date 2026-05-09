@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -143,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">算法步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DFS%E7%BB%86%E8%8A%82"><span class="nav-number">3.0.1.</span> <span class="nav-text">DFS细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%BB%86%E8%8A%82"><span class="nav-number">3.0.2.</span> <span class="nav-text">修改细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A2%E9%97%AE%E7%BB%86%E8%8A%82"><span class="nav-number">3.0.3.</span> <span class="nav-text">询问细节</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">算法步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dfs%E7%BB%86%E8%8A%82"><span class="nav-number">3.0.1.</span> <span class="nav-text">DFS细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%BB%86%E8%8A%82"><span class="nav-number">3.0.2.</span> <span class="nav-text">修改细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A2%E9%97%AE%E7%BB%86%E8%8A%82"><span class="nav-number">3.0.3.</span> <span class="nav-text">询问细节</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -268,7 +266,7 @@
 <p>1.两次DFS，分别预处理出{father,dep,size,son}和{top,seg,rev}；</p>
 <p>2.建线段树；</p>
 <p>3.修改&amp;求值</p>
-<h4 id="DFS细节">DFS细节</h4>
+<h4 id="dfs细节">DFS细节</h4>
 <p>第一次DFS没啥细节。</p>
 <p>第二次注意在DFS前先处理根节点。对于每个结点先走重儿子，保证线段树中重链连续；然后处理其他儿子。</p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void dfs2(int u)&#123;</span><br><span class="line">	if(son<span class="comment">[u]</span>)&#123;</span><br><span class="line">		seg<span class="comment">[son<span class="comment">[u]</span>]</span>=++seg<span class="comment">[0]</span>;</span><br><span class="line">		top<span class="comment">[son<span class="comment">[u]</span>]</span>=top<span class="comment">[u]</span>;</span><br><span class="line">		rev<span class="comment">[seg<span class="comment">[0]</span>]</span>=son<span class="comment">[u]</span>;</span><br><span class="line">		dfs2(son<span class="comment">[u]</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=lst<span class="comment">[u]</span>;i;i=e<span class="comment">[i]</span>.lst)&#123;</span><br><span class="line">		int v=e<span class="comment">[i]</span>.t;</span><br><span class="line">		if(!top<span class="comment">[v]</span>)&#123;</span><br><span class="line">			seg<span class="comment">[v]</span>=++seg<span class="comment">[0]</span>;</span><br><span class="line">			rev<span class="comment">[seg<span class="comment">[0]</span>]</span>=v;</span><br><span class="line">			top<span class="comment">[v]</span>=v;</span><br><span class="line">			dfs2(v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -337,7 +335,7 @@
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -386,7 +384,8 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -143,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#IO%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">IO优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%86%85%E8%81%94"><span class="nav-number">2.</span> <span class="nav-text">函数内联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E9%A1%BA%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">枚举顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%A8%A1%E4%BC%98%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">取模优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Define"><span class="nav-number">6.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge%E4%BB%A3%E6%9B%BFsort"><span class="nav-number">7.</span> <span class="nav-text">merge代替sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const-%E4%BF%AE%E9%A5%B0"><span class="nav-number">8.</span> <span class="nav-text">const 修饰</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">IO优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%86%85%E8%81%94"><span class="nav-number">2.</span> <span class="nav-text">函数内联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E9%A1%BA%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">枚举顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%81%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%A8%A1%E4%BC%98%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">取模优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#define"><span class="nav-number">6.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge%E4%BB%A3%E6%9B%BFsort"><span class="nav-number">7.</span> <span class="nav-text">merge代替sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const-%E4%BF%AE%E9%A5%B0"><span class="nav-number">8.</span> <span class="nav-text">const 修饰</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -260,22 +258,26 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="IO优化">IO优化</h3>
-<p>这个没啥好说的，注意Obuff如果手写栈会跑得更快；以及千万不要用endl而要用\n。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="io优化">IO优化</h3>
+<p>这个没啥好说的，注意Obuff如果手写栈会跑得更快；以及千万不要用endl而要用。</p>
 <h3 id="函数内联">函数内联</h3>
 <p>这个没啥好说的。</p>
 <h3 id="枚举顺序">枚举顺序</h3>
-<p>要让可能连续的内存尽量在相近的位置被枚举，例如三维数组 $f[i][j][k]$ 建议按 $i,j,k$ 的顺序嵌套。这一点在<strong>倍增</strong>算法中特别要注意。</p>
+<p>要让可能连续的内存尽量在相近的位置被枚举，例如三维数组 <span
+class="math inline">\(f[i][j][k]\)</span> 建议按 <span
+class="math inline">\(i,j,k\)</span>
+的顺序嵌套。这一点在<strong>倍增</strong>算法中特别要注意。</p>
 <h3 id="封装">封装</h3>
 <p>据说这样可以让内存访问变得连续。</p>
 <h3 id="取模优化">取模优化</h3>
 <p>对于加法中的取模，建议采用做减法。</p>
-<h3 id="Define">Define</h3>
+<h3 id="define">Define</h3>
 <p>树状数组中的lowbit函数直接define会快一些。</p>
 <h3 id="merge代替sort">merge代替sort</h3>
 <p>对于两个有序序列的合并，建议用STL中的merge函数。使用时需要多开一个临时数组存合并结果再复制回去。这个技巧在<strong>CDQ分治</strong>中很管用。</p>
 <h3 id="const-修饰">const 修饰</h3>
-<p>对于代码中的常量（如<strong>模数</strong>），尽量加上 const 修饰，会快不止亿点点。</p>
+<p>对于代码中的常量（如<strong>模数</strong>），尽量加上 const
+修饰，会快不止亿点点。</p>
 
     </div>
 
@@ -309,13 +311,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/08/06/games/" rel="prev" title="博弈论">
-                  <i class="fa fa-angle-left"></i> 博弈论
+                <a href="/2024/08/06/flow_theory/" rel="prev" title="网络流定理与结论">
+                  <i class="fa fa-angle-left"></i> 网络流定理与结论
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/flow_theory/" rel="next" title="网络流定理与结论">
-                  网络流定理与结论 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/convex-hull-optimisation/" rel="next" title="斜率优化  学习笔记">
+                  斜率优化  学习笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -336,7 +338,7 @@
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -385,7 +387,8 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

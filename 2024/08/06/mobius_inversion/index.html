@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -261,50 +259,52 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>注：以下内容源自各种各样的资料，不保证正确性，仅供参考。</p>
-<p>约定 $*$ 代表运算“卷”，部分出现的 $1$ 代表常数函数。</p>
+<p>约定 <span class="math inline">\(*\)</span> 代表运算“卷”，部分出现的
+<span class="math inline">\(1\)</span> 代表常数函数。</p>
 <h3 id="莫比乌斯函数">莫比乌斯函数</h3>
-<p>$\mu$ 为莫比乌斯函数，定义为：<br>
-$$<br>
-\mu(n)=\begin{cases}<br>
-1  &amp; n=1 \<br>
-0 &amp; n\text{含有平方因子}\<br>
-(-1)^k  &amp; k\text{为}n\text{的本质不同质因子个数}<br>
-\end{cases}<br>
-$$<br>
+<p><span class="math inline">\(\mu\)</span> 为莫比乌斯函数，定义为：
+<span class="math display">\[
+\mu(n)=\begin{cases}
+1  &amp; n=1 \\
+0 &amp; n\text{含有平方因子}\\
+(-1)^k  &amp; k\text{为}n\text{的本质不同质因子个数}
+\end{cases}
+\]</span>
 莫比乌斯函数是<strong>积性函数</strong>，可以求线性筛的同时求出。</p>
 <h3 id="莫比乌斯函数的性质">莫比乌斯函数的性质</h3>
 <ul>
-<li>
-<p>性质1：<br>
-$$<br>
-\sum\limits_{d|n}\mu (d)=\begin{cases}<br>
-1  &amp; n=1 \<br>
-0 &amp; n\neq 1<br>
-\end{cases}<br>
-$$<br>
-也就是说，$\sum_{d|n}\mu(d)=\varepsilon(n)$，即 $\mu * 1=\varepsilon$</p>
+<li><p>性质1： <span class="math display">\[
+\sum\limits_{d|n}\mu (d)=\begin{cases}
+1  &amp; n=1 \\
+0 &amp; n\neq 1
+\end{cases}
+\]</span> 也就是说，<span
+class="math inline">\(\sum_{d|n}\mu(d)=\varepsilon(n)\)</span>，即 <span
+class="math inline">\(\mu * 1=\varepsilon\)</span></p>
 <ul>
-<li>引理：$[gcd(i,j)=1]=\sum\limits_{d|gcd(i,j)}\mu(d)$</li>
-</ul>
-</li>
-<li>
-<p>性质2：<br>
-$$<br>
-\varphi * 1=\operatorname{id}<br>
-$$<br>
-两边同时卷 $\mu$ 可得到 $\varphi=\operatorname{id}*\mu$</p>
-</li>
+<li>引理：<span
+class="math inline">\([gcd(i,j)=1]=\sum\limits_{d|gcd(i,j)}\mu(d)\)</span></li>
+</ul></li>
+<li><p>性质2： <span class="math display">\[
+\varphi * 1=\operatorname{id}
+\]</span> 两边同时卷 <span class="math inline">\(\mu\)</span> 可得到
+<span
+class="math inline">\(\varphi=\operatorname{id}*\mu\)</span></p></li>
 </ul>
 <h3 id="莫比乌斯变换与反演">莫比乌斯变换与反演</h3>
-<p>设 $f(n),g(n)$ 是两个数论函数。</p>
+<p>设 <span class="math inline">\(f(n),g(n)\)</span>
+是两个数论函数。</p>
 <ul>
-<li>
-<p>如果有 $f(n)=\sum_{d|n}g(d)$，那么有 $g(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})$</p>
-<p>这种形式下，$f(n)$ 称作 $g(n)$ 的莫比乌斯变换，$g(n)$ 称作 $f(n)$ 的莫比乌斯反演。</p>
-</li>
-<li>
-<p>如果有 $f(n)=\sum_{n|d}g(d)$，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$</p>
-</li>
+<li><p>如果有 <span
+class="math inline">\(f(n)=\sum_{d|n}g(d)\)</span>，那么有 <span
+class="math inline">\(g(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})\)</span></p>
+<p>这种形式下，<span class="math inline">\(f(n)\)</span> 称作 <span
+class="math inline">\(g(n)\)</span> 的莫比乌斯变换，<span
+class="math inline">\(g(n)\)</span> 称作 <span
+class="math inline">\(f(n)\)</span> 的莫比乌斯反演。</p></li>
+<li><p>如果有 <span
+class="math inline">\(f(n)=\sum_{n|d}g(d)\)</span>，那么有 <span
+class="math inline">\(g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)\)</span></p></li>
 </ul>
 <h3 id="应用">应用</h3>
 <p>莫反常常与数论分块+前缀和结合，加速运算。</p>
@@ -368,7 +368,7 @@ $$<br>
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -417,7 +417,8 @@ $$<br>
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

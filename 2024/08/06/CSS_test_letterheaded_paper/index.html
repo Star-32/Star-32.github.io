@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -259,40 +257,25 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Creating_fancy_letterheaded_paper">题目链接</a></p>
+    <div class="post-body" itemprop="articleBody"><p><a
+target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Creating_fancy_letterheaded_paper">题目链接</a></p>
 <p>题目要求：</p>
 <ul>
-<li>
-<p>把 CSS 链接到 HTML 文档里。</p>
-</li>
-<li>
-<p>给信纸添加这样一个背景：</p>
+<li><p>把 CSS 链接到 HTML 文档里。</p></li>
+<li><p>给信纸添加这样一个背景：</p>
 <ul>
-<li>
-<p>把之前下载的顶部图片固定到信纸顶部。</p>
-</li>
-<li>
-<p>把之前下载的底部图片固定到信纸底部。</p>
-</li>
-<li>
-<p>为了给信纸一点纹理，在前面背景的基础上添加一个半透明的渐变，使其在顶部和底部附近稍微变暗，但中间的大部分完全透明。</p>
-</li>
-</ul>
-</li>
-<li>
-<p>多添加一个<code>background</code>声明，仅添加顶部图片到信纸顶部，以此作为不支持之前那种声明方式的浏览器的后备方案。</p>
-</li>
-<li>
-<p>给信纸添加一个白色的背景颜色。</p>
-</li>
-<li>
-<p>给信纸添加一个 1mm 的上下实线边框，选一个符合信纸的颜色主题的边框颜色。</p>
-</li>
-</ul>
-<ul>
-<li>把之前下载的标志图片添加为 <code>&lt;h1&gt;</code> 的背景图片。</li>
-<li>给标志添加一个过滤器，使它有一个隐隐约约的阴影。</li>
-<li>现在把添加的过滤器注释掉，尝试用其他（更跨浏览器兼容）的方式实现一个相同的阴影，阴影需要同样符合圆形图片的形状。</li>
+<li><p>把之前下载的顶部图片固定到信纸顶部。</p></li>
+<li><p>把之前下载的底部图片固定到信纸底部。</p></li>
+<li><p>为了给信纸一点纹理，在前面背景的基础上添加一个半透明的渐变，使其在顶部和底部附近稍微变暗，但中间的大部分完全透明。</p></li>
+</ul></li>
+<li><p>多添加一个<code>background</code>声明，仅添加顶部图片到信纸顶部，以此作为不支持之前那种声明方式的浏览器的后备方案。</p></li>
+<li><p>给信纸添加一个白色的背景颜色。</p></li>
+<li><p>给信纸添加一个 1mm
+的上下实线边框，选一个符合信纸的颜色主题的边框颜色。</p></li>
+<li><p>把之前下载的标志图片添加为 <code>&lt;h1&gt;</code>
+的背景图片。</p></li>
+<li><p>给标志添加一个过滤器，使它有一个隐隐约约的阴影。</p></li>
+<li><p>现在把添加的过滤器注释掉，尝试用其他（更跨浏览器兼容）的方式实现一个相同的阴影，阴影需要同样符合圆形图片的形状。</p></li>
 </ul>
 <p>HTML 代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en-US&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Fancy letterheaded paper<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span>&gt;</span> </span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Awesome<span class="tag">&lt;<span class="name">br</span>&gt;</span>Company<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">address</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>The Awesome Company<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>102-112 Frail Bend Bridge<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        The Dwindlings<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        Little Hornet<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        HX3 9ZQ<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        UK<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -336,8 +319,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/06/CSS_test_layout_comprehension/" rel="next" title="CSS 技能测试：基本布局理解">
-                  CSS 技能测试：基本布局理解 <i class="fa fa-angle-right"></i>
+                <a href="/2024/08/06/CSS_test_flexbox/" rel="next" title="CSS 技能测试：弹性盒子">
+                  CSS 技能测试：弹性盒子 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -358,7 +341,7 @@
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -407,7 +390,8 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

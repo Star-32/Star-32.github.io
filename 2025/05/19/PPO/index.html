@@ -14,8 +14,6 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mogra:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="[object Object]">
-
 <link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Roboto&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
@@ -143,7 +141,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">一、问题定义与基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Value-based-%E6%96%B9%E6%B3%95%E4%B8%8E-Policy-based-%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">二、Value-based 方法与 Policy-based 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Value-based"><span class="nav-number">2.0.1.</span> <span class="nav-text">Value-based</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Policy-based"><span class="nav-number">2.0.2.</span> <span class="nav-text">Policy-based</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81Actor-Critic-%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">三、Actor-Critic 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81PPO-%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">四、PPO 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%AA%E6%96%AD%E5%87%BD%E6%95%B0"><span class="nav-number">4.0.1.</span> <span class="nav-text">截断函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94-KL-%E6%83%A9%E7%BD%9A%E9%A1%B9"><span class="nav-number">4.0.2.</span> <span class="nav-text">自适应 KL 惩罚项</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">一、问题定义与基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8Cvalue-based-%E6%96%B9%E6%B3%95%E4%B8%8E-policy-based-%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">二、Value-based 方法与
+Policy-based 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#value-based"><span class="nav-number">2.0.1.</span> <span class="nav-text">Value-based</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#policy-based"><span class="nav-number">2.0.2.</span> <span class="nav-text">Policy-based</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89actor-critic-%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">三、Actor-Critic 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9Bppo-%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">四、PPO 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%AA%E6%96%AD%E5%87%BD%E6%95%B0"><span class="nav-number">4.0.1.</span> <span class="nav-text">截断函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94-kl-%E6%83%A9%E7%BD%9A%E9%A1%B9"><span class="nav-number">4.0.2.</span> <span class="nav-text">自适应 KL 惩罚项</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -254,67 +253,152 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="一、问题定义与基本概念">一、问题定义与基本概念</h3>
-<p>马尔科夫决策过程 (MDP)：状态 $s$，行为 $a$，奖励函数 $r$​，转移算子 $t=p(s’|s,a)$。</p>
-<p>策略：给定当前状态 $s$ 和参数 $\theta$，策略是一种概率分布 $\pi_\theta(a|s)$​。</p>
-<p>目标：$\theta^\star=\arg\max_\theta E[\sum_t r(s_t,a_t)]=\arg\max J(\theta)$​。</p>
-<p>Q 函数：$Q(s_t,a_t)=\sum <em>{t’=t}^{T}E</em>{\pi_\theta}[r(s_{t’},a_{t’})|s_t,a_t]$, 即在状态 $s_t$ 采取动作 $a_t$ 的奖励期望</p>
-<p>V 函数：$V(s_t)=\sum <em>{t’=t}^TE</em>{\pi_\theta}[r(s_{t’},a_{t’})|s_t]=E_{a_t\sim \pi_\theta(a_t|s_t)}[Q(s_t,a_t)]$，即在状态 $s_t$ 的奖励期望</p>
-<p>A 函数：$A(s_t,a_t)=Q(s_t,a_t)-V(s_t)$，即某个动作比平均好多少</p>
-<h3 id="二、Value-based-方法与-Policy-based-方法">二、Value-based 方法与 Policy-based 方法</h3>
-<h5 id="Value-based">Value-based</h5>
-<p>在这种方法中，我们尝试估计 $Q(s_t,a_t)$，并采用某种固定的策略（例如，每次选择 $Q$ 估值最高的行动，或以 $\varepsilon$ 的概率选择 $Q$ 估值最高的行动，以 $1-\varepsilon$ 的概率随机行动 ）采样来更新我们的估计。</p>
-<p>具体的，当我们获得一条新轨迹时，我们用 $Q_{n+1}=Q_n+\alpha[R_n-Q_n]$ 来更新 $Q$​。这里的采样是 Off-Policy 的，即任意的策略均可更新 $Q$ 值表。</p>
-<p>在推理时，只需采取 $Q$​ 值最大的行动即可。这里的最优化问题有多种解法，如梯度下降、二次函数先验假设、网络学习等等。</p>
-<h5 id="Policy-based">Policy-based</h5>
-<p>在这种方法中，我们（暂时）不考虑 $Q$，转而优化 $\pi_\theta(a_t|s_t)$。对目标函数 $J(\theta)$ 求导得：<br>
-$$<br>
-\nabla_\theta J(\theta)=E[(\sum <em>{t=1}^T\nabla</em>\theta \log\pi_\theta(a_t|s_t))(\sum <em>{t=1}^Tr(s_t,a_t))]<br>
-$$<br>
-直接更新 $\theta’=\theta+\alpha \nabla</em>\theta J(\theta)$​ 的算法称为 REINFORCE 算法，由于期望的获取依赖采样，因此该算法具有低偏差、高方差的特点。</p>
-<p>改进一（Causality）：将来不能影响过去，因此在时刻 $t$ 只需考虑 $t$ 之后的奖励。即 $\nabla_\theta J(\theta)=\frac1N\sum <em>{i=1}^N\sum <em>{t=1}^T\nabla</em>\theta\log\pi</em>\theta(a_{i,t}|s_{i,t})(\sum <em>{t’=t}^T r(s</em>{i,t’},a_{i,t’}))$。</p>
-<p>改进二（Baseline）：当 Reward 统一减去某个 $b$ 值时，策略偏差应该不变。</p>
-<h3 id="三、Actor-Critic-方法">三、Actor-Critic 方法</h3>
-<p>在上面的基线改进中，如果令 $b=V(s_t)$，那么策略梯度为<br>
-$$<br>
-\nabla_\theta J(\theta)=\frac1N \sum <em>{i=1}^n\sum</em>{t=1}^T\nabla_\theta\log \pi_\theta(a_{i,t}|s_{i,t})(\sum <em>{t’=t}^T A(s</em>{i,t’},a_{i,t’}))<br>
-$$<br>
-如果我们能对 $V(s_t)$ 得到一个好的估计，那么问题可以得到解决。估计 $V(s_t)$ 或 $Q(s_t,a_t)$ 的模型称为评论家（Critic），而根据评论家的估计调整策略的模型称为演员（Actor）。可以看出，Actor-Critic 方法是把 Value-based 的方法和 Policy-based 的方法结合起来。</p>
-<p>评论家模型可以通过蒙特卡洛的方法采样 $N$ 条轨迹，近似为<br>
-$$<br>
-V(s_t)=\frac{1}{N}\sum <em>{i=1}^{N}\sum <em>{t’=t}^{T}r(s</em>{t’},a</em>{t’})<br>
-$$<br>
-也可以使用神经网络学习的方法：利用预测的 $V(s_{t+1})$ 作为目标，优化 $||V(s_t)-(r(s_t,a_t)+V(s_{t+1}))||_2$。该方法称为自举（左脚踩右脚螺旋升天）。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="一问题定义与基本概念">一、问题定义与基本概念</h3>
+<p>马尔科夫决策过程 (MDP)：状态 <span
+class="math inline">\(s\)</span>，行为 <span
+class="math inline">\(a\)</span>，奖励函数 <span
+class="math inline">\(r\)</span>​，转移算子 <span
+class="math inline">\(t=p(s&#39;|s,a)\)</span>。</p>
+<p>策略：给定当前状态 <span class="math inline">\(s\)</span> 和参数
+<span class="math inline">\(\theta\)</span>，策略是一种概率分布 <span
+class="math inline">\(\pi_\theta(a|s)\)</span>​。</p>
+<p>目标：<span class="math inline">\(\theta^\star=\arg\max_\theta
+E[\sum_t r(s_t,a_t)]=\arg\max J(\theta)\)</span>​。</p>
+<p>Q 函数：<span class="math inline">\(Q(s_t,a_t)=\sum
+_{t&#39;=t}^{T}E_{\pi_\theta}[r(s_{t&#39;},a_{t&#39;})|s_t,a_t]\)</span>,
+即在状态 <span class="math inline">\(s_t\)</span> 采取动作 <span
+class="math inline">\(a_t\)</span> 的奖励期望</p>
+<p>V 函数：<span class="math inline">\(V(s_t)=\sum
+_{t&#39;=t}^TE_{\pi_\theta}[r(s_{t&#39;},a_{t&#39;})|s_t]=E_{a_t\sim
+\pi_\theta(a_t|s_t)}[Q(s_t,a_t)]\)</span>，即在状态 <span
+class="math inline">\(s_t\)</span> 的奖励期望</p>
+<p>A 函数：<span
+class="math inline">\(A(s_t,a_t)=Q(s_t,a_t)-V(s_t)\)</span>，即某个动作比平均好多少</p>
+<h3 id="二value-based-方法与-policy-based-方法">二、Value-based 方法与
+Policy-based 方法</h3>
+<h5 id="value-based">Value-based</h5>
+<p>在这种方法中，我们尝试估计 <span
+class="math inline">\(Q(s_t,a_t)\)</span>，并采用某种固定的策略（例如，每次选择
+<span class="math inline">\(Q\)</span> 估值最高的行动，或以 <span
+class="math inline">\(\varepsilon\)</span> 的概率选择 <span
+class="math inline">\(Q\)</span> 估值最高的行动，以 <span
+class="math inline">\(1-\varepsilon\)</span> 的概率随机行动
+）采样来更新我们的估计。</p>
+<p>具体的，当我们获得一条新轨迹时，我们用 <span
+class="math inline">\(Q_{n+1}=Q_n+\alpha[R_n-Q_n]\)</span> 来更新 <span
+class="math inline">\(Q\)</span>​。这里的采样是 Off-Policy
+的，即任意的策略均可更新 <span class="math inline">\(Q\)</span>
+值表。</p>
+<p>在推理时，只需采取 <span class="math inline">\(Q\)</span>​
+值最大的行动即可。这里的最优化问题有多种解法，如梯度下降、二次函数先验假设、网络学习等等。</p>
+<h5 id="policy-based">Policy-based</h5>
+<p>在这种方法中，我们（暂时）不考虑 <span
+class="math inline">\(Q\)</span>，转而优化 <span
+class="math inline">\(\pi_\theta(a_t|s_t)\)</span>。对目标函数 <span
+class="math inline">\(J(\theta)\)</span> 求导得： <span
+class="math display">\[
+\nabla_\theta J(\theta)=E[(\sum _{t=1}^T\nabla_\theta
+\log\pi_\theta(a_t|s_t))(\sum _{t=1}^Tr(s_t,a_t))]
+\]</span> 直接更新 <span class="math inline">\(\theta&#39;=\theta+\alpha
+\nabla_\theta J(\theta)\)</span>​ 的算法称为 REINFORCE
+算法，由于期望的获取依赖采样，因此该算法具有低偏差、高方差的特点。</p>
+<p>改进一（Causality）：将来不能影响过去，因此在时刻 <span
+class="math inline">\(t\)</span> 只需考虑 <span
+class="math inline">\(t\)</span> 之后的奖励。即 <span
+class="math inline">\(\nabla_\theta J(\theta)=\frac1N\sum _{i=1}^N\sum
+_{t=1}^T\nabla_\theta\log\pi_\theta(a_{i,t}|s_{i,t})(\sum _{t&#39;=t}^T
+r(s_{i,t&#39;},a_{i,t&#39;}))\)</span>。</p>
+<p>改进二（Baseline）：当 Reward 统一减去某个 <span
+class="math inline">\(b\)</span> 值时，策略偏差应该不变。</p>
+<h3 id="三actor-critic-方法">三、Actor-Critic 方法</h3>
+<p>在上面的基线改进中，如果令 <span
+class="math inline">\(b=V(s_t)\)</span>，那么策略梯度为 <span
+class="math display">\[
+\nabla_\theta J(\theta)=\frac1N \sum
+_{i=1}^n\sum_{t=1}^T\nabla_\theta\log \pi_\theta(a_{i,t}|s_{i,t})(\sum
+_{t&#39;=t}^T A(s_{i,t&#39;},a_{i,t&#39;}))
+\]</span> 如果我们能对 <span class="math inline">\(V(s_t)\)</span>
+得到一个好的估计，那么问题可以得到解决。估计 <span
+class="math inline">\(V(s_t)\)</span> 或 <span
+class="math inline">\(Q(s_t,a_t)\)</span>
+的模型称为评论家（Critic），而根据评论家的估计调整策略的模型称为演员（Actor）。可以看出，Actor-Critic
+方法是把 Value-based 的方法和 Policy-based 的方法结合起来。</p>
+<p>评论家模型可以通过蒙特卡洛的方法采样 <span
+class="math inline">\(N\)</span> 条轨迹，近似为 <span
+class="math display">\[
+V(s_t)=\frac{1}{N}\sum _{i=1}^{N}\sum
+_{t&#39;=t}^{T}r(s_{t&#39;},a_{t&#39;})
+\]</span> 也可以使用神经网络学习的方法：利用预测的 <span
+class="math inline">\(V(s_{t+1})\)</span> 作为目标，优化 <span
+class="math inline">\(||V(s_t)-(r(s_t,a_t)+V(s_{t+1}))||_2\)</span>。该方法称为自举（左脚踩右脚螺旋升天）。</p>
 <p>以下是标准的 Actor-Critic 算法（带衰减因子）的流程：</p>
-<ol>
-<li>从 $\pi_\theta(a|s)$ 中采样若干轨迹 $(s_i,a_i)$</li>
-<li>用得到的奖励更新评论家网络 $V(s_t)$</li>
-<li>估计优势函数 $A(s_i,a_i)=r(s_i,a_i)+\gamma V(s_i’)-V(s_i)$</li>
-<li>计算策略梯度 $\nabla_\theta J(\theta)=\sum \nabla_\theta \log\pi_\theta(a_i|s_i)A(s_i,a_i)$</li>
-<li>更新策略 $\theta =\theta+\alpha \nabla_\theta J(\theta)$</li>
+<ol type="1">
+<li>从 <span class="math inline">\(\pi_\theta(a|s)\)</span>
+中采样若干轨迹 <span class="math inline">\((s_i,a_i)\)</span></li>
+<li>用得到的奖励更新评论家网络 <span
+class="math inline">\(V(s_t)\)</span></li>
+<li>估计优势函数 <span
+class="math inline">\(A(s_i,a_i)=r(s_i,a_i)+\gamma
+V(s_i&#39;)-V(s_i)\)</span></li>
+<li>计算策略梯度 <span class="math inline">\(\nabla_\theta
+J(\theta)=\sum \nabla_\theta
+\log\pi_\theta(a_i|s_i)A(s_i,a_i)\)</span></li>
+<li>更新策略 <span class="math inline">\(\theta =\theta+\alpha
+\nabla_\theta J(\theta)\)</span></li>
 </ol>
 <p>在网络设计中，可以让演员和评论家共享一部分网络层级，从而节省计算开销。</p>
-<p>优势函数的改进：回顾标准的蒙特卡洛策略梯度算法，若将 $V(s_t)$ 作为基线，则优势函数应为 $\sum <em>{t’=t}^T\gamma^{t’-t}r(s</em>{i,t’},a_{i,t’})-V(s_t)$，具有无偏、高方差的特点；而在 Actor-Critic 算法中，采用 $r(s_i,a_i)+\gamma V(s_i’)-V(s_i)$ 作为优势函数（TD），具有有偏差、低方差的特点。若将二者融合，则可平衡偏差与方差：令 $\delta_t=r(s_t,a_t)+\gamma V(s_{t+1})-V(s_t)$，则 $A_{GAE}(s_t,a_t)=\sum <em>{t’=t}^T(\gamma\lambda)^{t’-t}\delta</em>{t’}$，其中 $\lambda=0$ 时该方法退化到 TD，$\lambda=1$ 时该方法退化到蒙特卡洛。</p>
-<h3 id="四、PPO-算法">四、PPO 算法</h3>
-<p>标准的策略梯度算法是同策略（On-policy）的，也就意味着每次策略更新以后，之前采样的所有轨迹 $(s_t,a_t)$ 全部作废，必须重新采样。而与此同时，价值函数的估计是异策略（Off-policy）的，也就意味着不同策略的采样都可以用来更新评论家网络。显然异策略的模型数据使用更充分，如何改进 Actor-Critic 算法使其称为异策略的学习？</p>
-<p>经过数学推导，异策略的策略梯度应写作：<br>
-$$<br>
-\nabla_{\theta’}J(\theta’)=E[\sum <em>{t=1}^T\nabla</em>{\theta’}\log\pi_{\theta’}(a_t|s_t)(\prod_{t’=1}^t\frac{\pi <em>{\theta’}(a</em>{t’}|s_{t’})}{\pi_\theta(a_{t’}|s_{t’})})(\sum <em>{t’=t}^Tr(s</em>{t’},a_{t’})(\prod_{t’‘=t}^{t’}\frac{\pi_{\theta’}(a_{t’‘}|s_{t’‘})}{\pi_\theta(a_{t’‘}|s_{t’'})}))]<br>
-$$<br>
-如果忽略掉末项，可以简写为 $J(\theta)=E_t[\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}A_t]$。如果 $\frac{\pi_\theta}{\pi_{\theta_{old}}}$ 比值过大，则轨迹无效。</p>
-<p>TRPO 算法：在 $E_t[KL[\pi_{\theta_{old}}(\cdot|s_t),\pi_\theta(\cdot|s_t)]]\le \delta$ 的硬约束下，求解 $J(\theta)$ 的最优化问题。</p>
-<p>PPO 算法：通过截断函数与自适应 KL 惩罚项的软约束求解 $J(\theta)$ 的最优化问题。</p>
+<p>优势函数的改进：回顾标准的蒙特卡洛策略梯度算法，若将 <span
+class="math inline">\(V(s_t)\)</span> 作为基线，则优势函数应为 <span
+class="math inline">\(\sum
+_{t&#39;=t}^T\gamma^{t&#39;-t}r(s_{i,t&#39;},a_{i,t&#39;})-V(s_t)\)</span>，具有无偏、高方差的特点；而在
+Actor-Critic 算法中，采用 <span class="math inline">\(r(s_i,a_i)+\gamma
+V(s_i&#39;)-V(s_i)\)</span>
+作为优势函数（TD），具有有偏差、低方差的特点。若将二者融合，则可平衡偏差与方差：令
+<span class="math inline">\(\delta_t=r(s_t,a_t)+\gamma
+V(s_{t+1})-V(s_t)\)</span>，则 <span
+class="math inline">\(A_{GAE}(s_t,a_t)=\sum
+_{t&#39;=t}^T(\gamma\lambda)^{t&#39;-t}\delta_{t&#39;}\)</span>，其中
+<span class="math inline">\(\lambda=0\)</span> 时该方法退化到 TD，<span
+class="math inline">\(\lambda=1\)</span> 时该方法退化到蒙特卡洛。</p>
+<h3 id="四ppo-算法">四、PPO 算法</h3>
+<p>标准的策略梯度算法是同策略（On-policy）的，也就意味着每次策略更新以后，之前采样的所有轨迹
+<span class="math inline">\((s_t,a_t)\)</span>
+全部作废，必须重新采样。而与此同时，价值函数的估计是异策略（Off-policy）的，也就意味着不同策略的采样都可以用来更新评论家网络。显然异策略的模型数据使用更充分，如何改进
+Actor-Critic 算法使其称为异策略的学习？</p>
+<p>经过数学推导，异策略的策略梯度应写作： <span class="math display">\[
+\nabla_{\theta&#39;}J(\theta&#39;)=E[\sum
+_{t=1}^T\nabla_{\theta&#39;}\log\pi_{\theta&#39;}(a_t|s_t)(\prod_{t&#39;=1}^t\frac{\pi
+_{\theta&#39;}(a_{t&#39;}|s_{t&#39;})}{\pi_\theta(a_{t&#39;}|s_{t&#39;})})(\sum
+_{t&#39;=t}^Tr(s_{t&#39;},a_{t&#39;})(\prod_{t&#39;&#39;=t}^{t&#39;}\frac{\pi_{\theta&#39;}(a_{t&#39;&#39;}|s_{t&#39;&#39;})}{\pi_\theta(a_{t&#39;&#39;}|s_{t&#39;&#39;})}))]
+\]</span> 如果忽略掉末项，可以简写为 <span
+class="math inline">\(J(\theta)=E_t[\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}A_t]\)</span>。如果
+<span
+class="math inline">\(\frac{\pi_\theta}{\pi_{\theta_{old}}}\)</span>
+比值过大，则轨迹无效。</p>
+<p>TRPO 算法：在 <span
+class="math inline">\(E_t[KL[\pi_{\theta_{old}}(\cdot|s_t),\pi_\theta(\cdot|s_t)]]\le
+\delta\)</span> 的硬约束下，求解 <span
+class="math inline">\(J(\theta)\)</span> 的最优化问题。</p>
+<p>PPO 算法：通过截断函数与自适应 KL 惩罚项的软约束求解 <span
+class="math inline">\(J(\theta)\)</span> 的最优化问题。</p>
 <h5 id="截断函数">截断函数</h5>
-<p>令 $r_t(\theta)=\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}$，则带截断的目标函数为<br>
-$$<br>
-L(\theta)=E_t[\min(r_t(\theta)A_t,clip(r_t(\theta),1-\varepsilon,1+\varepsilon)A_t)]<br>
-$$<br>
-其含义为：当两个策略的分布差距很大，也即 $r_t(\theta)&gt;1+\varepsilon$ 或 $r_t(\theta)&lt;1-\varepsilon$ 时，超出项会被抹平，从而在求策略梯度时梯度为零，不会对策略更新产生影响。</p>
-<h5 id="自适应-KL-惩罚项">自适应 KL 惩罚项</h5>
-<p>$$<br>
-L(\theta)=E_t[r_t(\theta)A_t-\beta KL[\pi_{\theta_{old}}(\cdot|s_t),\pi_{\theta}(\cdot|s_t)]]<br>
-$$</p>
-<p>其中，$\beta$ 随着相邻两次策略的 KL 散度值自适应变化。当相邻两次的 KL 散度值较小时，$\beta$ 相应减小；反之 $\beta$ 增大。</p>
+<p>令 <span
+class="math inline">\(r_t(\theta)=\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}\)</span>，则带截断的目标函数为
+<span class="math display">\[
+L(\theta)=E_t[\min(r_t(\theta)A_t,clip(r_t(\theta),1-\varepsilon,1+\varepsilon)A_t)]
+\]</span> 其含义为：当两个策略的分布差距很大，也即 <span
+class="math inline">\(r_t(\theta)&gt;1+\varepsilon\)</span> 或 <span
+class="math inline">\(r_t(\theta)&lt;1-\varepsilon\)</span>
+时，超出项会被抹平，从而在求策略梯度时梯度为零，不会对策略更新产生影响。</p>
+<h5 id="自适应-kl-惩罚项">自适应 KL 惩罚项</h5>
+<p><span class="math display">\[
+L(\theta)=E_t[r_t(\theta)A_t-\beta
+KL[\pi_{\theta_{old}}(\cdot|s_t),\pi_{\theta}(\cdot|s_t)]]
+\]</span></p>
+<p>其中，<span class="math inline">\(\beta\)</span> 随着相邻两次策略的
+KL 散度值自适应变化。当相邻两次的 KL 散度值较小时，<span
+class="math inline">\(\beta\)</span> 相应减小；反之 <span
+class="math inline">\(\beta\)</span> 增大。</p>
 
     </div>
 
@@ -375,7 +459,7 @@ $$</p>
 
   <div class="copyright">
     &copy; 2023 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -424,7 +508,8 @@ $$</p>
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" integrity="sha256-3574TpfThVfeAhg+I4+N39EJiLN3QUkuEsMVe8hWAR4=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 
