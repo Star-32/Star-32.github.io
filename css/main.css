@@ -2572,7 +2572,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ffb1ff;
+  background: #3cff86;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2657,7 +2657,6 @@ body {
 .fa-libreoj {
   background: url("/images/icons/libreoj.svg");
 }
-.MathJax {
-  font-family: 'Latin Modern Math', 'STIX Math', 'Cambria Math', serif;
-  font-size: 1.05em;
+mjx-container {
+  font-size: 0.5em !important;
 }
