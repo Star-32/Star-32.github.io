@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yunheng Liu</title>
+  <meta name="description" content="Yunheng Liu — Undergraduate in Turing Class, Peking University." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f8fa;
+      --text: #1f2328;
+      --text-secondary: #57606a;
+      --border: #e5e7eb;
+      --link: #1772d0;
+      --link-hover: #f09228;
+      --highlight-bg: #fffbe6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+    }
+
+    /* Hero / Profile */
+    .profile {
+      display: grid;
+      grid-template-columns: 1fr 190px;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .profile h1 {
+      font-size: 2.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.9rem;
+      line-height: 1.2;
+    }
+
+    .profile p {
+      margin-bottom: 0.85rem;
+      color: var(--text);
+    }
+
+    .profile-links {
+      margin-top: 1.15rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .profile-links a {
+      font-weight: 500;
+    }
+
+    .profile-links .sep {
+      margin: 0 0.55rem;
+      color: #c9d1d9;
+      user-select: none;
+    }
+
+    .avatar {
+      width: 190px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 88%;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2.8rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.45rem;
+      margin-bottom: 1.4rem;
+    }
+
+    h2 {
+      font-size: 1.38rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    .section-note {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    /* Publications */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.85rem;
+    }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .pub-media {
+      width: 240px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .pub-media img,
+    .pub-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .pub-title {
+      font-size: 1.03rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 0.3rem;
+    }
+
+    .pub-title a {
+      color: var(--text);
+    }
+
+    .pub-title a:hover {
+      color: var(--link);
+    }
+
+    .pub-authors {
+      font-size: 0.91rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 0.3rem;
+    }
+
+    .pub-authors .me {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: #cbd5e1;
+    }
+
+    .pub-venue {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 0.45rem;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+    }
+
+    .pub-links a,
+    .pub-links button {
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--link);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.14rem 0.55rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pub-links a:hover,
+    .pub-links button:hover {
+      border-color: var(--link);
+      color: var(--link);
+      background: #f0f7ff;
+    }
+
+    .pub-tldr {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .bibtex-wrap {
+      display: none;
+      margin-top: 0.65rem;
+      position: relative;
+    }
+
+    .bibtex-wrap.open {
+      display: block;
+    }
+
+    .bibtex-code {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--text);
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.45rem;
+      right: 0.45rem;
+      font-size: 0.74rem;
+      padding: 0.15rem 0.45rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #ffffff;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      color: var(--text);
+      border-color: #94a3b8;
+    }
+
+    /* Education */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .edu-school {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .edu-date {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .edu-degree {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    /* Awards */
+    .award-list {
+      list-style: disc;
+      padding-left: 1.25rem;
+      font-size: 0.94rem;
+    }
+
+    .award-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .award-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container {
+        padding: 2rem 1.2rem 3rem;
+      }
+
+      .profile {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .avatar {
+        order: -1;
+        width: 140px;
+      }
+
+      .pub-item {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+
+      .pub-media {
+        width: 100%;
+        max-width: 340px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Bio / Hero -->
+    <header class="profile">
+      <div>
+        <h1>Yunheng Liu</h1>
+        <p>
+          I am an undergraduate student in the
+          <a href="https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm" target="_blank" rel="noopener">Turing Class</a>
+          at the School of EECS,
+          <a href="https://english.pku.edu.cn/" target="_blank" rel="noopener">Peking University</a>.
+          Currently, I am conducting research at the
+          <a href="https://camera.pku.edu.cn/" target="_blank" rel="noopener">Camera Intelligence Lab</a>,
+          advised by Prof.
+          <a href="https://cs.pku.edu.cn/info/1236/2684.htm" target="_blank" rel="noopener">Boxin Shi</a>.
+        </p>
+        <p>
+          My research interests include <strong>World Models</strong>, <strong>Generative Video Modeling</strong>,
+          <strong>LLM Security</strong>, and <strong>Interpretability</strong>.
+        </p>
+        <div class="profile-links">
+          <a href="mailto:yunhengliu25@stu.pku.edu.cn">Email</a>
+          <span class="sep">/</span>
+          <!-- 替换为你的 Google Scholar 链接 -->
+          <a href="https://scholar.google.com/citations?user=12AY380AAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
+          <span class="sep">/</span>
+          <!-- 替换为你的 GitHub 链接 -->
+          <a href="https://github.com/Star-32" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <div class="avatar">
+        <img src="images/avatar.jpg" width="473" height="630" alt="Portrait of Yunheng Liu" />
+      </div>
+    </header>
+
+    <!-- Publications -->
+    <section id="publications">
+      <div class="section-header">
+        <h2>Publications</h2>
+        <span class="section-note">* denotes equal contribution</span>
+      </div>
+
+      <div class="pub-list">
+        <!-- Paper 1: SPW-Nav -->
+        <article class="pub-item">
+          <div class="pub-media">
+            <img src="images/spw-nav.png" width="1772" height="604" alt="Overview of the SPW-Nav pipeline" />
+          </div>
+          <div>
+            <div class="pub-title">
+              <a href="https://alaya-lab.github.io/SPW-Nav/" target="_blank" rel="noopener">
+                SPW-Nav: A Streaming Panoramic World Model for Language-Guided Navigation
+              </a>
+            </div>
+            <div class="pub-authors">
+              <span class="me">Yunheng Liu*</span>,
+              Ziqi Cai*, Siqi Yang, Yimu Wang, Minggui Teng, Jiaming Tan, Shuchen Weng, Erwin Wu, Kaipeng Zhang, Boxin Shi
+            </div>
+            <div class="pub-venue">arXiv preprint arXiv:2610.08941, 2026</div>
+            <div class="pub-links">
+              <a href="https://alaya-lab.github.io/SPW-Nav/" target="_blank" rel="noopener">Project Page</a>
+              <a href="https://arxiv.org/abs/2610.08941" target="_blank" rel="noopener">arXiv</a>
+              <button type="button" onclick="toggleBib('bib-spwnav')">BibTeX</button>
+            </div>
+            <p class="pub-tldr">
+              A real-time, language-guided panoramic world model that streams minute-long 2K 360° video from a single panorama via spherical rotation decoupling, pose-aligned conditioning, and streaming memory.
+            </p>
+            <div class="bibtex-wrap" id="bib-spwnav">
+              <button type="button" class="copy-btn" onclick="copyBib('code-spwnav', this)">Copy</button>
+              <pre class="bibtex-code" id="code-spwnav">@article{liu2026spwnav,
+  title   = {SPW-Nav: A Streaming Panoramic World Model for Language-Guided Navigation},
+  author  = {Liu, Yunheng and Cai, Ziqi and Yang, Siqi and Wang, Yimu and Teng, Minggui and Tan, Jiaming and Weng, Shuchen and Wu, Erwin and Zhang, Kaipeng and Shi, Boxin},
+  journal = {arXiv preprint arXiv:2610.08941},
+  year    = {2026}
+}</pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- Paper 2: MASS -->
+        <article class="pub-item">
+          <div class="pub-media">
+            <img src="images/mass.png" width="1268" height="662" alt="Overview of the MASS pipeline" />
+          </div>
+          <div>
+            <div class="pub-title">
+              <a href="https://alaya-lab.github.io/MASS/" target="_blank" rel="noopener">
+                MASS: Multiplayer World Models with Authoritative Shared State
+              </a>
+            </div>
+            <div class="pub-authors">
+              Ziqi Cai, Siqi Yang, Yimu Wang, Zixian Gao,
+              <span class="me">Yunheng Liu</span>,
+              Shuchen Weng, Erwin Wu, Kaipeng Zhang, Boxin Shi
+            </div>
+            <div class="pub-venue">arXiv preprint arXiv:2608.06257, 2026</div>
+            <div class="pub-links">
+              <a href="https://alaya-lab.github.io/MASS/" target="_blank" rel="noopener">Project Page</a>
+              <a href="https://arxiv.org/abs/2608.06257" target="_blank" rel="noopener">arXiv</a>
+              <button type="button" onclick="toggleBib('bib-mass')">BibTeX</button>
+            </div>
+            <p class="pub-tldr">
+              A multiplayer world model that advances one authoritative typed state and synthesizes consistent client views on demand, scaling to 1,024 concurrent players over 10,000 recurrent steps.
+            </p>
+            <div class="bibtex-wrap" id="bib-mass">
+              <button type="button" class="copy-btn" onclick="copyBib('code-mass', this)">Copy</button>
+              <pre class="bibtex-code" id="code-mass">@article{cai2026mass,
+  title   = {MASS: Multiplayer World Models with Authoritative Shared State},
+  author  = {Cai, Ziqi and Yang, Siqi and Wang, Yimu and Gao, Zixian and Liu, Yunheng and Weng, Shuchen and Wu, Erwin and Zhang, Kaipeng and Shi, Boxin},
+  journal = {arXiv preprint arXiv:2608.06257},
+  year    = {2026}
+}</pre>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-header">
+        <h2>Education</h2>
+      </div>
+      <div class="edu-item">
+        <div class="edu-school">Peking University</div>
+        <div class="edu-date">Sep. 2025 – Jul. 2029 (Expected)</div>
+      </div>
+      <div class="edu-degree">
+        B.S. in Computer Science and Technology,
+        <a href="https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm" target="_blank" rel="noopener">Turing Class</a>,
+        School of EECS
+      </div>
+    </section>
+
+    <!-- Honors & Awards -->
+    <section id="awards">
+      <div class="section-header">
+        <h2>Honors &amp; Awards</h2>
+      </div>
+      <ul class="award-list">
+        <li>John Hopcroft Scholarship, School of EECS, Peking University, 2025–2026</li>
+        <li>Second Prize, 24th UbiQuant Cup Programming Contest, Peking University, 2026</li>
+        <li> Third Prize, Peking University Freshman Scholarship, 2025</li>
+        <li>Gold Medal, National Olympiad in Informatics (NOI), 2023</li>
+      </ul>
+    </section>
+
+    <footer>
+      Last updated: Nov. 2026 · Yunheng Liu
+    </footer>
+  </div>
+
+  <script>
+    function toggleBib(id) {
+      document.getElementById(id).classList.toggle("open");
+    }
+
+    function copyBib(codeId, btn) {
+      const text = document.getElementById(codeId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const oldText = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => {
+          btn.textContent = oldText;
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
